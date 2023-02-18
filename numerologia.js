@@ -8,6 +8,10 @@ function calculateNum(){
     var mLastName = document.getElementById("mLastName").value
     var mSurName = document.getElementById("mSurName").value
 
+    var day = document.getElementById("day").value
+    var month = document.getElementById("month").value
+    var year = document.getElementById("year").value
+
     var firstNameValue = calculateTextValue(firstName)
     // var midNameValue = calculateTextValue(midName)
     // var fLastNameValue = calculateTextValue(fLastName)
@@ -15,7 +19,10 @@ function calculateNum(){
     // var mLastNameValue = calculateTextValue(mLastName)
     // var mSurNameValue = calculateTextValue(mSurName)
 
-    alert(firstNameValue)
+    var dateValue = calculateDateValue(day, month, year)
+
+    console.log("firstNameValue " + firstNameValue)
+    console.log("dateValue " + dateValue)
 }
 
 function calculateTextValue(name){
@@ -24,36 +31,74 @@ function calculateTextValue(name){
             M:4, V:4, E:5, N:5, W:5, F:6, O:6, X:6, G:7, P:7, Y:7, H:8, 
             Q:8, Z:8, I:9, R:9}
 
-        var nameScore = 0;
+        var nameScore = 0
         
         for( var i = 0; i < name.length; i++ )
         {
-            var curChar = name.charAt(i).toUpperCase();
-            var curValue = x[curChar];
-            nameScore = nameScore + curValue;
-            // console.log("value" + curValue)
-        }
-        // console.log("score" + nameScore)
-
-        var singleDigitScore = nameScore;
-        while( singleDigitScore >= 10 )
-        {
-            var total = 0;
-            var str = '' + singleDigitScore;
-            
-            for( var i = 0; i < str.length; i++ )
-            {
-                // console.log(str.charAt(i))
-                total = total + parseInt( str.charAt(i) );
-                // console.log(total)
-            }
-            singleDigitScore = total;
+            var curChar = name.charAt(i).toUpperCase()
+            var curValue = x[curChar]
+            nameScore = nameScore + curValue
         }
 
-        // console.log(singleDigitScore);
+        var singleDigitValue = nameScore
+        var singleDigitNameScore = singleDigit(singleDigitValue)
 
-        return singleDigitScore
+        return singleDigitNameScore
     } else {
         console.log("Please enter a name")
     }
+}
+
+function calculateDateValue(day, month, year){
+    var dayScore = 0
+    var monthScore = 0
+    var yearScore = 0
+    
+    if(day >= 10){
+        for( var i = 0; i < day.length; i++ )
+        {
+            var curValue = day.toString().charAt(i)
+            dayScore = dayScore + parseInt(curValue)
+        }
+    } else {
+        dayScore = parseInt(day)
+    }
+
+    if(month >= 10){
+        for( var i = 0; i < month.length; i++ )
+        {
+            var curValue = month.toString().charAt(i)
+            monthScore = monthScore + parseInt(curValue)
+        }
+    } else {
+        monthScore = parseInt(month)
+    }
+
+    for( var i = 0; i < year.length; i++ )
+    {
+        var curValue = year.toString().charAt(i)
+        yearScore = yearScore + parseInt(curValue)
+    }
+
+    var singleDigitValue = dayScore + monthScore + yearScore
+
+    var singleDigitDateScore = singleDigit(singleDigitValue)
+
+    return singleDigitDateScore
+}
+
+function singleDigit(singleDigitValue) {
+    while( singleDigitValue >= 10 )
+    {
+        var total = 0
+        var str = '' + singleDigitValue
+        
+        for( var i = 0; i < str.length; i++ )
+        {
+            total = total + parseInt(str.charAt(i))
+        }
+        singleDigitValue = total
+    }
+
+    return singleDigitValue
 }
