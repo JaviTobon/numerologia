@@ -1,59 +1,165 @@
 // Numerology
 function CalculateNum(){
-    var alphabet = {A:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, D:4, 
+    const alphabet = {A:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, D:4, 
         M:4, V:4, E:5, N:5, W:5, F:6, O:6, X:6, G:7, P:7, Y:7, H:8, 
         Q:8, Z:8, I:9, R:9}
 
+    const consonants = {J:1, S:1, B:2, K:2, T:2, C:3, L:3, D:4, 
+        M:4, V:4, N:5, W:5, F:6, X:6, G:7, P:7, H:8, 
+        Q:8, Z:8, R:9}
+
+    const vowelsY = {A:1, U:3, E:5, O:6, Y:7, I:9}
+    const vowelsNoY = {A:1, U:3, E:5, O:6, I:9}
+    let vowels = {}
+
     var firstName = document.getElementById("inputFirstName").value
     var midName = document.getElementById("inputMidName").value
-
     var fLastName = document.getElementById("fLastName").value
     var fSurName = document.getElementById("fSurName").value
-
     var mLastName = document.getElementById("mLastName").value
     var mSurName = document.getElementById("mSurName").value
 
-    var fullName = firstName + midName + fLastName + fSurName + mLastName + mSurName
+    var yIsVocal = document.getElementById("cboxY")
 
     var day = document.getElementById("day").value
     var month = document.getElementById("month").value
     var year = document.getElementById("year").value
 
-    var yIsVocal = false
+    var fullName = firstName + midName + fLastName + fSurName + mLastName + mSurName
+    var activeName = firstName + fLastName + mLastName
 
-    var inclution = Inclution(fullName, alphabet)
-    var induction = Induction(inclution)
-    var bridges = Bridges(inclution)
-    var evolution = Evolution(inclution)
-    var unconscious = Unconscious(inclution, alphabet, fullName)
-    var induction2 = Induction(unconscious)
+    if(yIsVocal.checked) {
+        vowels = vowelsY
+    } else {
+        vowels = vowelsNoY
+    }
 
-    console.log(inclution)
-    console.log(induction)
-    console.log(bridges)
-    console.log(evolution)
-    console.log(unconscious)
-    console.log(induction2)
+    let soulNumber = SoulNumber(fullName, vowels)
+    let fullNameNumber = FullNameNumber(fullName, alphabet)
+    let personalityNumber = PersonalityNumber(fullName, consonants)
+    let lifeTrajectory = LifeTrajectory(day, month, year)
 
-    // var firstNameValue = CalculateTextValue(firstName, alphabet)
-    // var midNameValue = CalculateTextValue(midName, alphabet)
-    // var fLastNameValue = CalculateTextValue(fLastName, alphabet)
-    // var fSurNameValue = CalculateTextValue(fSurName, alphabet)
-    // var mLastNameValue = CalculateTextValue(mLastName, alphabet)
-    // var mSurNameValue = CalculateTextValue(mSurName, alphabet)
+    // console.log("lifeTrajectory " + lifeTrajectory)
+    // console.log("soulNumber " + soulNumber)
+    // console.log("fullNameNumber " + fullNameNumber)
+    // console.log("personalityNumber " + personalityNumber)
 
-    // var dateValue = CalculateDateValue(day, month, year)
+    let inclution = Inclution(fullName, alphabet)
+    let induction = Induction(inclution)
+    let bridges = Bridges(inclution)
+    let evolution = Evolution(inclution)
+    let unconscious = Unconscious(inclution, alphabet, fullName)
+    let induction2 = Induction(unconscious)
 
-    // console.log("firstNameValue " + firstNameValue)
-    // console.log("midNameValue " + midNameValue)
-    // console.log("fLastNameValue " + fLastNameValue)
-    // console.log("fSurNameValue " + fSurNameValue)
-    // console.log("mLastNameValue " + mLastNameValue)
-    // console.log("mSurNameValue " + mSurNameValue)
+    // console.log(inclution)
+    // console.log(induction)
+    // console.log(bridges)
+    // console.log(evolution)
+    // console.log(unconscious)
+    // console.log(induction2)
 
-    // console.log("dateValue " + dateValue)
+    let activeSoulNumber = SoulNumber(activeName, vowels)
+    let activeNameNumber = FullNameNumber(activeName, alphabet)
+    let activePersonalityNumber = PersonalityNumber(activeName, consonants)
+
+    let activeInclution = Inclution(activeName, alphabet)
+    let activeInduction = Induction(activeInclution)
 }
 
+// LifeTrajectory
+function LifeTrajectory(day, month, year){
+    var dayScore = 0
+    var monthScore = 0
+    var yearScore = 0
+    
+    if(day >= 10){
+        for( var i = 0; i < day.length; i++ )
+        {
+            var curValue = day.toString().charAt(i)
+            dayScore = dayScore + parseInt(curValue)
+        }
+    } else {
+        dayScore = parseInt(day)
+    }
+
+    if(month >= 10){
+        for( var i = 0; i < month.length; i++ )
+        {
+            var curValue = month.toString().charAt(i)
+            monthScore = monthScore + parseInt(curValue)
+        }
+    } else {
+        monthScore = parseInt(month)
+    }
+
+    for( var i = 0; i < year.length; i++ )
+    {
+        var curValue = year.toString().charAt(i)
+        yearScore = yearScore + parseInt(curValue)
+    }
+
+    var singleDigitValue = dayScore + monthScore + yearScore
+
+    var singleDigitDateScore = singleDigit(singleDigitValue)
+
+    return singleDigitDateScore
+}
+
+// SoulNumber
+function SoulNumber(fullName, vowels) {
+    var nameScore = 0
+    
+    for( var i = 0; i < fullName.length; i++ )
+    {
+        var curChar = fullName.charAt(i).toUpperCase()
+        var curValue = vowels[curChar]
+
+        if(curValue != undefined) {
+            nameScore = nameScore + curValue
+        }
+    }
+
+    var singleDigitValue = nameScore
+    var singleDigitNameScore = singleDigit(singleDigitValue)
+
+    return singleDigitNameScore
+}
+// FullNameNumber
+function FullNameNumber(fullName, alphabet){
+    var nameScore = 0
+    
+    for( var i = 0; i < fullName.length; i++ )
+    {
+        var curChar = fullName.charAt(i).toUpperCase()
+        var curValue = alphabet[curChar]
+        nameScore = nameScore + curValue
+    }
+
+    var singleDigitValue = nameScore
+    var singleDigitNameScore = singleDigit(singleDigitValue)
+
+    return singleDigitNameScore
+}
+// PersonalityNumber
+function PersonalityNumber(fullName, consonants) {
+    var nameScore = 0
+    
+    for( var i = 0; i < fullName.length; i++ )
+    {
+        var curChar = fullName.charAt(i).toUpperCase()
+        var curValue = consonants[curChar]
+
+        if(curValue != undefined) {
+            nameScore = nameScore + curValue
+        }
+    }
+    var singleDigitValue = nameScore
+    var singleDigitNameScore = singleDigit(singleDigitValue)
+
+    return singleDigitNameScore
+}
+
+// Inclution
 function Inclution(fullName, alphabet) {
     var house1 = 0
     var house2 = 0
@@ -226,66 +332,6 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
     }
 
     return curValue
-}
-
-// SumTotal
-function CalculateTextValue(name, alphabet){
-    if(name != ""){
-        var nameScore = 0
-        
-        for( var i = 0; i < name.length; i++ )
-        {
-            var curChar = name.charAt(i).toUpperCase()
-            var curValue = alphabet[curChar]
-            nameScore = nameScore + curValue
-        }
-
-        var singleDigitValue = nameScore
-        var singleDigitNameScore = singleDigit(singleDigitValue)
-
-        return singleDigitNameScore
-    } else {
-        console.log("Please enter a name")
-    }
-}
-
-// Date
-function CalculateDateValue(day, month, year){
-    var dayScore = 0
-    var monthScore = 0
-    var yearScore = 0
-    
-    if(day >= 10){
-        for( var i = 0; i < day.length; i++ )
-        {
-            var curValue = day.toString().charAt(i)
-            dayScore = dayScore + parseInt(curValue)
-        }
-    } else {
-        dayScore = parseInt(day)
-    }
-
-    if(month >= 10){
-        for( var i = 0; i < month.length; i++ )
-        {
-            var curValue = month.toString().charAt(i)
-            monthScore = monthScore + parseInt(curValue)
-        }
-    } else {
-        monthScore = parseInt(month)
-    }
-
-    for( var i = 0; i < year.length; i++ )
-    {
-        var curValue = year.toString().charAt(i)
-        yearScore = yearScore + parseInt(curValue)
-    }
-
-    var singleDigitValue = dayScore + monthScore + yearScore
-
-    var singleDigitDateScore = singleDigit(singleDigitValue)
-
-    return singleDigitDateScore
 }
 
 // Single Digit
