@@ -13,17 +13,27 @@ function CalculateNum(){
     var mLastName = document.getElementById("mLastName").value
     var mSurName = document.getElementById("mSurName").value
 
+    var fullName = firstName + midName + fLastName + fSurName + mLastName + mSurName
+
     var day = document.getElementById("day").value
     var month = document.getElementById("month").value
     var year = document.getElementById("year").value
 
     var yIsVocal = false
 
-    var inclution = Inclution(firstName, midName, fLastName, fSurName, mLastName, mSurName, alphabet)
+    var inclution = Inclution(fullName, alphabet)
     var induction = Induction(inclution)
     var bridges = Bridges(inclution)
     var evolution = Evolution(inclution)
-    var unconscious = Unconscious(inclution, alphabet, firstName, midName, fLastName, fSurName, mLastName, mSurName)
+    var unconscious = Unconscious(inclution, alphabet, fullName)
+    var induction2 = Induction(unconscious)
+
+    console.log(inclution)
+    console.log(induction)
+    console.log(bridges)
+    console.log(evolution)
+    console.log(unconscious)
+    console.log(induction2)
 
     // var firstNameValue = CalculateTextValue(firstName, alphabet)
     // var midNameValue = CalculateTextValue(midName, alphabet)
@@ -44,7 +54,7 @@ function CalculateNum(){
     // console.log("dateValue " + dateValue)
 }
 
-function Inclution(firstName, midName, fLastName, fSurName, mLastName, mSurName, alphabet) {
+function Inclution(fullName, alphabet) {
     var house1 = 0
     var house2 = 0
     var house3 = 0
@@ -56,144 +66,9 @@ function Inclution(firstName, midName, fLastName, fSurName, mLastName, mSurName,
     var house9 = 0
 
     //firstName
-    for( var i = 0; i < firstName.length; i++ )
+    for( var i = 0; i < fullName.length; i++ )
     {
-        var curChar = firstName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
-        
-        if(curValue == 1) {
-            house1++
-        } else if (curValue == 2) {
-            house2++
-        } else if (curValue == 3) {
-            house3++
-        } else if (curValue == 4) {
-            house4++
-        } else if (curValue == 5) {
-            house5++
-        } else if (curValue == 6) {
-            house6++
-        } else if (curValue == 7) {
-            house7++
-        } else if (curValue == 8) {
-            house8++
-        } else if (curValue == 9) {
-            house9++
-        }
-    }
-
-    //midName
-    for( var i = 0; i < midName.length; i++ )
-    {
-        var curChar = firstName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
-        
-        if(curValue == 1) {
-            house1++
-        } else if (curValue == 2) {
-            house2++
-        } else if (curValue == 3) {
-            house3++
-        } else if (curValue == 4) {
-            house4++
-        } else if (curValue == 5) {
-            house5++
-        } else if (curValue == 6) {
-            house6++
-        } else if (curValue == 7) {
-            house7++
-        } else if (curValue == 8) {
-            house8++
-        } else if (curValue == 9) {
-            house9++
-        }
-    }
-
-    //fLastName
-    for( var i = 0; i < fLastName.length; i++ )
-    {
-        var curChar = firstName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
-        
-        if(curValue == 1) {
-            house1++
-        } else if (curValue == 2) {
-            house2++
-        } else if (curValue == 3) {
-            house3++
-        } else if (curValue == 4) {
-            house4++
-        } else if (curValue == 5) {
-            house5++
-        } else if (curValue == 6) {
-            house6++
-        } else if (curValue == 7) {
-            house7++
-        } else if (curValue == 8) {
-            house8++
-        } else if (curValue == 9) {
-            house9++
-        }
-    }
-
-    //fSurName
-    for( var i = 0; i < fSurName.length; i++ )
-    {
-        var curChar = firstName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
-        
-        if(curValue == 1) {
-            house1++
-        } else if (curValue == 2) {
-            house2++
-        } else if (curValue == 3) {
-            house3++
-        } else if (curValue == 4) {
-            house4++
-        } else if (curValue == 5) {
-            house5++
-        } else if (curValue == 6) {
-            house6++
-        } else if (curValue == 7) {
-            house7++
-        } else if (curValue == 8) {
-            house8++
-        } else if (curValue == 9) {
-            house9++
-        }
-    }
-
-    //mLastName
-    for( var i = 0; i < mLastName.length; i++ )
-    {
-        var curChar = firstName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
-        
-        if(curValue == 1) {
-            house1++
-        } else if (curValue == 2) {
-            house2++
-        } else if (curValue == 3) {
-            house3++
-        } else if (curValue == 4) {
-            house4++
-        } else if (curValue == 5) {
-            house5++
-        } else if (curValue == 6) {
-            house6++
-        } else if (curValue == 7) {
-            house7++
-        } else if (curValue == 8) {
-            house8++
-        } else if (curValue == 9) {
-            house9++
-        }
-    }
-
-    //mSurName
-    for( var i = 0; i < mSurName.length; i++ )
-    {
-        var curChar = firstName.charAt(i).toUpperCase()
+        var curChar = fullName.charAt(i).toUpperCase()
         var curValue = alphabet[curChar]
         
         if(curValue == 1) {
@@ -218,7 +93,6 @@ function Inclution(firstName, midName, fLastName, fSurName, mLastName, mSurName,
     }
 
     var inclution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
-    console.log(inclution)
 
     return inclution
 }
@@ -236,8 +110,7 @@ function Induction(inclution) {
     var house9 = CalculateInduction(inclution, 8)
 
     var induction = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
-    // console.log(induction)
-    
+
     return induction
 }
 function CalculateInduction(inclution, index) {
@@ -247,12 +120,15 @@ function CalculateInduction(inclution, index) {
     var val2 = 0
     var val3 = 0
 
-    val1 = inclution[index]
-    if(val1 > 0){
-        val2 = inclution[inclution[index]-1]
+    if(inclution[index] > 0){
+        val1 = inclution[inclution[index] - 1]
 
-        if(val2 > 0) {
-            val3 = inclution[inclution[inclution[index]-1]-1]
+        if(val1 > 0) {
+            val2 = inclution[val1 - 1]
+    
+            if(val2 > 0) {
+                val3 = inclution[val2 - 1]
+            }
         }
     }
     house.push(val1, val2, val3)
@@ -273,7 +149,6 @@ function Bridges(inclution) {
     var house9 = CalculateBridges(inclution, 8)
 
     var bridges = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
-    // console.log(bridges)
 
     return bridges
 }
@@ -300,7 +175,6 @@ function Evolution(inclution) {
     var house9 = CalculateEvolution(inclution, 8)
 
     var evolution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
-    console.log(evolution)
 
     return evolution
 }
@@ -319,8 +193,39 @@ function CalculateEvolution(inclution, index) {
 }
 
 // Unconscius
-function Unconscious(inclution, alphabet, firstName, midName, fLastName, fSurName, mLastName, mSurName) {
-    var house1 = 0
+function Unconscious(inclution, alphabet, fullName) {
+    var house1 = CalculateUnconscious(inclution, alphabet, fullName, 0)
+    var house2 = CalculateUnconscious(inclution, alphabet, fullName, 1)
+    var house3 = CalculateUnconscious(inclution, alphabet, fullName, 2)
+    var house4 = CalculateUnconscious(inclution, alphabet, fullName, 3)
+    var house5 = CalculateUnconscious(inclution, alphabet, fullName, 4)
+    var house6 = CalculateUnconscious(inclution, alphabet, fullName, 5)
+    var house7 = CalculateUnconscious(inclution, alphabet, fullName, 6)
+    var house8 = CalculateUnconscious(inclution, alphabet, fullName, 7)
+    var house9 = CalculateUnconscious(inclution, alphabet, fullName, 8)
+
+    var unconscious = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+    return unconscious
+}
+function CalculateUnconscious(inclution, alphabet, fullName, index) {
+    var curChar = ""
+    var curValue = 0
+
+    if(inclution[index] > 0){
+        curChar = fullName.charAt(inclution[index] - 1).toUpperCase()
+        curValue = alphabet[curChar]
+    } else if(inclution[index] <= 0){
+        curChar = fullName.charAt(index).toUpperCase()
+
+        if(curChar == undefined || curChar == "") {
+            curValue = 0
+        } else {
+            curValue = alphabet[curChar]
+        }
+    }
+
+    return curValue
 }
 
 // SumTotal
