@@ -79,39 +79,22 @@ function CalculateNum(){
     
     // console.log(activeInclution)
     // console.log(activeInduction)
+
+    let cycleYear = 36 - lifeTrajectory
+    let pinacles = Pinacles(day, month, year)
+    let pitfalls = Pitfalls(day, month, year)
+    // console.log(lifeTrajectory)
+    // console.log(cycleYear)
+    // console.log(pinacles)
+    // console.log(pitfalls)
 }
 
 // LifeTrajectory
 function LifeTrajectory(day, month, year){
-    var dayScore = 0
-    var monthScore = 0
-    var yearScore = 0
-    
-    if(day >= 10){
-        for( var i = 0; i < day.length; i++ )
-        {
-            var curValue = day.toString().charAt(i)
-            dayScore = dayScore + parseInt(curValue)
-        }
-    } else {
-        dayScore = parseInt(day)
-    }
-
-    if(month >= 10){
-        for( var i = 0; i < month.length; i++ )
-        {
-            var curValue = month.toString().charAt(i)
-            monthScore = monthScore + parseInt(curValue)
-        }
-    } else {
-        monthScore = parseInt(month)
-    }
-
-    for( var i = 0; i < year.length; i++ )
-    {
-        var curValue = year.toString().charAt(i)
-        yearScore = yearScore + parseInt(curValue)
-    }
+    var dateValues = CalculateDateValues(day, month, year)
+    var dayScore = dateValues[0]
+    var monthScore = dateValues[1]
+    var yearScore = dateValues[2]
 
     var singleDigitValue = dayScore + monthScore + yearScore
 
@@ -122,43 +105,16 @@ function LifeTrajectory(day, month, year){
 // WayOfLife
 function WayOfLife(day, month, year){
     var singleDigitValue = parseInt(day) + parseInt(month) + parseInt(year)
-    console.log(singleDigitValue)
-
     var singleDigitDateScore = singleDigit(singleDigitValue)
 
     return singleDigitDateScore
 }
 // DeepSoulLonging
 function DeepSoulLonging(day, month, year){
-    var dayScore = 0
-    var monthScore = 0
-    var yearScore = 0
-    
-    if(day >= 10){
-        for( var i = 0; i < day.length; i++ )
-        {
-            var curValue = day.toString().charAt(i)
-            dayScore = dayScore + parseInt(curValue)
-        }
-    } else {
-        dayScore = parseInt(day)
-    }
-
-    if(month >= 10){
-        for( var i = 0; i < month.length; i++ )
-        {
-            var curValue = month.toString().charAt(i)
-            monthScore = monthScore + parseInt(curValue)
-        }
-    } else {
-        monthScore = parseInt(month)
-    }
-
-    for( var i = 0; i < year.length; i++ )
-    {
-        var curValue = year.toString().charAt(i)
-        yearScore = yearScore + parseInt(curValue)
-    }
+    var dateValues = CalculateDateValues(day, month, year)
+    var dayScore = dateValues[0]
+    var monthScore = dateValues[1]
+    var yearScore = dateValues[2]
 
     var singleDigitValue = (dayScore + monthScore) + (monthScore + yearScore)
 
@@ -398,6 +354,85 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
     return curValue
 }
 
+// Pinnacles and Pitfalls
+function Pinacles(day, month, year) {
+    var dateValues = CalculateDateValues(day, month, year)
+    var dayScore = singleDigit(dateValues[0])
+    var monthScore = singleDigit(dateValues[1])
+    var yearScore = singleDigit(dateValues[2])
+
+    var cycle1 = singleDigit(dayScore + monthScore)
+    var cycle2 = singleDigit(dayScore + yearScore)
+    var cycle3 = singleDigit(cycle1 + cycle2)
+    var cycle4 = singleDigit(monthScore + yearScore)
+
+    var pinacles = [cycle1, cycle2, cycle3, cycle4]
+
+    return pinacles
+}
+function Pitfalls(day, month, year) {    
+    var dateValues = CalculateDateValues(day, month, year)    
+    var dayScore = singleDigit(dateValues[0])
+    var monthScore = singleDigit(dateValues[1])
+    var yearScore = singleDigit(dateValues[2])
+
+    var cycle1 = singleDigit(dayScore - monthScore)
+    var cycle2 = singleDigit(dayScore - yearScore)
+    var cycle3 = singleDigit(cycle1 - cycle2)
+    var cycle4 = singleDigit(monthScore - yearScore)
+
+    if(cycle1 < 0){
+        cycle1 = (cycle1 * -1)
+    } else if(cycle2 < 0){
+        cycle2 = (cycle2 * -1)
+    } else if(cycle3 < 0){
+        cycle3 = (cycle3 * -1)
+    } else if(cycle4 < 0){
+        cycle4 = (cycle4 * -1)
+    }
+
+    var pitfalls = [cycle1, cycle2, cycle3, cycle4]
+
+    return pitfalls
+}
+
+// UTILS //
+// Calculate Date Values - Day, Month, Year
+function CalculateDateValues (day, month, year) {
+    var dayScore = 0
+    var monthScore = 0
+    var yearScore = 0
+    
+    if(day >= 10){
+        for( var i = 0; i < day.length; i++ )
+        {
+            var curValue = day.toString().charAt(i)
+            dayScore = dayScore + parseInt(curValue)
+        }
+    } else {
+        dayScore = parseInt(day)
+    }    
+
+    if(month >= 10){
+        for( var i = 0; i < month.length; i++ )
+        {
+            var curValue = month.toString().charAt(i)
+            monthScore = monthScore + parseInt(curValue)
+        }
+    } else {
+        monthScore = parseInt(month)
+    }
+
+    for( var i = 0; i < year.length; i++ )
+    {
+        var curValue = year.toString().charAt(i)
+        yearScore = yearScore + parseInt(curValue)
+    }
+
+    var dateValues = [dayScore, monthScore, yearScore]
+
+    return dateValues
+}
 // Single Digit
 function singleDigit(singleDigitValue) {
     while( singleDigitValue >= 10 )
