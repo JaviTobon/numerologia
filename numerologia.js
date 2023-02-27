@@ -18,6 +18,7 @@ function CalculateNum(){
     var fSurName = document.getElementById("fSurName").value
     var mLastName = document.getElementById("mLastName").value
     var mSurName = document.getElementById("mSurName").value
+    var activeName = document.getElementById("activeName").value
 
     var yIsVocal = document.getElementById("cboxY")
 
@@ -26,7 +27,7 @@ function CalculateNum(){
     var year = document.getElementById("year").value
 
     var fullName = firstName + midName + fLastName + fSurName + mLastName + mSurName
-    var activeName = firstName + fLastName + mLastName
+    // var activeName = firstName + fLastName + mLastName
 
     if(yIsVocal.checked) {
         vowels = vowelsY
@@ -34,12 +35,19 @@ function CalculateNum(){
         vowels = vowelsNoY
     }
 
+    let lifeTrajectory = LifeTrajectory(day, month, year)
+    let homeTrail = LifeTrajectory(day, month, year)
+    let wayOfLife = WayOfLife(day, month, year)
+    let deepSoulLonging = DeepSoulLonging(day, month, year)
+
     let soulNumber = SoulNumber(fullName, vowels)
     let fullNameNumber = FullNameNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
-    let lifeTrajectory = LifeTrajectory(day, month, year)
 
     // console.log("lifeTrajectory " + lifeTrajectory)
+    // console.log("wayOfLife " + wayOfLife)
+    // console.log("deepSoulLonging " + deepSoulLonging)
+
     // console.log("soulNumber " + soulNumber)
     // console.log("fullNameNumber " + fullNameNumber)
     // console.log("personalityNumber " + personalityNumber)
@@ -64,6 +72,13 @@ function CalculateNum(){
 
     let activeInclution = Inclution(activeName, alphabet)
     let activeInduction = Induction(activeInclution)
+
+    // console.log(activeSoulNumber)
+    // console.log(activeNameNumber)
+    // console.log(activePersonalityNumber)
+    
+    // console.log(activeInclution)
+    // console.log(activeInduction)
 }
 
 // LifeTrajectory
@@ -104,6 +119,53 @@ function LifeTrajectory(day, month, year){
 
     return singleDigitDateScore
 }
+// WayOfLife
+function WayOfLife(day, month, year){
+    var singleDigitValue = parseInt(day) + parseInt(month) + parseInt(year)
+    console.log(singleDigitValue)
+
+    var singleDigitDateScore = singleDigit(singleDigitValue)
+
+    return singleDigitDateScore
+}
+// DeepSoulLonging
+function DeepSoulLonging(day, month, year){
+    var dayScore = 0
+    var monthScore = 0
+    var yearScore = 0
+    
+    if(day >= 10){
+        for( var i = 0; i < day.length; i++ )
+        {
+            var curValue = day.toString().charAt(i)
+            dayScore = dayScore + parseInt(curValue)
+        }
+    } else {
+        dayScore = parseInt(day)
+    }
+
+    if(month >= 10){
+        for( var i = 0; i < month.length; i++ )
+        {
+            var curValue = month.toString().charAt(i)
+            monthScore = monthScore + parseInt(curValue)
+        }
+    } else {
+        monthScore = parseInt(month)
+    }
+
+    for( var i = 0; i < year.length; i++ )
+    {
+        var curValue = year.toString().charAt(i)
+        yearScore = yearScore + parseInt(curValue)
+    }
+
+    var singleDigitValue = (dayScore + monthScore) + (monthScore + yearScore)
+
+    var singleDigitDateScore = singleDigit(singleDigitValue)
+
+    return singleDigitDateScore
+}
 
 // SoulNumber
 function SoulNumber(fullName, vowels) {
@@ -132,7 +194,9 @@ function FullNameNumber(fullName, alphabet){
     {
         var curChar = fullName.charAt(i).toUpperCase()
         var curValue = alphabet[curChar]
-        nameScore = nameScore + curValue
+        if(curValue != undefined) {
+            nameScore = nameScore + curValue
+        }
     }
 
     var singleDigitValue = nameScore
