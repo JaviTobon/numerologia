@@ -41,7 +41,7 @@ function CalculateNum(){
     let deepSoulLonging = DeepSoulLonging(day, month, year)
 
     let soulNumber = SoulNumber(fullName, vowels)
-    let fullNameNumber = FullNameNumber(fullName, alphabet)
+    let destinationNumber = DestinationNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
 
     // console.log("lifeTrajectory " + lifeTrajectory)
@@ -49,7 +49,7 @@ function CalculateNum(){
     // console.log("deepSoulLonging " + deepSoulLonging)
 
     // console.log("soulNumber " + soulNumber)
-    // console.log("fullNameNumber " + fullNameNumber)
+    // console.log("destinationNumber " + destinationNumber)
     // console.log("personalityNumber " + personalityNumber)
 
     let inclution = Inclution(fullName, alphabet)
@@ -67,7 +67,7 @@ function CalculateNum(){
     // console.log(induction2)
 
     let activeSoulNumber = SoulNumber(activeName, vowels)
-    let activeNameNumber = FullNameNumber(activeName, alphabet)
+    let activeNameNumber = DestinationNumber(activeName, alphabet)
     let activePersonalityNumber = PersonalityNumber(activeName, consonants)
 
     let activeInclution = Inclution(activeName, alphabet)
@@ -83,10 +83,24 @@ function CalculateNum(){
     let cycleYear = 36 - lifeTrajectory
     let pinacles = Pinacles(day, month, year)
     let pitfalls = Pitfalls(day, month, year)
-    // console.log(lifeTrajectory)
     // console.log(cycleYear)
     // console.log(pinacles)
     // console.log(pitfalls)
+
+    let hpp = GetHPP(inclution)
+    let ncs = GetNCS(inclution)
+    let dm = GetDM(hpp, ncs)
+    let mf = GetMF(fullName, hpp)
+    let ms = GetMS(fullName, ncs)
+    let mfe = GetMFE(mf, ms)
+    let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
+    // console.log(hpp)
+    // console.log(ncs)
+    // console.log(dm)
+    // console.log(mf)
+    // console.log(ms)
+    // console.log(mfe)
+    // console.log(cosmicMission)
 }
 
 // LifeTrajectory
@@ -96,18 +110,19 @@ function LifeTrajectory(day, month, year){
     var monthScore = dateValues[1]
     var yearScore = dateValues[2]
 
-    var singleDigitValue = dayScore + monthScore + yearScore
+    var noReduced = dayScore + monthScore + yearScore
+    var reduced = SingleDigit(noReduced)
+    var lifeTrajectory = [noReduced, reduced]
 
-    var singleDigitDateScore = singleDigit(singleDigitValue)
-
-    return singleDigitDateScore
+    return lifeTrajectory
 }
 // WayOfLife
 function WayOfLife(day, month, year){
-    var singleDigitValue = parseInt(day) + parseInt(month) + parseInt(year)
-    var singleDigitDateScore = singleDigit(singleDigitValue)
+    var noReduced = parseInt(day) + parseInt(month) + parseInt(year)
+    var reduced = SingleDigit(noReduced)
+    var wayOfLife = [noReduced, reduced]
 
-    return singleDigitDateScore
+    return wayOfLife
 }
 // DeepSoulLonging
 function DeepSoulLonging(day, month, year){
@@ -116,11 +131,11 @@ function DeepSoulLonging(day, month, year){
     var monthScore = dateValues[1]
     var yearScore = dateValues[2]
 
-    var singleDigitValue = (dayScore + monthScore) + (monthScore + yearScore)
+    var noReduced = (dayScore + monthScore) + (monthScore + yearScore)
+    var reduced = SingleDigit(noReduced)
+    var deepSoulLonging = [noReduced, reduced]
 
-    var singleDigitDateScore = singleDigit(singleDigitValue)
-
-    return singleDigitDateScore
+    return deepSoulLonging
 }
 
 // SoulNumber
@@ -137,13 +152,14 @@ function SoulNumber(fullName, vowels) {
         }
     }
 
-    var singleDigitValue = nameScore
-    var singleDigitNameScore = singleDigit(singleDigitValue)
+    var noReduced = nameScore
+    var reduced = SingleDigit(noReduced)
+    var soulNumber = [noReduced, reduced]
 
-    return singleDigitNameScore
+    return soulNumber
 }
-// FullNameNumber
-function FullNameNumber(fullName, alphabet){
+// DestinationNumber
+function DestinationNumber(fullName, alphabet){
     var nameScore = 0
     
     for( var i = 0; i < fullName.length; i++ )
@@ -155,10 +171,11 @@ function FullNameNumber(fullName, alphabet){
         }
     }
 
-    var singleDigitValue = nameScore
-    var singleDigitNameScore = singleDigit(singleDigitValue)
+    var noReduced = nameScore
+    var reduced = SingleDigit(noReduced)
+    var destinationNumber = [noReduced, reduced]
 
-    return singleDigitNameScore
+    return destinationNumber
 }
 // PersonalityNumber
 function PersonalityNumber(fullName, consonants) {
@@ -173,10 +190,11 @@ function PersonalityNumber(fullName, consonants) {
             nameScore = nameScore + curValue
         }
     }
-    var singleDigitValue = nameScore
-    var singleDigitNameScore = singleDigit(singleDigitValue)
+    var noReduced = nameScore
+    var reduced = SingleDigit(noReduced)
+    var personalityNumber = [noReduced, reduced]
 
-    return singleDigitNameScore
+    return personalityNumber
 }
 
 // Inclution
@@ -357,14 +375,14 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
 // Pinnacles and Pitfalls
 function Pinacles(day, month, year) {
     var dateValues = CalculateDateValues(day, month, year)
-    var dayScore = singleDigit(dateValues[0])
-    var monthScore = singleDigit(dateValues[1])
-    var yearScore = singleDigit(dateValues[2])
+    var dayScore = SingleDigit(dateValues[0])
+    var monthScore = SingleDigit(dateValues[1])
+    var yearScore = SingleDigit(dateValues[2])
 
-    var cycle1 = singleDigit(dayScore + monthScore)
-    var cycle2 = singleDigit(dayScore + yearScore)
-    var cycle3 = singleDigit(cycle1 + cycle2)
-    var cycle4 = singleDigit(monthScore + yearScore)
+    var cycle1 = SingleDigit(dayScore + monthScore)
+    var cycle2 = SingleDigit(dayScore + yearScore)
+    var cycle3 = SingleDigit(cycle1 + cycle2)
+    var cycle4 = SingleDigit(monthScore + yearScore)
 
     var pinacles = [cycle1, cycle2, cycle3, cycle4]
 
@@ -372,14 +390,14 @@ function Pinacles(day, month, year) {
 }
 function Pitfalls(day, month, year) {    
     var dateValues = CalculateDateValues(day, month, year)    
-    var dayScore = singleDigit(dateValues[0])
-    var monthScore = singleDigit(dateValues[1])
-    var yearScore = singleDigit(dateValues[2])
+    var dayScore = SingleDigit(dateValues[0])
+    var monthScore = SingleDigit(dateValues[1])
+    var yearScore = SingleDigit(dateValues[2])
 
-    var cycle1 = singleDigit(dayScore - monthScore)
-    var cycle2 = singleDigit(dayScore - yearScore)
-    var cycle3 = singleDigit(cycle1 - cycle2)
-    var cycle4 = singleDigit(monthScore - yearScore)
+    var cycle1 = SingleDigit(dayScore - monthScore)
+    var cycle2 = SingleDigit(dayScore - yearScore)
+    var cycle3 = SingleDigit(cycle1 - cycle2)
+    var cycle4 = SingleDigit(monthScore - yearScore)
 
     if(cycle1 < 0){
         cycle1 = (cycle1 * -1)
@@ -394,6 +412,76 @@ function Pitfalls(day, month, year) {
     var pitfalls = [cycle1, cycle2, cycle3, cycle4]
 
     return pitfalls
+}
+
+// Family Heritage //
+// HPP
+function GetHPP(inclution) {
+    var noReduced = 0
+
+    for ( var i = 0; i < 4; i++ )
+    {
+        noReduced = noReduced + inclution[i]
+    }
+
+    var reduced = SingleDigit(noReduced)
+    var hpp = [noReduced, reduced]
+
+    return hpp
+}
+// NCS
+function GetNCS(inclution) {
+    var noReduced = 0
+    
+    for ( var i = 5; i < 9; i++ )
+    {
+        noReduced = noReduced + inclution[i]
+    }
+
+    var reduced = SingleDigit(noReduced)
+    var ncs = [noReduced, reduced]
+
+    return ncs
+}
+// DM
+function GetDM(hpp, ncs) {
+    var noReduced = hpp[0] + ncs[0]
+    var reduced = SingleDigit(noReduced)
+    var dm = [noReduced, reduced]
+
+    return dm
+}
+// MF
+function GetMF(fullName, hpp) {
+    var noReduced = fullName.length + hpp[0]
+    var reduced = SingleDigit(noReduced)
+    var mf = [noReduced, reduced]
+
+    return mf
+}
+// MS
+function GetMS(fullName, ncs) {
+    var noReduced = fullName.length + ncs[0]
+    var reduced = SingleDigit(noReduced)
+    var ms = [noReduced, reduced]
+
+    return ms
+}
+// MFE
+function GetMFE(mf, ms) {
+    var noReduced = mf[0] + ms[0]
+    var reduced = SingleDigit(noReduced)
+    var mfe = [noReduced, reduced]
+
+    return mfe
+}
+// CosmicMission
+function CosmicMission(wayOfLife, destinationNumber) {
+    var noReduced = wayOfLife[0] + destinationNumber[0]
+    var reduced = SingleDigit(noReduced)
+    var cosmicMission = [noReduced, reduced]
+
+    return cosmicMission
 }
 
 // UTILS //
@@ -434,7 +522,7 @@ function CalculateDateValues (day, month, year) {
     return dateValues
 }
 // Single Digit
-function singleDigit(singleDigitValue) {
+function SingleDigit(singleDigitValue) {
     while( singleDigitValue >= 10 )
     {
         var total = 0
