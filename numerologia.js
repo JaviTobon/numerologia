@@ -90,6 +90,7 @@ function CalculateNum(){
     let hpp = GetHPP(inclution)
     let ncs = GetNCS(inclution)
     let dm = GetDM(hpp, ncs)
+    let eje = GetEJE(inclution)
     let mf = GetMF(fullName, hpp)
     let ms = GetMS(fullName, ncs)
     let mfe = GetMFE(mf, ms)
@@ -97,6 +98,7 @@ function CalculateNum(){
     // console.log(hpp)
     // console.log(ncs)
     // console.log(dm)
+    // console.log(eje)
     // console.log(mf)
     // console.log(ms)
     // console.log(mfe)
@@ -450,6 +452,15 @@ function GetDM(hpp, ncs) {
     var dm = [noReduced, reduced]
 
     return dm
+}
+// EJE
+function GetEJE(inclution) {
+    var noReduced = inclution[4]
+
+    var reduced = SingleDigit(noReduced)
+    var eje = [noReduced, reduced]
+
+    return eje
 }
 // MF
 function GetMF(fullName, hpp) {
