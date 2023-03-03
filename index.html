@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <form>
-        <label>Nombre</label>
-        <input type="text" id="inputFirstName" name="inputFirstName" placeholder="Nombre 1" value="guido">
-        <input type="text" id="inputMidName" name="inputMidName" placeholder="Nombre 2 (Si hay)" value="raul">
+    <form id="form-numerology">
+        <div>
+            <label class="label-numerology">Nombre</label>
+            <input type="text" id="inputFirstName" name="inputFirstName" placeholder="Nombre 1" value="guido">
+            <input type="text" id="inputMidName" name="inputMidName" placeholder="Nombre 2 (Si hay)" value="raul">
+        </div>
 
-        <label>Primer apellido padre</label>
-        <input type="text" id="fLastName" name="fLastName" placeholder="Primer apellido padre" value="vaquez">
+        <div class="column-two">
+            <label class="label-numerology">Primer apellido padre</label>
+            <input type="text" id="fLastName" name="fLastName" placeholder="Primer apellido padre" value="vaquez">
+        </div>
 
-        <label>Segundo apellido padre</label>
-        <input type="text" id="fSurName" name="fSurName" placeholder="Segundo apellido padre" value="alvarez">
+        <div class="column-two">
+            <label class="label-numerology">Segundo apellido padre</label>
+            <input type="text" id="fSurName" name="fSurName" placeholder="Segundo apellido padre">
+        </div>
 
-        <label>Primer apellido madre</label>
-        <input type="text" id="mLastName" name="mLastName" placeholder="Primer apellido madre">
 
-        <label>Segundo apellido madre</label>
-        <input type="text" id="mSurName" name="mSurName" placeholder="Segundo apellido madre">
+        <div class="column-two">
+            <label class="label-numerology">Primer apellido madre</label>
+            <input type="text" id="mLastName" name="mLastName" placeholder="Primer apellido madre" value="alvarez">
+        </div>
 
-        <label>Nombre activo</label>
-        <input type="text" id="activeName" name="activeName" placeholder="Nombre activo" value="guido vaquez alvarez">
+        <div class="column-two">
+            <label class="label-numerology">Segundo apellido madre</label>
+            <input type="text" id="mSurName" name="mSurName" placeholder="Segundo apellido madre">
+        </div>
 
-        <label><input type="checkbox" id="cboxY" value="0" checked>"Y" es vocal?</label>
+        <div>
+            <label class="label-numerology">Nombre activo</label>
+            <input type="text" id="activeName" name="activeName" placeholder="Nombre activo"
+                value="guido vaquez alvarez">
+            <label><input type="checkbox" id="cboxY" value="0" checked>"Y" es vocal?</label>
+        </div>
 
         <div>
             <div>
@@ -86,7 +102,8 @@
                     <option value="12">Deciembre</option>
                 </select>
 
-                <input type="text" id="year" name="year" maxlength="4"  min="0" max="9999" step="1" placeholder="YYYY" pattern="[0-9]{4}" required>
+                <input type="text" id="year" name="year" maxlength="4" min="0" max="9999" step="1" placeholder="YYYY"
+                    pattern="[0-9]{4}" required>
 
             </div>
         </div>
@@ -94,6 +111,270 @@
         <button type='button' id='calculate' onclick="CalculateNum()">Calcular</button>
     </form>
 
+    <div class="table-title">
+        <h3>Datos</h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">Numerología Pitagórica</th>
+                <th class="text-left">Numerología Híbrida</th>
+                <th class="text-left">Numerología Cabalísticaa</th>
+                <th class="text-left">Numerología Cuántica</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left"><span id="lifeTrajectory"></span> Trayectoria de vida</td>
+                <td class="text-left"><span id="homeTrail"></span> Sendero Natal</td>
+                <td class="text-left"><span id="wayOfLife"></span> Camino de vida</td>
+                <td class="text-left"><span id="deepSoulLonging"></span> Anhelo profundo del alma</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-title">
+        <h3>Número del alma <span id="soulNumber"></span></h3>
+        <h3>Número del destino <span id="destinationNumber"></span></h3>
+        <h3>Número personalidad externa <span id="personalityNumber"></span></h3>
+    </div>
+
+    <table class="table-fillt">
+        <thead>
+            <tr>
+                <th class="text-left">Casa</th>
+                <th class="text-left">1</th>
+                <th class="text-left">2</th>
+                <th class="text-left">3</th>
+                <th class="text-left">4</th>
+                <th class="text-left">5</th>
+                <th class="text-left">6</th>
+                <th class="text-left">7</th>
+                <th class="text-left">8</th>
+                <th class="text-left">9</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">Inclusion</td>
+                <td class="text-left" id="inclution1"></td>
+                <td class="text-left" id="inclution2"></td>
+                <td class="text-left" id="inclution3"></td>
+                <td class="text-left" id="inclution4"></td>
+                <td class="text-left" id="inclution5"></td>
+                <td class="text-left" id="inclution6"></td>
+                <td class="text-left" id="inclution7"></td>
+                <td class="text-left" id="inclution8"></td>
+                <td class="text-left" id="inclution9"></td>
+            </tr>
+            <tr>
+                <td class="">Induccion</td>
+                <td class="" id="induction1"></td>
+                <td class="" id="induction2"></td>
+                <td class="" id="induction3"></td>
+                <td class="" id="induction4"></td>
+                <td class="" id="induction5"></td>
+                <td class="" id="induction6"></td>
+                <td class="" id="induction7"></td>
+                <td class="" id="induction8"></td>
+                <td class="" id="induction9"></td>
+            </tr>
+            <tr>
+                <td class="">Puentes</td>
+                <td class="" id="bridges1"></td>
+                <td class="" id="bridges2"></td>
+                <td class="" id="bridges3"></td>
+                <td class="" id="bridges4"></td>
+                <td class="" id="bridges5"></td>
+                <td class="" id="bridges6"></td>
+                <td class="" id="bridges7"></td>
+                <td class="" id="bridges8"></td>
+                <td class="" id="bridges9"></td>
+            </tr>
+            <tr>
+                <td class="">Evolución</td>
+                <td class="" id="evolution1"></td>
+                <td class="" id="evolution2"></td>
+                <td class="" id="evolution3"></td>
+                <td class="" id="evolution4"></td>
+                <td class="" id="evolution5"></td>
+                <td class="" id="evolution6"></td>
+                <td class="" id="evolution7"></td>
+                <td class="" id="evolution8"></td>
+                <td class="" id="evolution9"></td>
+            </tr>
+            <tr>
+                <td class="">Inconcientes</td>
+                <td class="" id="unconscious1"></td>
+                <td class="" id="unconscious2"></td>
+                <td class="" id="unconscious3"></td>
+                <td class="" id="unconscious4"></td>
+                <td class="" id="unconscious5"></td>
+                <td class="" id="unconscious6"></td>
+                <td class="" id="unconscious7"></td>
+                <td class="" id="unconscious8"></td>
+                <td class="" id="unconscious9"></td>
+            </tr>
+            <tr>
+                <td class="">Induccion</td>
+                <td class="" id="induction21"></td>
+                <td class="" id="induction22"></td>
+                <td class="" id="induction23"></td>
+                <td class="" id="induction24"></td>
+                <td class="" id="induction25"></td>
+                <td class="" id="induction26"></td>
+                <td class="" id="induction27"></td>
+                <td class="" id="induction28"></td>
+                <td class="" id="induction29"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-title">
+        <h3>Calculo del nombre activo</h3>
+    </div>
+
+    <div class="table-title">
+        <h3>Número del alma <span id="activeSoulNumber"></span></h3>
+        <h3>Número del destino <span id="activeNameNumber"></span></h3>
+        <h3>Número personalidad externa <span id="activePersonalityNumber"></span></h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">Casa</th>
+                <th class="text-left">1</th>
+                <th class="text-left">2</th>
+                <th class="text-left">3</th>
+                <th class="text-left">4</th>
+                <th class="text-left">5</th>
+                <th class="text-left">6</th>
+                <th class="text-left">7</th>
+                <th class="text-left">8</th>
+                <th class="text-left">9</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">Inclusion</td>
+                <td class="text-left" id="activeInclution1"></td>
+                <td class="text-left" id="activeInclution2"></td>
+                <td class="text-left" id="activeInclution3"></td>
+                <td class="text-left" id="activeInclution4"></td>
+                <td class="text-left" id="activeInclution5"></td>
+                <td class="text-left" id="activeInclution6"></td>
+                <td class="text-left" id="activeInclution7"></td>
+                <td class="text-left" id="activeInclution8"></td>
+                <td class="text-left" id="activeInclution9"></td>
+            </tr>
+            <tr>
+                <td class="">Induccion</td>
+                <td class="" id="activeInduction1"></td>
+                <td class="" id="activeInduction2"></td>
+                <td class="" id="activeInduction3"></td>
+                <td class="" id="activeInduction4"></td>
+                <td class="" id="activeInduction5"></td>
+                <td class="" id="activeInduction6"></td>
+                <td class="" id="activeInduction7"></td>
+                <td class="" id="activeInduction8"></td>
+                <td class="" id="activeInduction9"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-title">
+        <h3>Calculo pinaculos y escollos</h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left"></th>
+                <th class="text-left">Primer ciclo</th>
+                <th class="text-left">Segundo ciclo</th>
+                <th class="text-left">Tercer ciclo</th>
+                <th class="text-left">Cuarto ciclo</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">Años</td>
+                <td class="text-left" id="cycleYear1"></td>
+                <td class="text-left" id="cycleYear2"></td>
+                <td class="text-left" id="cycleYear3"></td>
+                <td class="text-left" id="cycleYear4"></td>
+            </tr>
+            <tr>
+                <td class="text-left">Pinaculos</td>
+                <td class="text-left" id="pinacles1"></td>
+                <td class="text-left" id="pinacles2"></td>
+                <td class="text-left" id="pinacles3"></td>
+                <td class="text-left" id="pinacles4"></td>
+            </tr>
+            <tr>
+                <td class="text-left">Escollos</td>
+                <td class="text-left" id="pitfalls1"></td>
+                <td class="text-left" id="pitfalls2"></td>
+                <td class="text-left" id="pitfalls3"></td>
+                <td class="text-left" id="pitfalls4"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-title">
+        <h3>Herencias Familiares</h3>
+    </div>
+    <div class="table-title">
+        <h3>Mision cosmica <span id="cosmicMission"></span></h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left"></th>
+                <th class="text-left">No reducido</th>
+                <th class="text-left">Reducido</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">HPP</td>
+                <td class="text-left" id="hpp1"></td>
+                <td class="text-left" id="hpp2"></td>
+            </tr>
+            <tr>
+                <td class="text-left">NCS</td>
+                <td class="text-left" id="ncs1"></td>
+                <td class="text-left" id="ncs2"></td>
+            </tr>
+            <tr>
+                <td class="text-left">DM</td>
+                <td class="text-left" id="dm1"></td>
+                <td class="text-left" id="dm2"></td>
+            </tr>
+            <tr>
+                <td class="text-left">EJE</td>
+                <td class="text-left" id="eje1"></td>
+                <td class="text-left" id="eje2"></td>
+            </tr>
+            <tr>
+                <td class="text-left">MF</td>
+                <td class="text-left" id="mf1"></td>
+                <td class="text-left" id="mf2"></td>
+            </tr>
+
+            <tr>
+                <td class="text-left">MS</td>
+                <td class="text-left" id="ms1"></td>
+                <td class="text-left" id="ms2"></td>
+            </tr>
+            <tr>
+                <td class="text-left">MFE</td>
+                <td class="text-left" id="mfe1"></td>
+                <td class="text-left" id="mfe2"></td>
+            </tr>
+        </tbody>
+    </table>
+
     <script type="text/javascript" src="/numerologia.js"></script>
 </body>
+
 </html>

@@ -26,8 +26,7 @@ function CalculateNum(){
     var month = document.getElementById("month").value
     var year = document.getElementById("year").value
 
-    var fullName = firstName + midName + fLastName + fSurName + mLastName + mSurName
-    // var activeName = firstName + fLastName + mLastName
+    var fullName = firstName + midName + fLastName + mLastName 
 
     if(yIsVocal.checked) {
         vowels = vowelsY
@@ -44,27 +43,12 @@ function CalculateNum(){
     let destinationNumber = DestinationNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
 
-    // console.log("lifeTrajectory " + lifeTrajectory)
-    // console.log("wayOfLife " + wayOfLife)
-    // console.log("deepSoulLonging " + deepSoulLonging)
-
-    // console.log("soulNumber " + soulNumber)
-    // console.log("destinationNumber " + destinationNumber)
-    // console.log("personalityNumber " + personalityNumber)
-
     let inclution = Inclution(fullName, alphabet)
     let induction = Induction(inclution)
     let bridges = Bridges(inclution)
     let evolution = Evolution(inclution)
     let unconscious = Unconscious(inclution, alphabet, fullName)
     let induction2 = Induction(unconscious)
-
-    // console.log(inclution)
-    // console.log(induction)
-    // console.log(bridges)
-    // console.log(evolution)
-    // console.log(unconscious)
-    // console.log(induction2)
 
     let activeSoulNumber = SoulNumber(activeName, vowels)
     let activeNameNumber = DestinationNumber(activeName, alphabet)
@@ -73,19 +57,9 @@ function CalculateNum(){
     let activeInclution = Inclution(activeName, alphabet)
     let activeInduction = Induction(activeInclution)
 
-    // console.log(activeSoulNumber)
-    // console.log(activeNameNumber)
-    // console.log(activePersonalityNumber)
-    
-    // console.log(activeInclution)
-    // console.log(activeInduction)
-
-    let cycleYear = 36 - lifeTrajectory
+    let cycleYear = CicleYears(lifeTrajectory)
     let pinacles = Pinacles(day, month, year)
     let pitfalls = Pitfalls(day, month, year)
-    // console.log(cycleYear)
-    // console.log(pinacles)
-    // console.log(pitfalls)
 
     let hpp = GetHPP(inclution)
     let ncs = GetNCS(inclution)
@@ -95,14 +69,144 @@ function CalculateNum(){
     let ms = GetMS(fullName, ncs)
     let mfe = GetMFE(mf, ms)
     let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
-    // console.log(hpp)
-    // console.log(ncs)
-    // console.log(dm)
-    // console.log(eje)
-    // console.log(mf)
-    // console.log(ms)
-    // console.log(mfe)
-    // console.log(cosmicMission)
+
+    document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
+    document.getElementById("homeTrail").innerHTML=lifeTrajectory[1]
+    document.getElementById("wayOfLife").innerHTML=wayOfLife[1]
+    document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[1]
+
+    document.getElementById("soulNumber").innerHTML=soulNumber[0]
+    document.getElementById("destinationNumber").innerHTML=destinationNumber[0]
+    document.getElementById("personalityNumber").innerHTML=personalityNumber[0]
+
+    document.getElementById("inclution1").innerHTML=inclution[0]
+    document.getElementById("inclution2").innerHTML=inclution[1]
+    document.getElementById("inclution3").innerHTML=inclution[2]
+    document.getElementById("inclution4").innerHTML=inclution[3]
+    document.getElementById("inclution5").innerHTML=inclution[4]
+    document.getElementById("inclution6").innerHTML=inclution[5]
+    document.getElementById("inclution7").innerHTML=inclution[6]
+    document.getElementById("inclution8").innerHTML=inclution[7]
+    document.getElementById("inclution9").innerHTML=inclution[8]
+
+    document.getElementById("induction1").innerHTML=induction[0]
+    document.getElementById("induction2").innerHTML=induction[1]
+    document.getElementById("induction3").innerHTML=induction[2]
+    document.getElementById("induction4").innerHTML=induction[3]
+    document.getElementById("induction5").innerHTML=induction[4]
+    document.getElementById("induction6").innerHTML=induction[5]
+    document.getElementById("induction7").innerHTML=induction[6]
+    document.getElementById("induction8").innerHTML=induction[7]
+    document.getElementById("induction9").innerHTML=induction[8]
+
+    document.getElementById("bridges1").innerHTML=bridges[0]
+    document.getElementById("bridges2").innerHTML=bridges[1]
+    document.getElementById("bridges3").innerHTML=bridges[2]
+    document.getElementById("bridges4").innerHTML=bridges[3]
+    document.getElementById("bridges5").innerHTML=bridges[4]
+    document.getElementById("bridges6").innerHTML=bridges[5]
+    document.getElementById("bridges7").innerHTML=bridges[6]
+    document.getElementById("bridges8").innerHTML=bridges[7]
+    document.getElementById("bridges9").innerHTML=bridges[8]
+
+    document.getElementById("evolution1").innerHTML=evolution[0]
+    document.getElementById("evolution2").innerHTML=evolution[1]
+    document.getElementById("evolution3").innerHTML=evolution[2]
+    document.getElementById("evolution4").innerHTML=evolution[3]
+    document.getElementById("evolution5").innerHTML=evolution[4]
+    document.getElementById("evolution6").innerHTML=evolution[5]
+    document.getElementById("evolution7").innerHTML=evolution[6]
+    document.getElementById("evolution8").innerHTML=evolution[7]
+    document.getElementById("evolution9").innerHTML=evolution[8]
+
+    document.getElementById("unconscious1").innerHTML=unconscious[0]
+    document.getElementById("unconscious2").innerHTML=unconscious[1]
+    document.getElementById("unconscious3").innerHTML=unconscious[2]
+    document.getElementById("unconscious4").innerHTML=unconscious[3]
+    document.getElementById("unconscious5").innerHTML=unconscious[4]
+    document.getElementById("unconscious6").innerHTML=unconscious[5]
+    document.getElementById("unconscious7").innerHTML=unconscious[6]
+    document.getElementById("unconscious8").innerHTML=unconscious[7]
+    document.getElementById("unconscious9").innerHTML=unconscious[8]
+
+    document.getElementById("induction21").innerHTML=induction2[0]
+    document.getElementById("induction22").innerHTML=induction2[1]
+    document.getElementById("induction23").innerHTML=induction2[2]
+    document.getElementById("induction24").innerHTML=induction2[3]
+    document.getElementById("induction25").innerHTML=induction2[4]
+    document.getElementById("induction26").innerHTML=induction2[5]
+    document.getElementById("induction27").innerHTML=induction2[6]
+    document.getElementById("induction28").innerHTML=induction2[7]
+    document.getElementById("induction29").innerHTML=induction2[8]
+
+
+    // active Name
+    document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0]
+    document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0]
+    document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0]
+
+    document.getElementById("activeInclution1").innerHTML=activeInclution[0]
+    document.getElementById("activeInclution2").innerHTML=activeInclution[1]
+    document.getElementById("activeInclution3").innerHTML=activeInclution[2]
+    document.getElementById("activeInclution4").innerHTML=activeInclution[3]
+    document.getElementById("activeInclution5").innerHTML=activeInclution[4]
+    document.getElementById("activeInclution6").innerHTML=activeInclution[5]
+    document.getElementById("activeInclution7").innerHTML=activeInclution[6]
+    document.getElementById("activeInclution8").innerHTML=activeInclution[7]
+    document.getElementById("activeInclution9").innerHTML=activeInclution[8]
+
+    document.getElementById("activeInduction1").innerHTML=activeInduction[0]
+    document.getElementById("activeInduction2").innerHTML=activeInduction[1]
+    document.getElementById("activeInduction3").innerHTML=activeInduction[2]
+    document.getElementById("activeInduction4").innerHTML=activeInduction[3]
+    document.getElementById("activeInduction5").innerHTML=activeInduction[4]
+    document.getElementById("activeInduction6").innerHTML=activeInduction[5]
+    document.getElementById("activeInduction7").innerHTML=activeInduction[6]
+    document.getElementById("activeInduction8").innerHTML=activeInduction[7]
+    document.getElementById("activeInduction9").innerHTML=activeInduction[8]
+
+    // Calculo pinaculos y escollos
+    document.getElementById("cycleYear1").innerHTML=cycleYear[0]
+    document.getElementById("cycleYear2").innerHTML=cycleYear[1]
+    document.getElementById("cycleYear3").innerHTML=cycleYear[2]
+    document.getElementById("cycleYear4").innerHTML=cycleYear[3]
+
+    document.getElementById("pinacles1").innerHTML=pinacles[0]
+    document.getElementById("pinacles2").innerHTML=pinacles[1]
+    document.getElementById("pinacles3").innerHTML=pinacles[2]
+    document.getElementById("pinacles4").innerHTML=pinacles[3]
+
+    document.getElementById("pitfalls1").innerHTML=pitfalls[0]
+    document.getElementById("pitfalls2").innerHTML=pitfalls[1]
+    document.getElementById("pitfalls3").innerHTML=pitfalls[2]
+    document.getElementById("pitfalls4").innerHTML=pitfalls[3]
+
+    // Herencias familiares
+    document.getElementById("hpp1").innerHTML=hpp[0]
+    document.getElementById("hpp2").innerHTML=hpp[1]
+
+    document.getElementById("ncs1").innerHTML=ncs[0]
+    document.getElementById("ncs2").innerHTML=ncs[1]
+
+    document.getElementById("dm1").innerHTML=dm[0]
+    document.getElementById("dm2").innerHTML=dm[1]
+
+    document.getElementById("eje1").innerHTML=eje[0]
+    document.getElementById("eje2").innerHTML=eje[1]
+
+    document.getElementById("mf1").innerHTML=mf[0]
+    document.getElementById("mf2").innerHTML=mf[1]
+
+    document.getElementById("ms1").innerHTML=ms[0]
+    document.getElementById("ms2").innerHTML=ms[1]
+
+    document.getElementById("mfe1").innerHTML=mfe[0]
+    document.getElementById("mfe2").innerHTML=mfe[1]
+
+    // cosmicMission
+    document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
+
+
 }
 
 // LifeTrajectory
@@ -375,6 +479,16 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
 }
 
 // Pinnacles and Pitfalls
+function CicleYears(lifeTrajectory) {
+    var cycle1 = 36 - lifeTrajectory[1]
+    var cycle2 = cycle1 + 9
+    var cycle3 = cycle2 + 9
+    var cycle4 = cycle3 + 9
+
+    var cycleYears = [cycle1, cycle2, cycle3, cycle4]
+
+    return cycleYears
+}
 function Pinacles(day, month, year) {
     var dateValues = CalculateDateValues(day, month, year)
     var dayScore = SingleDigit(dateValues[0])
