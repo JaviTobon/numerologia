@@ -71,6 +71,8 @@ function CalculateNum(){
     let mfe = GetMFE(mf, ms)
     let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
 
+    let cyclesLife = CyclesLife(parseInt(year), inclution)
+
     // Date Numbers
     document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
     document.getElementById("homeTrail").innerHTML=lifeTrajectory[1]
@@ -610,6 +612,54 @@ function CosmicMission(wayOfLife, destinationNumber) {
     var cosmicMission = [noReduced, reduced]
 
     return cosmicMission
+}
+
+function CyclesLife(year, inclution) {
+    var currentYear = year
+    // Population
+    var html = "<table>"
+    html += "<tr>"
+    html += "<td>Habitantes</td>"
+    for (var i = 0; i < 9; i++) {
+        html += "<td>" + inclution[i] + "</td>"
+    }
+    html += "</tr>"
+
+    // Cycles
+    html += "<tr>"
+    html += "<td>Ciclos</td>"
+    for (var i = 0; i < 9; i++) {
+        var cycle = i+1
+        html += "<td>" + cycle + "</td>"
+    }
+    html += "</tr>"
+
+    // Years
+    html += "<tr>"
+    html += "<td>Hab</td>"
+    html += "<td>AP</td>"
+    html += "<td></td>"
+    html += "</tr>"
+
+    var countYear = 0
+    for (var i = 0; i < 9; i++) {
+        var cycle = i+1
+        html += "<tr>"
+        html += "<td>" + inclution[i] + "</td>"
+        html += "<td>" + cycle + "</td>"
+
+        for (var j = 0; j < 9; j++) {
+            html += "<td>" + year + "</td>"
+            year += 9
+            countYear++
+        }
+        currentYear++
+        year = (currentYear)
+    }
+    html += "</tr>"
+
+    html += "</table>"
+    document.getElementById("cyclesLife-container").innerHTML = html
 }
 
 // UTILS //
