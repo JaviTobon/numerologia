@@ -1,11 +1,11 @@
 // Numerology
 function CalculateNum(){
     const alphabet = {A:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, D:4, 
-        M:4, V:4, E:5, N:5, W:5, F:6, O:6, X:6, G:7, P:7, Y:7, H:8, 
+        M:4, V:4, E:5, N:5, Ñ:5, W:5, F:6, O:6, X:6, G:7, P:7, Y:7, H:8, 
         Q:8, Z:8, I:9, R:9}
 
     const consonants = {J:1, S:1, B:2, K:2, T:2, C:3, L:3, D:4, 
-        M:4, V:4, N:5, W:5, F:6, X:6, G:7, P:7, H:8, 
+        M:4, V:4, N:5, Ñ:5, W:5, F:6, X:6, G:7, P:7, H:8, 
         Q:8, Z:8, R:9}
 
     const vowelsY = {A:1, U:3, E:5, O:6, Y:7, I:9}
@@ -61,20 +61,23 @@ function CalculateNum(){
     let pinacles = Pinacles(day, month, year)
     let pitfalls = Pitfalls(day, month, year)
 
+    let familyName = firstName + midName + fLastName + fSurName + mLastName + mSurName
     let hpp = GetHPP(inclution)
     let ncs = GetNCS(inclution)
     let dm = GetDM(hpp, ncs)
     let eje = GetEJE(inclution)
-    let mf = GetMF(fullName, hpp)
-    let ms = GetMS(fullName, ncs)
+    let mf = GetMF(familyName, hpp)
+    let ms = GetMS(familyName, ncs)
     let mfe = GetMFE(mf, ms)
     let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
 
+    // Date Numbers
     document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
     document.getElementById("homeTrail").innerHTML=lifeTrajectory[1]
     document.getElementById("wayOfLife").innerHTML=wayOfLife[1]
     document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[1]
 
+    // Name Number
     document.getElementById("soulNumber").innerHTML=soulNumber[0]
     document.getElementById("destinationNumber").innerHTML=destinationNumber[0]
     document.getElementById("personalityNumber").innerHTML=personalityNumber[0]
@@ -140,7 +143,7 @@ function CalculateNum(){
     document.getElementById("induction29").innerHTML=induction2[8]
 
 
-    // active Name
+    // Active Name
     document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0]
     document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0]
     document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0]
@@ -165,7 +168,7 @@ function CalculateNum(){
     document.getElementById("activeInduction8").innerHTML=activeInduction[7]
     document.getElementById("activeInduction9").innerHTML=activeInduction[8]
 
-    // Calculo pinaculos y escollos
+    // Pinnacles and Pitfalls
     document.getElementById("cycleYear1").innerHTML=cycleYear[0]
     document.getElementById("cycleYear2").innerHTML=cycleYear[1]
     document.getElementById("cycleYear3").innerHTML=cycleYear[2]
@@ -181,7 +184,7 @@ function CalculateNum(){
     document.getElementById("pitfalls3").innerHTML=pitfalls[2]
     document.getElementById("pitfalls4").innerHTML=pitfalls[3]
 
-    // Herencias familiares
+    // Family Heritage
     document.getElementById("hpp1").innerHTML=hpp[0]
     document.getElementById("hpp2").innerHTML=hpp[1]
 
@@ -203,7 +206,7 @@ function CalculateNum(){
     document.getElementById("mfe1").innerHTML=mfe[0]
     document.getElementById("mfe2").innerHTML=mfe[1]
 
-    // cosmicMission
+    // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
 
 
