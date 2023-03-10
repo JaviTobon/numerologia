@@ -1,15 +1,15 @@
 // Numerology
 function CalculateNum(){
-    const alphabet = {A:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, D:4, 
-        M:4, V:4, E:5, N:5, Ñ:5, W:5, F:6, O:6, X:6, G:7, P:7, Y:7, H:8, 
-        Q:8, Z:8, I:9, R:9}
+    const alphabet = {A:1, Á:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, Ú:3, D:4, 
+        M:4, V:4, E:5, É:5, N:5, Ñ:5, W:5, F:6, O:6, Ó:6, X:6, G:7, P:7, Y:7, H:8, 
+        Q:8, Z:8, I:9, í:9, R:9}
 
     const consonants = {J:1, S:1, B:2, K:2, T:2, C:3, L:3, D:4, 
         M:4, V:4, N:5, Ñ:5, W:5, F:6, X:6, G:7, P:7, H:8, 
         Q:8, Z:8, R:9}
 
-    const vowelsY = {A:1, U:3, E:5, O:6, Y:7, I:9}
-    const vowelsNoY = {A:1, U:3, E:5, O:6, I:9}
+    const vowelsY = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, í:9}
+    const vowelsNoY = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, I:9, í:9}
     let vowels = {}
 
     var firstName = document.getElementById("inputFirstName").value
@@ -75,14 +75,14 @@ function CalculateNum(){
 
     // Date Numbers
     document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
-    document.getElementById("homeTrail").innerHTML=lifeTrajectory[1]
+    document.getElementById("homeTrail").innerHTML=homeTrail[1]
     document.getElementById("wayOfLife").innerHTML=wayOfLife[1]
     document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[1]
 
     // Name Number
-    document.getElementById("soulNumber").innerHTML=soulNumber[0]
-    document.getElementById("destinationNumber").innerHTML=destinationNumber[0]
-    document.getElementById("personalityNumber").innerHTML=personalityNumber[0]
+    document.getElementById("soulNumber").innerHTML=soulNumber[0] + "/" + soulNumber[1]
+    document.getElementById("destinationNumber").innerHTML=destinationNumber[0] + "/" + destinationNumber[1]
+    document.getElementById("personalityNumber").innerHTML=personalityNumber[0] + "/" + personalityNumber[1]
 
     document.getElementById("inclution1").innerHTML=inclution[0]
     document.getElementById("inclution2").innerHTML=inclution[1]
@@ -144,11 +144,10 @@ function CalculateNum(){
     document.getElementById("induction28").innerHTML=induction2[7]
     document.getElementById("induction29").innerHTML=induction2[8]
 
-
     // Active Name
-    document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0]
-    document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0]
-    document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0]
+    document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0] + "/" + activeSoulNumber[1]
+    document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0] + "/" + activeNameNumber[1]
+    document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0] + "/" + activePersonalityNumber[1]
 
     document.getElementById("activeInclution1").innerHTML=activeInclution[0]
     document.getElementById("activeInclution2").innerHTML=activeInclution[1]
@@ -171,10 +170,10 @@ function CalculateNum(){
     document.getElementById("activeInduction9").innerHTML=activeInduction[8]
 
     // Pinnacles and Pitfalls
-    document.getElementById("cycleYear1").innerHTML=cycleYear[0]
-    document.getElementById("cycleYear2").innerHTML=cycleYear[1]
-    document.getElementById("cycleYear3").innerHTML=cycleYear[2]
-    document.getElementById("cycleYear4").innerHTML=cycleYear[3]
+    document.getElementById("cycleYear1").innerHTML=cycleYear[0] + "-" + cycleYear[4]
+    document.getElementById("cycleYear2").innerHTML=cycleYear[1] + "-" + cycleYear[5]
+    document.getElementById("cycleYear3").innerHTML=cycleYear[2] + "-" + cycleYear[6]
+    document.getElementById("cycleYear4").innerHTML=cycleYear[3] + "-" + cycleYear[7]
 
     document.getElementById("pinacles1").innerHTML=pinacles[0]
     document.getElementById("pinacles2").innerHTML=pinacles[1]
@@ -210,8 +209,6 @@ function CalculateNum(){
 
     // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
-
-
 }
 
 // LifeTrajectory
@@ -277,6 +274,7 @@ function DestinationNumber(fullName, alphabet){
     {
         var curChar = fullName.charAt(i).toUpperCase()
         var curValue = alphabet[curChar]
+
         if(curValue != undefined) {
             nameScore = nameScore + curValue
         }
@@ -490,7 +488,12 @@ function CicleYears(lifeTrajectory) {
     var cycle3 = cycle2 + 9
     var cycle4 = cycle3 + 9
 
-    var cycleYears = [cycle1, cycle2, cycle3, cycle4]
+    var cycleEnd1 = cycle1 + 8
+    var cycleEnd2 = cycleEnd1 + 8
+    var cycleEnd3 = cycleEnd2 + 8
+    var cycleEnd4 = cycleEnd3 + 8
+
+    var cycleYears = [cycle1, cycle2, cycle3, cycle4, cycleEnd1, cycleEnd2, cycleEnd3, cycleEnd4]
 
     return cycleYears
 }
@@ -522,11 +525,14 @@ function Pitfalls(day, month, year) {
 
     if(cycle1 < 0){
         cycle1 = (cycle1 * -1)
-    } else if(cycle2 < 0){
+    }
+    if(cycle2 < 0){
         cycle2 = (cycle2 * -1)
-    } else if(cycle3 < 0){
+    }
+    if(cycle3 < 0){
         cycle3 = (cycle3 * -1)
-    } else if(cycle4 < 0){
+    }
+    if(cycle4 < 0){
         cycle4 = (cycle4 * -1)
     }
 
@@ -620,15 +626,19 @@ function CyclesLife(year, inclution) {
     var html = "<table>"
     html += "<tr>"
     html += "<td>Habitantes</td>"
-    for (var i = 0; i < 9; i++) {
-        html += "<td>" + inclution[i] + "</td>"
+    for (var i = 0; i < 10; i++) {
+        if(i == 9) {
+            html += "<td>" + inclution[0] + "</td>"
+        } else {
+            html += "<td>" + inclution[i] + "</td>"
+        }
     }
     html += "</tr>"
 
     // Cycles
     html += "<tr>"
     html += "<td>Ciclos</td>"
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 10; i++) {
         var cycle = i+1
         html += "<td>" + cycle + "</td>"
     }
@@ -642,13 +652,18 @@ function CyclesLife(year, inclution) {
     html += "</tr>"
 
     var countYear = 0
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 10; i++) {
         var cycle = i+1
         html += "<tr>"
-        html += "<td>" + inclution[i] + "</td>"
+
+        if(i == 9) {
+            html += "<td>" + inclution[0] + "</td>"
+        } else {
+            html += "<td>" + inclution[i] + "</td>"
+        }
         html += "<td>" + cycle + "</td>"
 
-        for (var j = 0; j < 9; j++) {
+        for (var j = 0; j < 10; j++) {
             html += "<td>" + year + "</td>"
             year += 9
             countYear++
