@@ -34,33 +34,42 @@ function CalculateNum(){
         vowels = vowelsNoY
     }
 
+    // Birthdate
     let lifeTrajectory = LifeTrajectory(day, month, year)
     let homeTrail = LifeTrajectory(day, month, year)
     let wayOfLife = WayOfLife(day, month, year)
     let deepSoulLonging = DeepSoulLonging(day, month, year)
-
+    
+    // Name Numbers
     let soulNumber = SoulNumber(fullName, vowels)
     let destinationNumber = DestinationNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
 
+    // House Table
     let inclution = Inclution(fullName, alphabet)
     let induction = Induction(inclution)
     let bridges = Bridges(inclution)
     let evolution = Evolution(inclution)
     let unconscious = Unconscious(inclution, alphabet, fullName)
     let induction2 = Induction(unconscious)
+    HouseTable(inclution, induction, bridges, evolution, unconscious, induction2)
 
     let activeSoulNumber = SoulNumber(activeName, vowels)
     let activeNameNumber = DestinationNumber(activeName, alphabet)
     let activePersonalityNumber = PersonalityNumber(activeName, consonants)
 
+    // Active House Table
     let activeInclution = Inclution(activeName, alphabet)
     let activeInduction = Induction(activeInclution)
+    ActiveHouseTable(activeInclution, activeInduction)
 
+    // Pinnacles Pitfalls Table
     let cycleYear = CicleYears(lifeTrajectory)
     let pinacles = Pinacles(day, month, year)
     let pitfalls = Pitfalls(day, month, year)
+    PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls)
 
+    // Family Heritage Table
     let familyName = firstName + midName + fLastName + fSurName + mLastName + mSurName
     let hpp = GetHPP(inclution)
     let ncs = GetNCS(inclution)
@@ -70,8 +79,10 @@ function CalculateNum(){
     let ms = GetMS(familyName, ncs)
     let mfe = GetMFE(mf, ms)
     let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
+    FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe)
 
-    let cyclesLife = CyclesLife(parseInt(year), inclution)
+    // Cycles Life Table
+    CyclesLifeTable(parseInt(year), inclution)
 
     // Date Numbers
     document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
@@ -84,128 +95,10 @@ function CalculateNum(){
     document.getElementById("destinationNumber").innerHTML=destinationNumber[0] + "/" + destinationNumber[1]
     document.getElementById("personalityNumber").innerHTML=personalityNumber[0] + "/" + personalityNumber[1]
 
-    document.getElementById("inclution1").innerHTML=inclution[0]
-    document.getElementById("inclution2").innerHTML=inclution[1]
-    document.getElementById("inclution3").innerHTML=inclution[2]
-    document.getElementById("inclution4").innerHTML=inclution[3]
-    document.getElementById("inclution5").innerHTML=inclution[4]
-    document.getElementById("inclution6").innerHTML=inclution[5]
-    document.getElementById("inclution7").innerHTML=inclution[6]
-    document.getElementById("inclution8").innerHTML=inclution[7]
-    document.getElementById("inclution9").innerHTML=inclution[8]
-
-    document.getElementById("induction1").innerHTML=induction[0]
-    document.getElementById("induction2").innerHTML=induction[1]
-    document.getElementById("induction3").innerHTML=induction[2]
-    document.getElementById("induction4").innerHTML=induction[3]
-    document.getElementById("induction5").innerHTML=induction[4]
-    document.getElementById("induction6").innerHTML=induction[5]
-    document.getElementById("induction7").innerHTML=induction[6]
-    document.getElementById("induction8").innerHTML=induction[7]
-    document.getElementById("induction9").innerHTML=induction[8]
-
-    document.getElementById("bridges1").innerHTML=bridges[0]
-    document.getElementById("bridges2").innerHTML=bridges[1]
-    document.getElementById("bridges3").innerHTML=bridges[2]
-    document.getElementById("bridges4").innerHTML=bridges[3]
-    document.getElementById("bridges5").innerHTML=bridges[4]
-    document.getElementById("bridges6").innerHTML=bridges[5]
-    document.getElementById("bridges7").innerHTML=bridges[6]
-    document.getElementById("bridges8").innerHTML=bridges[7]
-    document.getElementById("bridges9").innerHTML=bridges[8]
-
-    document.getElementById("evolution1").innerHTML=evolution[0]
-    document.getElementById("evolution2").innerHTML=evolution[1]
-    document.getElementById("evolution3").innerHTML=evolution[2]
-    document.getElementById("evolution4").innerHTML=evolution[3]
-    document.getElementById("evolution5").innerHTML=evolution[4]
-    document.getElementById("evolution6").innerHTML=evolution[5]
-    document.getElementById("evolution7").innerHTML=evolution[6]
-    document.getElementById("evolution8").innerHTML=evolution[7]
-    document.getElementById("evolution9").innerHTML=evolution[8]
-
-    document.getElementById("unconscious1").innerHTML=unconscious[0]
-    document.getElementById("unconscious2").innerHTML=unconscious[1]
-    document.getElementById("unconscious3").innerHTML=unconscious[2]
-    document.getElementById("unconscious4").innerHTML=unconscious[3]
-    document.getElementById("unconscious5").innerHTML=unconscious[4]
-    document.getElementById("unconscious6").innerHTML=unconscious[5]
-    document.getElementById("unconscious7").innerHTML=unconscious[6]
-    document.getElementById("unconscious8").innerHTML=unconscious[7]
-    document.getElementById("unconscious9").innerHTML=unconscious[8]
-
-    document.getElementById("induction21").innerHTML=induction2[0]
-    document.getElementById("induction22").innerHTML=induction2[1]
-    document.getElementById("induction23").innerHTML=induction2[2]
-    document.getElementById("induction24").innerHTML=induction2[3]
-    document.getElementById("induction25").innerHTML=induction2[4]
-    document.getElementById("induction26").innerHTML=induction2[5]
-    document.getElementById("induction27").innerHTML=induction2[6]
-    document.getElementById("induction28").innerHTML=induction2[7]
-    document.getElementById("induction29").innerHTML=induction2[8]
-
     // Active Name
     document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0] + "/" + activeSoulNumber[1]
     document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0] + "/" + activeNameNumber[1]
     document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0] + "/" + activePersonalityNumber[1]
-
-    document.getElementById("activeInclution1").innerHTML=activeInclution[0]
-    document.getElementById("activeInclution2").innerHTML=activeInclution[1]
-    document.getElementById("activeInclution3").innerHTML=activeInclution[2]
-    document.getElementById("activeInclution4").innerHTML=activeInclution[3]
-    document.getElementById("activeInclution5").innerHTML=activeInclution[4]
-    document.getElementById("activeInclution6").innerHTML=activeInclution[5]
-    document.getElementById("activeInclution7").innerHTML=activeInclution[6]
-    document.getElementById("activeInclution8").innerHTML=activeInclution[7]
-    document.getElementById("activeInclution9").innerHTML=activeInclution[8]
-
-    document.getElementById("activeInduction1").innerHTML=activeInduction[0]
-    document.getElementById("activeInduction2").innerHTML=activeInduction[1]
-    document.getElementById("activeInduction3").innerHTML=activeInduction[2]
-    document.getElementById("activeInduction4").innerHTML=activeInduction[3]
-    document.getElementById("activeInduction5").innerHTML=activeInduction[4]
-    document.getElementById("activeInduction6").innerHTML=activeInduction[5]
-    document.getElementById("activeInduction7").innerHTML=activeInduction[6]
-    document.getElementById("activeInduction8").innerHTML=activeInduction[7]
-    document.getElementById("activeInduction9").innerHTML=activeInduction[8]
-
-    // Pinnacles and Pitfalls
-    document.getElementById("cycleYear1").innerHTML=cycleYear[0] + "-" + cycleYear[4]
-    document.getElementById("cycleYear2").innerHTML=cycleYear[1] + "-" + cycleYear[5]
-    document.getElementById("cycleYear3").innerHTML=cycleYear[2] + "-" + cycleYear[6]
-    document.getElementById("cycleYear4").innerHTML=cycleYear[3] + "-" + cycleYear[7]
-
-    document.getElementById("pinacles1").innerHTML=pinacles[0]
-    document.getElementById("pinacles2").innerHTML=pinacles[1]
-    document.getElementById("pinacles3").innerHTML=pinacles[2]
-    document.getElementById("pinacles4").innerHTML=pinacles[3]
-
-    document.getElementById("pitfalls1").innerHTML=pitfalls[0]
-    document.getElementById("pitfalls2").innerHTML=pitfalls[1]
-    document.getElementById("pitfalls3").innerHTML=pitfalls[2]
-    document.getElementById("pitfalls4").innerHTML=pitfalls[3]
-
-    // Family Heritage
-    document.getElementById("hpp1").innerHTML=hpp[0]
-    document.getElementById("hpp2").innerHTML=hpp[1]
-
-    document.getElementById("ncs1").innerHTML=ncs[0]
-    document.getElementById("ncs2").innerHTML=ncs[1]
-
-    document.getElementById("dm1").innerHTML=dm[0]
-    document.getElementById("dm2").innerHTML=dm[1]
-
-    document.getElementById("eje1").innerHTML=eje[0]
-    document.getElementById("eje2").innerHTML=eje[1]
-
-    document.getElementById("mf1").innerHTML=mf[0]
-    document.getElementById("mf2").innerHTML=mf[1]
-
-    document.getElementById("ms1").innerHTML=ms[0]
-    document.getElementById("ms2").innerHTML=ms[1]
-
-    document.getElementById("mfe1").innerHTML=mfe[0]
-    document.getElementById("mfe2").innerHTML=mfe[1]
 
     // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
@@ -481,6 +374,151 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
     return curValue
 }
 
+// HouseTable
+function HouseTable(inclution, induction, bridges, evolution, unconscious, induction2) {
+    var html = '<table class="table-fill">'
+    
+    html += '<tr>'
+    html += '<th>Casa</th>'
+    html += '<th>1</th>'
+    html += '<th>2</th>'
+    html += '<th>3</th>'
+    html += '<th>4</th>'
+    html += '<th>5</th>'
+    html += '<th>6</th>'
+    html += '<th>7</th>'
+    html += '<th>8</th>'
+    html += '<th>9</th>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Inclusion</td>'
+    html += '<td>' + inclution[0] + '</td>'
+    html += '<td>' + inclution[1] + '</td>'
+    html += '<td>' + inclution[2] + '</td>'
+    html += '<td>' + inclution[3] + '</td>'
+    html += '<td>' + inclution[4] + '</td>'
+    html += '<td>' + inclution[5] + '</td>'
+    html += '<td>' + inclution[6] + '</td>'
+    html += '<td>' + inclution[7] + '</td>'
+    html += '<td>' + inclution[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Inducción</td>'
+    html += '<td>' + induction[0] + '</td>'
+    html += '<td>' + induction[1] + '</td>'
+    html += '<td>' + induction[2] + '</td>'
+    html += '<td>' + induction[3] + '</td>'
+    html += '<td>' + induction[4] + '</td>'
+    html += '<td>' + induction[5] + '</td>'
+    html += '<td>' + induction[6] + '</td>'
+    html += '<td>' + induction[7] + '</td>'
+    html += '<td>' + induction[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Puentes</td>'
+    html += '<td>' + bridges[0] + '</td>'
+    html += '<td>' + bridges[1] + '</td>'
+    html += '<td>' + bridges[2] + '</td>'
+    html += '<td>' + bridges[3] + '</td>'
+    html += '<td>' + bridges[4] + '</td>'
+    html += '<td>' + bridges[5] + '</td>'
+    html += '<td>' + bridges[6] + '</td>'
+    html += '<td>' + bridges[7] + '</td>'
+    html += '<td>' + bridges[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Evolución</td>'
+    html += '<td>' + evolution[0] + '</td>'
+    html += '<td>' + evolution[1] + '</td>'
+    html += '<td>' + evolution[2] + '</td>'
+    html += '<td>' + evolution[3] + '</td>'
+    html += '<td>' + evolution[4] + '</td>'
+    html += '<td>' + evolution[5] + '</td>'
+    html += '<td>' + evolution[6] + '</td>'
+    html += '<td>' + evolution[7] + '</td>'
+    html += '<td>' + evolution[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Inconcientes</td>'
+    html += '<td>' + unconscious[0] + '</td>'
+    html += '<td>' + unconscious[1] + '</td>'
+    html += '<td>' + unconscious[2] + '</td>'
+    html += '<td>' + unconscious[3] + '</td>'
+    html += '<td>' + unconscious[4] + '</td>'
+    html += '<td>' + unconscious[5] + '</td>'
+    html += '<td>' + unconscious[6] + '</td>'
+    html += '<td>' + unconscious[7] + '</td>'
+    html += '<td>' + unconscious[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Induccion</td>'
+    html += '<td>' + induction2[0] + '</td>'
+    html += '<td>' + induction2[1] + '</td>'
+    html += '<td>' + induction2[2] + '</td>'
+    html += '<td>' + induction2[3] + '</td>'
+    html += '<td>' + induction2[4] + '</td>'
+    html += '<td>' + induction2[5] + '</td>'
+    html += '<td>' + induction2[6] + '</td>'
+    html += '<td>' + induction2[7] + '</td>'
+    html += '<td>' + induction2[8] + '</td>'
+    html += '</tr>'
+
+    html += '</table>'
+    document.getElementById("house-table").innerHTML = html
+}
+// Active House Table
+function ActiveHouseTable(activeInclution, activeInduction) {
+    var html = '<table class="table-fill">'
+    
+    html += '<tr>'
+    html += '<th>Casa</th>'
+    html += '<th>1</th>'
+    html += '<th>2</th>'
+    html += '<th>3</th>'
+    html += '<th>4</th>'
+    html += '<th>5</th>'
+    html += '<th>6</th>'
+    html += '<th>7</th>'
+    html += '<th>8</th>'
+    html += '<th>9</th>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Inclusion</td>'
+    html += '<td>' + activeInclution[0] + '</td>'
+    html += '<td>' + activeInclution[1] + '</td>'
+    html += '<td>' + activeInclution[2] + '</td>'
+    html += '<td>' + activeInclution[3] + '</td>'
+    html += '<td>' + activeInclution[4] + '</td>'
+    html += '<td>' + activeInclution[5] + '</td>'
+    html += '<td>' + activeInclution[6] + '</td>'
+    html += '<td>' + activeInclution[7] + '</td>'
+    html += '<td>' + activeInclution[8] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Inducción</td>'
+    html += '<td>' + activeInduction[0] + '</td>'
+    html += '<td>' + activeInduction[1] + '</td>'
+    html += '<td>' + activeInduction[2] + '</td>'
+    html += '<td>' + activeInduction[3] + '</td>'
+    html += '<td>' + activeInduction[4] + '</td>'
+    html += '<td>' + activeInduction[5] + '</td>'
+    html += '<td>' + activeInduction[6] + '</td>'
+    html += '<td>' + activeInduction[7] + '</td>'
+    html += '<td>' + activeInduction[8] + '</td>'
+    html += '</tr>'
+
+    html += '</table>'
+    document.getElementById("active-house-table").innerHTML = html
+}
+
 // Pinnacles and Pitfalls
 function CicleYears(lifeTrajectory) {
     var cycle1 = 36 - lifeTrajectory[1]
@@ -539,6 +577,45 @@ function Pitfalls(day, month, year) {
     var pitfalls = [cycle1, cycle2, cycle3, cycle4]
 
     return pitfalls
+}
+//Pinnacles and Pitfalls Table
+function PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls) {
+    var html = '<table class="table-fill">'
+    
+    html += '<tr>'
+    html += '<th></th>'
+    html += '<th>Primer ciclo</th>'
+    html += '<th>Segundo ciclo</th>'
+    html += '<th>Tercer ciclo</th>'
+    html += '<th>Cuarto ciclo</th>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Años</td>'
+    html += '<td>' + cycleYear[0] + '-' + cycleYear[4] + '</td>'
+    html += '<td>' + cycleYear[1] + '-' + cycleYear[5] + '</td>'
+    html += '<td>' + cycleYear[2] + '-' + cycleYear[6] + '</td>'
+    html += '<td>' + cycleYear[3] + '-' + cycleYear[7] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Pinaculos</td>'
+    html += '<td>' + pinacles[0] + '</td>'
+    html += '<td>' + pinacles[1] + '</td>'
+    html += '<td>' + pinacles[2] + '</td>'
+    html += '<td>' + pinacles[3] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>Escollos</td>'
+    html += '<td>' + pitfalls[0] + '</td>'
+    html += '<td>' + pitfalls[1] + '</td>'
+    html += '<td>' + pitfalls[2] + '</td>'
+    html += '<td>' + pitfalls[3] + '</td>'
+    html += '</tr>'
+
+    html += '</table>'
+    document.getElementById("pinnacles-pitfalls-table").innerHTML = html
 }
 
 // Family Heritage //
@@ -619,61 +696,116 @@ function CosmicMission(wayOfLife, destinationNumber) {
 
     return cosmicMission
 }
+// Family Heritage Table
+function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
+    var html = '<table class="table-fill">'
+    
+    html += '<tr>'
+    html += '<th></th>'
+    html += '<th>No reducido</th>'
+    html += '<th>Reducido</th>'
+    html += '</tr>'
 
-function CyclesLife(year, inclution) {
+    html += '<tr>'
+    html += '<td>HPP</td>'
+    html += '<td>' + hpp[0] + '</td>'
+    html += '<td>' + hpp[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>NCS</td>'
+    html += '<td>' + ncs[0] + '</td>'
+    html += '<td>' + ncs[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>DM</td>'
+    html += '<td>' + dm[0] + '</td>'
+    html += '<td>' + dm[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>EJE</td>'
+    html += '<td>' + eje[0] + '</td>'
+    html += '<td>' + eje[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>MF</td>'
+    html += '<td>' + mf[0] + '</td>'
+    html += '<td>' + mf[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>MS</td>'
+    html += '<td>' + ms[0] + '</td>'
+    html += '<td>' + ms[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    html += '<td>MFE</td>'
+    html += '<td>' + mfe[0] + '</td>'
+    html += '<td>' + mfe[1] + '</td>'
+    html += '</tr>'
+
+    html += '</table>'
+    document.getElementById("family-heritage-table").innerHTML = html
+}
+// Cycles Life Table
+function CyclesLifeTable(year, inclution) {
     var currentYear = year
     // Population
-    var html = "<table>"
-    html += "<tr>"
-    html += "<td>Habitantes</td>"
+    var html = '<table class="table-fill">'
+    html += '<tr>'
+    html += '<td>Habitantes</td>'
     for (var i = 0; i < 10; i++) {
         if(i == 9) {
-            html += "<td>" + inclution[0] + "</td>"
+            html += '<td>' + inclution[0] + '</td>'
         } else {
-            html += "<td>" + inclution[i] + "</td>"
+            html += '<td>' + inclution[i] + '</td>'
         }
     }
-    html += "</tr>"
+    html += '</tr>'
 
     // Cycles
-    html += "<tr>"
-    html += "<td>Ciclos</td>"
+    html += '<tr>'
+    html += '<td>Ciclos</td>'
     for (var i = 0; i < 10; i++) {
         var cycle = i+1
-        html += "<td>" + cycle + "</td>"
+        html += '<td>' + cycle + '</td>'
     }
-    html += "</tr>"
+    html += '</tr>'
 
     // Years
-    html += "<tr>"
-    html += "<td>Hab</td>"
-    html += "<td>AP</td>"
-    html += "<td></td>"
-    html += "</tr>"
+    html += '<tr>'
+    html += '<td>Hab</td>'
+    html += '<td>AP</td>'
+    html += '<td></td>'
+    html += '</tr>'
 
     var countYear = 0
     for (var i = 0; i < 10; i++) {
         var cycle = i+1
-        html += "<tr>"
+        html += '<tr>'
 
         if(i == 9) {
-            html += "<td>" + inclution[0] + "</td>"
+            html += '<td>' + inclution[0] + '</td>'
         } else {
-            html += "<td>" + inclution[i] + "</td>"
+            html += '<td>' + inclution[i] + '</td>'
         }
-        html += "<td>" + cycle + "</td>"
+        html += '<td>' + cycle + '</td>'
 
         for (var j = 0; j < 10; j++) {
-            html += "<td>" + year + "</td>"
+            html += '<td>' + year + '</td>'
             year += 9
             countYear++
         }
         currentYear++
         year = (currentYear)
     }
-    html += "</tr>"
+    html += '</tr>'
 
-    html += "</table>"
+    html += '</table>'
     document.getElementById("cyclesLife-container").innerHTML = html
 }
 
