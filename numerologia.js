@@ -861,7 +861,7 @@ function CyclesLifeTable(year, inclution) {
     html += '</tr>'
 
     html += '</table>'
-    document.getElementById("cyclesLife-container").innerHTML = html
+    document.getElementById("cyclesLife-table").innerHTML = html
 }
 
 // UTILS //
