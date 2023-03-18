@@ -26,7 +26,8 @@ function CalculateNum(){
     var month = document.getElementById("month").value
     var year = document.getElementById("year").value
 
-    var fullName = firstName + midName + fLastName + mLastName 
+    const fullName = firstName + midName + fLastName + mLastName
+    const fullNameNumber = firstName + " " + midName + " " + fLastName + " " + mLastName
 
     if(yIsVocal.checked) {
         vowels = vowelsY
@@ -44,6 +45,7 @@ function CalculateNum(){
     let soulNumber = SoulNumber(fullName, vowels)
     let destinationNumber = DestinationNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
+    let nameNumber = NameNumber(consonants, vowelsY, vowelsNoY, fullNameNumber, 1, soulNumber, destinationNumber, personalityNumber)
 
     // House Table
     let inclution = Inclution(fullName, alphabet)
@@ -54,9 +56,11 @@ function CalculateNum(){
     let induction2 = Induction(unconscious)
     HouseTable(inclution, induction, bridges, evolution, unconscious, induction2)
 
+    // Name Number
     let activeSoulNumber = SoulNumber(activeName, vowels)
-    let activeNameNumber = DestinationNumber(activeName, alphabet)
+    let activeDestinationNumber = DestinationNumber(activeName, alphabet)
     let activePersonalityNumber = PersonalityNumber(activeName, consonants)
+    let activeNameNumber = NameNumber(consonants, vowelsY, vowelsNoY, activeName, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)
 
     // Active House Table
     let activeInclution = Inclution(activeName, alphabet)
@@ -89,16 +93,6 @@ function CalculateNum(){
     document.getElementById("homeTrail").innerHTML=homeTrail[1]
     document.getElementById("wayOfLife").innerHTML=wayOfLife[1]
     document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[1]
-
-    // Name Number
-    document.getElementById("soulNumber").innerHTML=soulNumber[0] + "/" + soulNumber[1]
-    document.getElementById("destinationNumber").innerHTML=destinationNumber[0] + "/" + destinationNumber[1]
-    document.getElementById("personalityNumber").innerHTML=personalityNumber[0] + "/" + personalityNumber[1]
-
-    // Active Name
-    document.getElementById("activeSoulNumber").innerHTML=activeSoulNumber[0] + "/" + activeSoulNumber[1]
-    document.getElementById("activeNameNumber").innerHTML=activeNameNumber[0] + "/" + activeNameNumber[1]
-    document.getElementById("activePersonalityNumber").innerHTML=activePersonalityNumber[0] + "/" + activePersonalityNumber[1]
 
     // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
@@ -139,6 +133,67 @@ function DeepSoulLonging(day, month, year){
     return deepSoulLonging
 }
 
+// Name Number
+function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumber, destinationNumber, personalityNumber) {
+    var vowelNumbers = []
+    var consonantNumbers = []
+    
+    for( var i = 0; i < fullName.length; i++ )
+    {
+        var curChar = fullName.charAt(i).toUpperCase()
+
+        if(consonants[curChar] != undefined){
+            var consValue = consonants[curChar]
+            consonantNumbers.push(consValue)
+            vowelNumbers.push(" ")
+        }
+        
+        if(vowelsY[curChar] != undefined) {
+            var vowelValue = vowelsY[curChar]
+            consonantNumbers.push(" ")
+            vowelNumbers.push(vowelValue)
+        }
+        // if(vowelsNoY[curChar] != undefined) {
+        //     var vowelValue = vowelsNoY[curChar]
+        //     consonantNumbers.push("")
+        //     vowelNumbers.push(vowelValue)
+        // }
+
+        if(fullName.charAt(i).toUpperCase() == " "){
+            consonantNumbers.push(" ")
+            vowelNumbers.push(" ")
+        }
+    }
+
+    var html = '<table class="table-fill">'
+    html += '<tr>'
+    for( var i = 0; i < fullName.length; i++ ) {
+        html += '<td>' + vowelNumbers[i] + '</td>'
+    }
+    html += '<td>' + soulNumber[0] + "/" + soulNumber[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    for( var i = 0; i < fullName.length; i++ ) {
+        html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
+    }
+    html += '<td>' + destinationNumber[0] + "/" + destinationNumber[1] + '</td>'
+    html += '</tr>'
+
+    html += '<tr>'
+    for( var i = 0; i < fullName.length; i++ ) {
+        html += '<td>' + consonantNumbers[i] + '</td>'
+    }
+    html += '<td>' + personalityNumber[0] + "/" + personalityNumber[1] + '</td>'
+    html += '</tr>'
+    html += '</table>'
+
+    if(nameType == 1) {
+        document.getElementById("name-number-table").innerHTML = html
+    } else {
+        document.getElementById("active-name-number-table").innerHTML = html
+    }
+}
 // SoulNumber
 function SoulNumber(fullName, vowels) {
     var nameScore = 0
