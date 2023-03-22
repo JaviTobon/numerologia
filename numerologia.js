@@ -5,12 +5,10 @@ function CalculateNum(){
         Q:8, Z:8, I:9, í:9, R:9}
 
     const consonants = {J:1, S:1, B:2, K:2, T:2, C:3, L:3, D:4, 
-        M:4, V:4, N:5, Ñ:5, W:5, F:6, X:6, G:7, P:7, H:8, 
+        M:4, V:4, N:5, Ñ:5, W:5, F:6, X:6, G:7, P:7, Y:7, H:8, 
         Q:8, Z:8, R:9}
 
-    const vowelsY = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, í:9}
-    const vowelsNoY = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, I:9, í:9}
-    let vowels = {}
+    const vowels = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, í:9}
 
     var firstName = document.getElementById("inputFirstName").value
     var midName = document.getElementById("inputMidName").value
@@ -20,20 +18,12 @@ function CalculateNum(){
     var mSurName = document.getElementById("mSurName").value
     var activeName = document.getElementById("activeName").value
 
-    var yIsVocal = document.getElementById("cboxY")
-
     var day = document.getElementById("day").value
     var month = document.getElementById("month").value
     var year = document.getElementById("year").value
 
     const fullName = firstName + midName + fLastName + mLastName
     const fullNameNumber = firstName + " " + midName + " " + fLastName + " " + mLastName
-
-    if(yIsVocal.checked) {
-        vowels = vowelsY
-    } else {
-        vowels = vowelsNoY
-    }
 
     // Birthdate
     let lifeTrajectory = LifeTrajectory(day, month, year)
@@ -45,7 +35,7 @@ function CalculateNum(){
     let soulNumber = SoulNumber(fullName, vowels)
     let destinationNumber = DestinationNumber(fullName, alphabet)
     let personalityNumber = PersonalityNumber(fullName, consonants)
-    let nameNumber = NameNumber(consonants, vowelsY, vowelsNoY, fullNameNumber, 1, soulNumber, destinationNumber, personalityNumber)
+    NameNumber(consonants, vowels, fullNameNumber, 1, soulNumber, destinationNumber, personalityNumber)
 
     // House Table
     let inclution = Inclution(fullName, alphabet)
@@ -60,7 +50,7 @@ function CalculateNum(){
     let activeSoulNumber = SoulNumber(activeName, vowels)
     let activeDestinationNumber = DestinationNumber(activeName, alphabet)
     let activePersonalityNumber = PersonalityNumber(activeName, consonants)
-    let activeNameNumber = NameNumber(consonants, vowelsY, vowelsNoY, activeName, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)
+    NameNumber(consonants, vowels, activeName, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)
 
     // Active House Table
     let activeInclution = Inclution(activeName, alphabet)
@@ -134,30 +124,43 @@ function DeepSoulLonging(day, month, year){
 }
 
 // Name Number
-function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumber, destinationNumber, personalityNumber) {
+function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinationNumber, personalityNumber) {
     var vowelNumbers = []
     var consonantNumbers = []
-    
+    let isConsonant = false
+
     for( var i = 0; i < fullName.length; i++ )
     {
         var curChar = fullName.charAt(i).toUpperCase()
 
-        if(consonants[curChar] != undefined){
-            var consValue = consonants[curChar]
-            consonantNumbers.push(consValue)
-            vowelNumbers.push(" ")
-        }
-        
-        if(vowelsY[curChar] != undefined) {
-            var vowelValue = vowelsY[curChar]
-            consonantNumbers.push(" ")
-            vowelNumbers.push(vowelValue)
-        }
-        // if(vowelsNoY[curChar] != undefined) {
-        //     var vowelValue = vowelsNoY[curChar]
-        //     consonantNumbers.push("")
-        //     vowelNumbers.push(vowelValue)
-        // }
+        if(curChar == "y" || curChar == "Y") {
+            isConsonant = ValidateYLetter(fullName, curChar, i)
+
+            if(isConsonant == true) {
+                if(consonants[curChar] != undefined){
+                    var consValue = consonants[curChar]
+                    consonantNumbers.push(consValue)
+                    vowelNumbers.push(" ")
+                }
+            } else {
+                if(vowels[curChar] != undefined) {
+                    var vowelValue = vowels[curChar]
+                    consonantNumbers.push(" ")
+                    vowelNumbers.push(vowelValue)
+                }
+            }
+        } else {
+            if(consonants[curChar] != undefined){
+                var consValue = consonants[curChar]
+                consonantNumbers.push(consValue)
+                vowelNumbers.push(" ")
+            }
+            if(vowels[curChar] != undefined) {
+                var vowelValue = vowels[curChar]
+                consonantNumbers.push(" ")
+                vowelNumbers.push(vowelValue)
+            }
+        }        
 
         if(fullName.charAt(i).toUpperCase() == " "){
             consonantNumbers.push(" ")
@@ -200,14 +203,24 @@ function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumb
 // SoulNumber
 function SoulNumber(fullName, vowels) {
     var nameScore = 0
+    let isConsonant = false
     
     for( var i = 0; i < fullName.length; i++ )
     {
         var curChar = fullName.charAt(i).toUpperCase()
-        var curValue = vowels[curChar]
+        
+        if(curChar == "y" || curChar == "Y") {
+            isConsonant = ValidateYLetter(fullName, curChar, i)
+        } else {
+            isConsonant = false
+        }
 
-        if(curValue != undefined) {
-            nameScore = nameScore + curValue
+        if(isConsonant == false){
+            var curValue = vowels[curChar]
+    
+            if(curValue != undefined) {
+                nameScore = nameScore + curValue
+            }
         }
     }
 
@@ -240,14 +253,25 @@ function DestinationNumber(fullName, alphabet){
 // PersonalityNumber
 function PersonalityNumber(fullName, consonants) {
     var nameScore = 0
+    let isConsonant = true
     
     for( var i = 0; i < fullName.length; i++ )
     {
         var curChar = fullName.charAt(i).toUpperCase()
         var curValue = consonants[curChar]
 
-        if(curValue != undefined) {
-            nameScore = nameScore + curValue
+        if(curChar == "y" || curChar == "Y") {
+            isConsonant = ValidateYLetter(fullName, curChar, i)
+        }  else {
+            isConsonant = true
+        }
+
+        if(isConsonant == true){
+            var curValue = consonants[curChar]
+    
+            if(curValue != undefined) {
+                nameScore = nameScore + curValue
+            }
         }
     }
     var noReduced = nameScore
@@ -255,6 +279,21 @@ function PersonalityNumber(fullName, consonants) {
     var personalityNumber = [noReduced, reduced]
 
     return personalityNumber
+}
+function ValidateYLetter(fullName, curChar, index){
+    const nextLetter = fullName.charAt(index + 1);
+    let isConsonant = false
+
+    if(curChar === 'y' && fullName.charAt(index - 1) == undefined){ //First letter
+        isConsonant = true
+    } else if( nextLetter != undefined && (fullName.charAt(index + 1) === 'a' 
+    || fullName.charAt(index + 1) === 'e' || fullName.charAt(index + 1) === 'i')
+    || fullName.charAt(index + 1) === 'o' || fullName.charAt(index + 1) === 'u'){ // has a vowel after the 'y'
+        isConsonant = true
+    } else {
+        isConsonant = false
+    }
+    return isConsonant
 }
 
 // Inclution
