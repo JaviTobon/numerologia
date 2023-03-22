@@ -855,22 +855,22 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
     // Population
     var html = '<table class="table-fill">'
     html += '<tr>'
-    html += '<td>Habitantes</td>'
+    html += '<td class="hab-ciclos">Habitantes</td>'
     for (var i = 0; i < 10; i++) {
         if(i == 9) {
-            html += '<td>' + inclution[0] + '</td>'
+            html += '<td class="td-w">' + inclution[0] + '</td>'
         } else {
-            html += '<td>' + inclution[i] + '</td>'
+            html += '<td class="td-w">' + inclution[i] + '</td>'
         }
     }
     html += '</tr>'
 
     // Cycles
     html += '<tr>'
-    html += '<td>Ciclos</td>'
+    html += '<td class="hab-ciclos">Ciclos</td>'
     for (var i = 0; i < 10; i++) {
         var cycle = i+1
-        html += '<td>' + cycle + '</td>'
+        html += '<td class="td-w">' + cycle + '</td>'
     }
     html += '</tr>'
     html += '</table>'
