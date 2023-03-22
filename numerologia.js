@@ -880,7 +880,6 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
     html2 += '<tr>'
     html2 += '<td>Hab</td>'
     html2 += '<td>AP</td>'
-    html2 += '<td></td>'
     html2 += '</tr>'
 
     var newInclution = []
