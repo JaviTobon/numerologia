@@ -873,13 +873,15 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
         html += '<td>' + cycle + '</td>'
     }
     html += '</tr>'
+    html += '</table>'
 
     // Years
-    html += '<tr>'
-    html += '<td>Hab</td>'
-    html += '<td>AP</td>'
-    html += '<td></td>'
-    html += '</tr>'
+    var html2 = '<table class="table-fill">'
+    html2 += '<tr>'
+    html2 += '<td>Hab</td>'
+    html2 += '<td>AP</td>'
+    html2 += '<td></td>'
+    html2 += '</tr>'
 
     var newInclution = []
     var cycles = []
@@ -915,22 +917,23 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
     
     var countYear = 0
     for (var i = 0; i < 9; i++) {
-        html += '<tr>'
-        html += '<td>' + newInclution[i] + '</td>'
-        html += '<td>' + cycles[i] + '</td>'
+        html2 += '<tr>'
+        html2 += '<td>' + newInclution[i] + '</td>'
+        html2 += '<td>' + cycles[i] + '</td>'
 
         for (var j = 0; j < 10; j++) {
-            html += '<td>' + year + '</td>'
+            html2 += '<td>' + year + '</td>'
             year += 9
             countYear++
         }
         currentYear++
         year = currentYear
     }
-    html += '</tr>'
-
-    html += '</table>'
+    html2 += '</tr>'
+    html2 += '</table>'
+    
     document.getElementById("cyclesLife-table").innerHTML = html
+    document.getElementById("cyclesLife-table2").innerHTML = html2
 }
 
 // UTILS //
