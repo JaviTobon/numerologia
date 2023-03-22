@@ -919,7 +919,7 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
         html += '<td>' + newInclution[i] + '</td>'
         html += '<td>' + cycles[i] + '</td>'
 
-        for (var j = 0; j < 9; j++) {
+        for (var j = 0; j < 10; j++) {
             html += '<td>' + year + '</td>'
             year += 9
             countYear++
