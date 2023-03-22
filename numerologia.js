@@ -168,7 +168,7 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
         }
     }
 
-    var html = '<table class="table-fill">'
+    var html = '<table class="hide-table">'
     html += '<tr>'
     for( var i = 0; i < fullName.length; i++ ) {
         html += '<td>' + vowelNumbers[i] + '</td>'
