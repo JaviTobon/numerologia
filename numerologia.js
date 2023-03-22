@@ -86,7 +86,7 @@ function CalculateNum(){
     FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe)
 
     // Cycles Life Table
-    CyclesLifeTable(parseInt(year), inclution)
+    CyclesLifeTable(parseInt(year), inclution, wayOfLife)
 
     // Date Numbers
     document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
@@ -171,6 +171,7 @@ function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumb
         html += '<td>' + vowelNumbers[i] + '</td>'
     }
     html += '<td>' + soulNumber[0] + "/" + soulNumber[1] + '</td>'
+    html += '<td>Número del alma</td>'
     html += '</tr>'
 
     html += '<tr>'
@@ -178,6 +179,7 @@ function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumb
         html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
     }
     html += '<td>' + destinationNumber[0] + "/" + destinationNumber[1] + '</td>'
+    html += '<td>Vía del destino</td>'
     html += '</tr>'
 
     html += '<tr>'
@@ -185,6 +187,7 @@ function NameNumber(consonants, vowelsY, vowelsNoY, fullName, nameType, soulNumb
         html += '<td>' + consonantNumbers[i] + '</td>'
     }
     html += '<td>' + personalityNumber[0] + "/" + personalityNumber[1] + '</td>'
+    html += '<td>Número de la personalidad externa</td>'
     html += '</tr>'
     html += '</table>'
 
@@ -582,9 +585,9 @@ function CicleYears(lifeTrajectory) {
     var cycle4 = cycle3 + 9
 
     var cycleEnd1 = cycle1 + 8
-    var cycleEnd2 = cycleEnd1 + 8
-    var cycleEnd3 = cycleEnd2 + 8
-    var cycleEnd4 = cycleEnd3 + 8
+    var cycleEnd2 = cycleEnd1 + 9
+    var cycleEnd3 = cycleEnd2 + 9
+    var cycleEnd4 = cycleEnd3 + 9
 
     var cycleYears = [cycle1, cycle2, cycle3, cycle4, cycleEnd1, cycleEnd2, cycleEnd3, cycleEnd4]
 
@@ -807,7 +810,8 @@ function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
     document.getElementById("family-heritage-table").innerHTML = html
 }
 // Cycles Life Table
-function CyclesLifeTable(year, inclution) {
+function CyclesLifeTable(year, inclution, wayOfLife) {
+    var wayOfLifeNumber = wayOfLife[1]
     var currentYear = year
     // Population
     var html = '<table class="table-fill">'
@@ -838,25 +842,51 @@ function CyclesLifeTable(year, inclution) {
     html += '<td></td>'
     html += '</tr>'
 
+    var newInclution = []
+    var cycles = []
+
+    if(wayOfLifeNumber == 1){
+        newInclution = inclution
+        cycles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    } else if(wayOfLifeNumber == 2) {
+        newInclution = [inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0]]
+        cycles = [2, 3, 4, 5, 6, 7, 8, 9, 1]
+    } else if(wayOfLifeNumber == 3) {
+        newInclution = [inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1]]
+        cycles = [3, 4, 5, 6, 7, 8, 9, 1, 2]
+    } else if(wayOfLifeNumber == 4) {
+        newInclution = [inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2]]
+        cycles = [4, 5, 6, 7, 8, 9, 1, 2, 3]
+    } else if(wayOfLifeNumber == 5) {
+        newInclution = [inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3]]
+        cycles = [5, 6, 7, 8, 9, 1, 2, 3, 4]
+    } else if(wayOfLifeNumber == 6) {
+        newInclution = [inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4]]
+        cycles = [6, 7, 8, 9, 1, 2, 3, 4, 5]
+    } else if(wayOfLifeNumber == 7) {
+        newInclution = [inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5]]
+        cycles = [7, 8, 9, 1, 2, 3, 4, 5, 6]
+    } else if(wayOfLifeNumber == 8) {
+        newInclution = [inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6]]
+        cycles = [8, 9, 1, 2, 3, 4, 5, 6, 7]
+    } else if(wayOfLifeNumber == 9) {
+        newInclution = [inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7]]
+        cycles = [9, 1, 2, 3, 4, 5, 6, 7, 8]
+    }
+    
     var countYear = 0
-    for (var i = 0; i < 10; i++) {
-        var cycle = i+1
+    for (var i = 0; i < 9; i++) {
         html += '<tr>'
+        html += '<td>' + newInclution[i] + '</td>'
+        html += '<td>' + cycles[i] + '</td>'
 
-        if(i == 9) {
-            html += '<td>' + inclution[0] + '</td>'
-        } else {
-            html += '<td>' + inclution[i] + '</td>'
-        }
-        html += '<td>' + cycle + '</td>'
-
-        for (var j = 0; j < 10; j++) {
+        for (var j = 0; j < 9; j++) {
             html += '<td>' + year + '</td>'
             year += 9
             countYear++
         }
         currentYear++
-        year = (currentYear)
+        year = currentYear
     }
     html += '</tr>'
 
