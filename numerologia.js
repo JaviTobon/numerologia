@@ -79,10 +79,10 @@ function CalculateNum(){
     CyclesLifeTable(parseInt(year), inclution, wayOfLife)
 
     // Date Numbers
-    document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[1]
-    document.getElementById("homeTrail").innerHTML=homeTrail[1]
-    document.getElementById("wayOfLife").innerHTML=wayOfLife[1]
-    document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[1]
+    document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[0] + "/" + lifeTrajectory[1]
+    document.getElementById("homeTrail").innerHTML=homeTrail[0] + "/" + homeTrail[1]
+    document.getElementById("wayOfLife").innerHTML=wayOfLife[0] + "/" + wayOfLife[1]
+    document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[0] + "/" + deepSoulLonging[1]
 
     // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
@@ -618,12 +618,13 @@ function ActiveHouseTable(activeInclution, activeInduction) {
 
 // Pinnacles and Pitfalls
 function CicleYears(lifeTrajectory) {
-    var cycle1 = 36 - lifeTrajectory[1]
-    var cycle2 = cycle1 + 9
+    var initialYear = 36 - lifeTrajectory[1]
+    var cycle1 = 0
+    var cycle2 = initialYear + 9
     var cycle3 = cycle2 + 9
     var cycle4 = cycle3 + 9
 
-    var cycleEnd1 = cycle1 + 8
+    var cycleEnd1 = initialYear + 8
     var cycleEnd2 = cycleEnd1 + 9
     var cycleEnd3 = cycleEnd2 + 9
     var cycleEnd4 = cycleEnd3 + 9
@@ -851,7 +852,7 @@ function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
 // Cycles Life Table
 function CyclesLifeTable(year, inclution, wayOfLife) {
     var wayOfLifeNumber = wayOfLife[1]
-    var currentYear = year
+    
     // Population
     var html = '<table class="table-fill">'
     html += '<tr>'
@@ -914,19 +915,24 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
         cycles = [9, 1, 2, 3, 4, 5, 6, 7, 8]
     }
     
+    var currentYear = year
     var countYear = 0
+    var newCountYear = 0
     for (var i = 0; i < 9; i++) {
         html2 += '<tr>'
         html2 += '<td>' + newInclution[i] + '</td>'
         html2 += '<td>' + cycles[i] + '</td>'
 
         for (var j = 0; j < 10; j++) {
-            html2 += '<td>' + year + '</td>'
+            html2 += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
             year += 9
-            countYear++
+            newCountYear += 9
         }
         currentYear++
         year = currentYear
+
+        countYear++
+        newCountYear = countYear
     }
     html2 += '</tr>'
     html2 += '</table>'

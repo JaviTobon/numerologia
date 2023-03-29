@@ -155,4 +155,14 @@ td:last-child {
 .hab-ciclos{width: 85px;}
 
 
-.td-w{width: 35.6px;}
+.td-w{
+  width: 48.25px;
+  text-align: center;
+}
+
+#currentAge {
+  position: relative;
+  top: -12px;
+  left: -12px;
+  font-size: 12px;
+}
