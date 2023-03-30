@@ -1,6 +1,6 @@
 // Numerology
 function CalculateNum(){
-    const alphabet = {A:1, Á:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, Ú:3, D:4, 
+    const alphabet = {A:1, Á:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3, Ú:3, Ü:3, D:4, 
         M:4, V:4, E:5, É:5, N:5, Ñ:5, W:5, F:6, O:6, Ó:6, X:6, G:7, P:7, Y:7, H:8, 
         Q:8, Z:8, I:9, Í:9, R:9}
 
@@ -8,7 +8,7 @@ function CalculateNum(){
         M:4, V:4, N:5, Ñ:5, W:5, F:6, X:6, G:7, P:7, Y:7, H:8, 
         Q:8, Z:8, R:9}
 
-    const vowels = {A:1, Á:1, U:3, Ú:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, Í:9}
+    const vowels = {A:1, Á:1, U:3, Ú:3, Ü:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, Í:9}
 
     var firstName = document.getElementById("inputFirstName").value
     var midName = document.getElementById("inputMidName").value
