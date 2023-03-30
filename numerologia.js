@@ -620,11 +620,11 @@ function ActiveHouseTable(activeInclution, activeInduction) {
 function CicleYears(lifeTrajectory) {
     var initialYear = 36 - lifeTrajectory[1]
     var cycle1 = 0
-    var cycle2 = initialYear + 9
+    var cycle2 = initialYear + 1
     var cycle3 = cycle2 + 9
     var cycle4 = cycle3 + 9
 
-    var cycleEnd1 = initialYear + 8
+    var cycleEnd1 = initialYear
     var cycleEnd2 = cycleEnd1 + 9
     var cycleEnd3 = cycleEnd2 + 9
     var cycleEnd4 = cycleEnd3 + 9
