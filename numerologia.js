@@ -10,17 +10,17 @@ function CalculateNum(){
 
     const vowels = {A:1, Á:1, U:3, Ú:3, Ü:3, E:5, É:5, O:6, Ó:6, Y:7, I:9, Í:9}
 
-    var firstName = document.getElementById("inputFirstName").value
-    var midName = document.getElementById("inputMidName").value
-    var fLastName = document.getElementById("fLastName").value
-    var fSurName = document.getElementById("fSurName").value
-    var mLastName = document.getElementById("mLastName").value
-    var mSurName = document.getElementById("mSurName").value
-    var activeName = document.getElementById("activeName").value
+    let firstName = document.getElementById("inputFirstName").value
+    let midName = document.getElementById("inputMidName").value
+    let fLastName = document.getElementById("fLastName").value
+    let fSurName = document.getElementById("fSurName").value
+    let mLastName = document.getElementById("mLastName").value
+    let mSurName = document.getElementById("mSurName").value
+    let activeName = document.getElementById("activeName").value
 
-    var day = document.getElementById("day").value
-    var month = document.getElementById("month").value
-    var year = document.getElementById("year").value
+    let day = document.getElementById("day").value
+    let month = document.getElementById("month").value
+    let year = document.getElementById("year").value
 
     const fullName = firstName + midName + fLastName + mLastName
     const fullNameNumber = firstName + " " + midName + " " + fLastName + " " + mLastName
@@ -90,73 +90,73 @@ function CalculateNum(){
 
 // LifeTrajectory
 function LifeTrajectory(day, month, year){
-    var dateValues = CalculateDateValues(day, month, year)
-    var dayScore = dateValues[0]
-    var monthScore = dateValues[1]
-    var yearScore = dateValues[2]
+    let dateValues = CalculateDateValues(day, month, year)
+    let dayScore = dateValues[0]
+    let monthScore = dateValues[1]
+    let yearScore = dateValues[2]
 
-    var noReduced = dayScore + monthScore + yearScore
-    var reduced = SingleDigit(noReduced)
-    var lifeTrajectory = [noReduced, reduced]
+    let noReduced = dayScore + monthScore + yearScore
+    let reduced = SingleDigit(noReduced)
+    let lifeTrajectory = [noReduced, reduced]
 
     return lifeTrajectory
 }
 // WayOfLife
 function WayOfLife(day, month, year){
-    var noReduced = parseInt(day) + parseInt(month) + parseInt(year)
-    var reduced = SingleDigit(noReduced)
-    var wayOfLife = [noReduced, reduced]
+    let noReduced = parseInt(day) + parseInt(month) + parseInt(year)
+    let reduced = SingleDigit(noReduced)
+    let wayOfLife = [noReduced, reduced]
 
     return wayOfLife
 }
 // DeepSoulLonging
 function DeepSoulLonging(day, month, year){
-    var dateValues = CalculateDateValues(day, month, year)
-    var dayScore = dateValues[0]
-    var monthScore = dateValues[1]
-    var yearScore = dateValues[2]
+    let dateValues = CalculateDateValues(day, month, year)
+    let dayScore = dateValues[0]
+    let monthScore = dateValues[1]
+    let yearScore = dateValues[2]
 
-    var noReduced = (dayScore + monthScore) + (monthScore + yearScore)
-    var reduced = SingleDigit(noReduced)
-    var deepSoulLonging = [noReduced, reduced]
+    let noReduced = (dayScore + monthScore) + (monthScore + yearScore)
+    let reduced = SingleDigit(noReduced)
+    let deepSoulLonging = [noReduced, reduced]
 
     return deepSoulLonging
 }
 
 // Name Number
 function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinationNumber, personalityNumber) {
-    var vowelNumbers = []
-    var consonantNumbers = []
+    let vowelNumbers = []
+    let consonantNumbers = []
     let isConsonant = false
 
-    for( var i = 0; i < fullName.length; i++ )
+    for( let i = 0; i < fullName.length; i++ )
     {
-        var curChar = fullName.charAt(i).toUpperCase()
+        let curChar = fullName.charAt(i).toUpperCase()
 
         if(curChar == "y" || curChar == "Y") {
             isConsonant = ValidateYLetter(fullName, curChar, i)
 
             if(isConsonant == true) {
                 if(consonants[curChar] != undefined){
-                    var consValue = consonants[curChar]
+                    let consValue = consonants[curChar]
                     consonantNumbers.push(consValue)
                     vowelNumbers.push(" ")
                 }
             } else {
                 if(vowels[curChar] != undefined) {
-                    var vowelValue = vowels[curChar]
+                    let vowelValue = vowels[curChar]
                     consonantNumbers.push(" ")
                     vowelNumbers.push(vowelValue)
                 }
             }
         } else {
             if(consonants[curChar] != undefined){
-                var consValue = consonants[curChar]
+                let consValue = consonants[curChar]
                 consonantNumbers.push(consValue)
                 vowelNumbers.push(" ")
             }
             if(vowels[curChar] != undefined) {
-                var vowelValue = vowels[curChar]
+                let vowelValue = vowels[curChar]
                 consonantNumbers.push(" ")
                 vowelNumbers.push(vowelValue)
             }
@@ -168,9 +168,9 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
         }
     }
 
-    var html = '<table class="hide-table">'
+    let html = '<table class="hide-table">'
     html += '<tr>'
-    for( var i = 0; i < fullName.length; i++ ) {
+    for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + vowelNumbers[i] + '</td>'
     }
     html += '<td>' + soulNumber[0] + "/" + soulNumber[1] + '</td>'
@@ -178,7 +178,7 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
     html += '</tr>'
 
     html += '<tr>'
-    for( var i = 0; i < fullName.length; i++ ) {
+    for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
     }
     html += '<td>' + destinationNumber[0] + "/" + destinationNumber[1] + '</td>'
@@ -186,7 +186,7 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
     html += '</tr>'
 
     html += '<tr>'
-    for( var i = 0; i < fullName.length; i++ ) {
+    for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + consonantNumbers[i] + '</td>'
     }
     html += '<td>' + personalityNumber[0] + "/" + personalityNumber[1] + '</td>'
@@ -202,12 +202,12 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
 }
 // SoulNumber
 function SoulNumber(fullName, vowels) {
-    var nameScore = 0
+    let nameScore = 0
     let isConsonant = false
     
-    for( var i = 0; i < fullName.length; i++ )
+    for( let i = 0; i < fullName.length; i++ )
     {
-        var curChar = fullName.charAt(i).toUpperCase()
+        let curChar = fullName.charAt(i).toUpperCase()
         
         if(curChar == "y" || curChar == "Y") {
             isConsonant = ValidateYLetter(fullName, curChar, i)
@@ -216,7 +216,7 @@ function SoulNumber(fullName, vowels) {
         }
 
         if(isConsonant == false){
-            var curValue = vowels[curChar]
+            let curValue = vowels[curChar]
     
             if(curValue != undefined) {
                 nameScore = nameScore + curValue
@@ -224,41 +224,41 @@ function SoulNumber(fullName, vowels) {
         }
     }
 
-    var noReduced = nameScore
-    var reduced = SingleDigit(noReduced)
-    var soulNumber = [noReduced, reduced]
+    let noReduced = nameScore
+    let reduced = SingleDigit(noReduced)
+    let soulNumber = [noReduced, reduced]
 
     return soulNumber
 }
 // DestinationNumber
 function DestinationNumber(fullName, alphabet){
-    var nameScore = 0
+    let nameScore = 0
     
-    for( var i = 0; i < fullName.length; i++ )
+    for( let i = 0; i < fullName.length; i++ )
     {
-        var curChar = fullName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
+        let curChar = fullName.charAt(i).toUpperCase()
+        let curValue = alphabet[curChar]
 
         if(curValue != undefined) {
             nameScore = nameScore + curValue
         }
     }
 
-    var noReduced = nameScore
-    var reduced = SingleDigit(noReduced)
-    var destinationNumber = [noReduced, reduced]
+    let noReduced = nameScore
+    let reduced = SingleDigit(noReduced)
+    let destinationNumber = [noReduced, reduced]
 
     return destinationNumber
 }
 // PersonalityNumber
 function PersonalityNumber(fullName, consonants) {
-    var nameScore = 0
+    let nameScore = 0
     let isConsonant = true
     
-    for( var i = 0; i < fullName.length; i++ )
+    for( let i = 0; i < fullName.length; i++ )
     {
-        var curChar = fullName.charAt(i).toUpperCase()
-        var curValue = consonants[curChar]
+        let curChar = fullName.charAt(i).toUpperCase()
+        let curValue = consonants[curChar]
 
         if(curChar == "y" || curChar == "Y") {
             isConsonant = ValidateYLetter(fullName, curChar, i)
@@ -267,16 +267,16 @@ function PersonalityNumber(fullName, consonants) {
         }
 
         if(isConsonant == true){
-            var curValue = consonants[curChar]
+            let curValue = consonants[curChar]
     
             if(curValue != undefined) {
                 nameScore = nameScore + curValue
             }
         }
     }
-    var noReduced = nameScore
-    var reduced = SingleDigit(noReduced)
-    var personalityNumber = [noReduced, reduced]
+    let noReduced = nameScore
+    let reduced = SingleDigit(noReduced)
+    let personalityNumber = [noReduced, reduced]
 
     return personalityNumber
 }
@@ -298,21 +298,21 @@ function ValidateYLetter(fullName, curChar, index){
 
 // Inclution
 function Inclution(fullName, alphabet) {
-    var house1 = 0
-    var house2 = 0
-    var house3 = 0
-    var house4 = 0
-    var house5 = 0
-    var house6 = 0
-    var house7 = 0
-    var house8 = 0
-    var house9 = 0
+    let house1 = 0
+    let house2 = 0
+    let house3 = 0
+    let house4 = 0
+    let house5 = 0
+    let house6 = 0
+    let house7 = 0
+    let house8 = 0
+    let house9 = 0
 
     //firstName
-    for( var i = 0; i < fullName.length; i++ )
+    for( let i = 0; i < fullName.length; i++ )
     {
-        var curChar = fullName.charAt(i).toUpperCase()
-        var curValue = alphabet[curChar]
+        let curChar = fullName.charAt(i).toUpperCase()
+        let curValue = alphabet[curChar]
         
         if(curValue == 1) {
             house1++
@@ -335,33 +335,33 @@ function Inclution(fullName, alphabet) {
         }
     }
 
-    var inclution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+    let inclution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
     return inclution
 }
 
 // Induction
 function Induction(inclution) {
-    var house1 = CalculateInduction(inclution, 0)
-    var house2 = CalculateInduction(inclution, 1)
-    var house3 = CalculateInduction(inclution, 2)
-    var house4 = CalculateInduction(inclution, 3)
-    var house5 = CalculateInduction(inclution, 4)
-    var house6 = CalculateInduction(inclution, 5)
-    var house7 = CalculateInduction(inclution, 6)
-    var house8 = CalculateInduction(inclution, 7)
-    var house9 = CalculateInduction(inclution, 8)
+    let house1 = CalculateInduction(inclution, 0)
+    let house2 = CalculateInduction(inclution, 1)
+    let house3 = CalculateInduction(inclution, 2)
+    let house4 = CalculateInduction(inclution, 3)
+    let house5 = CalculateInduction(inclution, 4)
+    let house6 = CalculateInduction(inclution, 5)
+    let house7 = CalculateInduction(inclution, 6)
+    let house8 = CalculateInduction(inclution, 7)
+    let house9 = CalculateInduction(inclution, 8)
 
-    var induction = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+    let induction = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
     return induction
 }
 function CalculateInduction(inclution, index) {
-    var house = []
+    let house = []
 
-    var val1 = 0
-    var val2 = 0
-    var val3 = 0
+    let val1 = 0
+    let val2 = 0
+    let val3 = 0
 
     if(inclution[index] > 0){
         val1 = inclution[inclution[index] - 1]
@@ -381,22 +381,22 @@ function CalculateInduction(inclution, index) {
 
 // Bridges
 function Bridges(inclution) {
-    var house1 = CalculateBridges(inclution, 0)
-    var house2 = CalculateBridges(inclution, 1)
-    var house3 = CalculateBridges(inclution, 2)
-    var house4 = CalculateBridges(inclution, 3)
-    var house5 = CalculateBridges(inclution, 4)
-    var house6 = CalculateBridges(inclution, 5)
-    var house7 = CalculateBridges(inclution, 6)
-    var house8 = CalculateBridges(inclution, 7)
-    var house9 = CalculateBridges(inclution, 8)
+    let house1 = CalculateBridges(inclution, 0)
+    let house2 = CalculateBridges(inclution, 1)
+    let house3 = CalculateBridges(inclution, 2)
+    let house4 = CalculateBridges(inclution, 3)
+    let house5 = CalculateBridges(inclution, 4)
+    let house6 = CalculateBridges(inclution, 5)
+    let house7 = CalculateBridges(inclution, 6)
+    let house8 = CalculateBridges(inclution, 7)
+    let house9 = CalculateBridges(inclution, 8)
 
-    var bridges = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+    let bridges = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
     return bridges
 }
 function CalculateBridges(inclution, index) {
-    var bridgeHouse = inclution[index] - (index + 1)
+    let bridgeHouse = inclution[index] - (index + 1)
 
     if(bridgeHouse < 0){
         bridgeHouse = (bridgeHouse * -1)
@@ -407,22 +407,22 @@ function CalculateBridges(inclution, index) {
 
 // Evolution
 function Evolution(inclution) {
-    var house1 = CalculateEvolution(inclution, 0)
-    var house2 = CalculateEvolution(inclution, 1)
-    var house3 = CalculateEvolution(inclution, 2)
-    var house4 = CalculateEvolution(inclution, 3)
-    var house5 = CalculateEvolution(inclution, 4)
-    var house6 = CalculateEvolution(inclution, 5)
-    var house7 = CalculateEvolution(inclution, 6)
-    var house8 = CalculateEvolution(inclution, 7)
-    var house9 = CalculateEvolution(inclution, 8)
+    let house1 = CalculateEvolution(inclution, 0)
+    let house2 = CalculateEvolution(inclution, 1)
+    let house3 = CalculateEvolution(inclution, 2)
+    let house4 = CalculateEvolution(inclution, 3)
+    let house5 = CalculateEvolution(inclution, 4)
+    let house6 = CalculateEvolution(inclution, 5)
+    let house7 = CalculateEvolution(inclution, 6)
+    let house8 = CalculateEvolution(inclution, 7)
+    let house9 = CalculateEvolution(inclution, 8)
 
-    var evolution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+    let evolution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
     return evolution
 }
 function CalculateEvolution(inclution, index) {
-    var count = 0
+    let count = 0
 
     inclution.forEach(element => {
         if(element == (index + 1)) {
@@ -430,30 +430,30 @@ function CalculateEvolution(inclution, index) {
         }
     });
     
-    var evoHouse = inclution[index] + count
+    let evoHouse = inclution[index] + count
 
     return evoHouse
 }
 
 // Unconscius
 function Unconscious(inclution, alphabet, fullName) {
-    var house1 = CalculateUnconscious(inclution, alphabet, fullName, 0)
-    var house2 = CalculateUnconscious(inclution, alphabet, fullName, 1)
-    var house3 = CalculateUnconscious(inclution, alphabet, fullName, 2)
-    var house4 = CalculateUnconscious(inclution, alphabet, fullName, 3)
-    var house5 = CalculateUnconscious(inclution, alphabet, fullName, 4)
-    var house6 = CalculateUnconscious(inclution, alphabet, fullName, 5)
-    var house7 = CalculateUnconscious(inclution, alphabet, fullName, 6)
-    var house8 = CalculateUnconscious(inclution, alphabet, fullName, 7)
-    var house9 = CalculateUnconscious(inclution, alphabet, fullName, 8)
+    let house1 = CalculateUnconscious(inclution, alphabet, fullName, 0)
+    let house2 = CalculateUnconscious(inclution, alphabet, fullName, 1)
+    let house3 = CalculateUnconscious(inclution, alphabet, fullName, 2)
+    let house4 = CalculateUnconscious(inclution, alphabet, fullName, 3)
+    let house5 = CalculateUnconscious(inclution, alphabet, fullName, 4)
+    let house6 = CalculateUnconscious(inclution, alphabet, fullName, 5)
+    let house7 = CalculateUnconscious(inclution, alphabet, fullName, 6)
+    let house8 = CalculateUnconscious(inclution, alphabet, fullName, 7)
+    let house9 = CalculateUnconscious(inclution, alphabet, fullName, 8)
 
-    var unconscious = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+    let unconscious = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
     return unconscious
 }
 function CalculateUnconscious(inclution, alphabet, fullName, index) {
-    var curChar = ""
-    var curValue = 0
+    let curChar = ""
+    let curValue = 0
 
     if(inclution[index] > 0){
         curChar = fullName.charAt(inclution[index] - 1).toUpperCase()
@@ -473,7 +473,7 @@ function CalculateUnconscious(inclution, alphabet, fullName, index) {
 
 // HouseTable
 function HouseTable(inclution, induction, bridges, evolution, unconscious, induction2) {
-    var html = '<table class="table-fill">'
+    let html = '<table class="table-fill">'
     
     html += '<tr>'
     html += '<th>Casa</th>'
@@ -571,7 +571,7 @@ function HouseTable(inclution, induction, bridges, evolution, unconscious, induc
 }
 // Active House Table
 function ActiveHouseTable(activeInclution, activeInduction) {
-    var html = '<table class="table-fill">'
+    let html = '<table class="table-fill">'
     
     html += '<tr>'
     html += '<th>Casa</th>'
@@ -618,67 +618,69 @@ function ActiveHouseTable(activeInclution, activeInduction) {
 
 // Pinnacles and Pitfalls
 function CicleYears(lifeTrajectory) {
-    var initialYear = 36 - lifeTrajectory[1]
-    var cycle1 = 0
-    var cycle2 = initialYear + 1
-    var cycle3 = cycle2 + 9
-    var cycle4 = cycle3 + 9
+    let initialYear = 36 - lifeTrajectory[1]
+    let cycle1 = 0
+    let cycle2 = initialYear + 1
+    let cycle3 = cycle2 + 9
+    let cycle4 = cycle3 + 9
 
-    var cycleEnd1 = initialYear
-    var cycleEnd2 = cycleEnd1 + 9
-    var cycleEnd3 = cycleEnd2 + 9
-    var cycleEnd4 = cycleEnd3 + 9
+    let cycleEnd1 = initialYear
+    let cycleEnd2 = cycleEnd1 + 9
+    let cycleEnd3 = cycleEnd2 + 9
+    let cycleEnd4 = cycleEnd3 + 9
 
-    var cycleYears = [cycle1, cycle2, cycle3, cycle4, cycleEnd1, cycleEnd2, cycleEnd3, cycleEnd4]
+    let cycleYears = [cycle1, cycle2, cycle3, cycle4, cycleEnd1, cycleEnd2, cycleEnd3, cycleEnd4]
 
     return cycleYears
 }
 function Pinacles(day, month, year) {
-    var dateValues = CalculateDateValues(day, month, year)
-    var dayScore = SingleDigit(dateValues[0])
-    var monthScore = SingleDigit(dateValues[1])
-    var yearScore = SingleDigit(dateValues[2])
+    let dateValues = CalculateDateValues(day, month, year)
+    let dayScore = SingleDigit(dateValues[0])
+    let monthScore = SingleDigit(dateValues[1])
+    let yearScore = SingleDigit(dateValues[2])
 
-    var cycle1 = SingleDigit(dayScore + monthScore)
-    var cycle2 = SingleDigit(dayScore + yearScore)
-    var cycle3 = SingleDigit(cycle1 + cycle2)
-    var cycle4 = SingleDigit(monthScore + yearScore)
+    let cycle1 = SingleDigit(dayScore + monthScore)
+    let cycle2 = SingleDigit(dayScore + yearScore)
+    let cycle3 = SingleDigit(cycle1 + cycle2)
+    let cycle4 = SingleDigit(monthScore + yearScore)
 
-    var pinacles = [cycle1, cycle2, cycle3, cycle4]
+    let pinacles = [cycle1, cycle2, cycle3, cycle4]
 
     return pinacles
 }
 function Pitfalls(day, month, year) {    
-    var dateValues = CalculateDateValues(day, month, year)    
-    var dayScore = SingleDigit(dateValues[0])
-    var monthScore = SingleDigit(dateValues[1])
-    var yearScore = SingleDigit(dateValues[2])
+    let dateValues = CalculateDateValues(day, month, year)    
+    let dayScore = SingleDigit(dateValues[0])
+    let monthScore = SingleDigit(dateValues[1])
+    let yearScore = SingleDigit(dateValues[2])
 
-    var cycle1 = SingleDigit(dayScore - monthScore)
-    var cycle2 = SingleDigit(dayScore - yearScore)
-    var cycle3 = SingleDigit(cycle1 - cycle2)
-    var cycle4 = SingleDigit(monthScore - yearScore)
-
+    let cycle1 = SingleDigit(dayScore - monthScore)
     if(cycle1 < 0){
         cycle1 = (cycle1 * -1)
     }
+
+    let cycle2 = SingleDigit(dayScore - yearScore)
     if(cycle2 < 0){
         cycle2 = (cycle2 * -1)
     }
+
+    let cycle3 = SingleDigit(cycle1 - cycle2)
     if(cycle3 < 0){
         cycle3 = (cycle3 * -1)
     }
+
+    let cycle4 = SingleDigit(monthScore - yearScore)
     if(cycle4 < 0){
         cycle4 = (cycle4 * -1)
     }
 
-    var pitfalls = [cycle1, cycle2, cycle3, cycle4]
+    let pitfalls = [cycle1, cycle2, cycle3, cycle4]
 
     return pitfalls
 }
 //Pinnacles and Pitfalls Table
 function PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls) {
-    var html = '<table class="table-fill">'
+    let html = '<table class="table-fill">'
     
     html += '<tr>'
     html += '<th></th>'
@@ -719,84 +721,84 @@ function PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls) {
 // Family Heritage //
 // HPP
 function GetHPP(inclution) {
-    var noReduced = 0
+    let noReduced = 0
 
-    for ( var i = 0; i < 4; i++ )
+    for ( let i = 0; i < 4; i++ )
     {
         noReduced = noReduced + inclution[i]
     }
 
-    var reduced = SingleDigit(noReduced)
-    var hpp = [noReduced, reduced]
+    let reduced = SingleDigit(noReduced)
+    let hpp = [noReduced, reduced]
 
     return hpp
 }
 // NCS
 function GetNCS(inclution) {
-    var noReduced = 0
+    let noReduced = 0
     
-    for ( var i = 5; i < 9; i++ )
+    for ( let i = 5; i < 9; i++ )
     {
         noReduced = noReduced + inclution[i]
     }
 
-    var reduced = SingleDigit(noReduced)
-    var ncs = [noReduced, reduced]
+    let reduced = SingleDigit(noReduced)
+    let ncs = [noReduced, reduced]
 
     return ncs
 }
 // DM
 function GetDM(hpp, ncs) {
-    var noReduced = hpp[0] + ncs[0]
-    var reduced = SingleDigit(noReduced)
-    var dm = [noReduced, reduced]
+    let noReduced = hpp[0] + ncs[0]
+    let reduced = SingleDigit(noReduced)
+    let dm = [noReduced, reduced]
 
     return dm
 }
 // EJE
 function GetEJE(inclution) {
-    var noReduced = inclution[4]
+    let noReduced = inclution[4]
 
-    var reduced = SingleDigit(noReduced)
-    var eje = [noReduced, reduced]
+    let reduced = SingleDigit(noReduced)
+    let eje = [noReduced, reduced]
 
     return eje
 }
 // MF
 function GetMF(fullName, hpp) {
-    var noReduced = fullName.length + hpp[0]
-    var reduced = SingleDigit(noReduced)
-    var mf = [noReduced, reduced]
+    let noReduced = fullName.length + hpp[0]
+    let reduced = SingleDigit(noReduced)
+    let mf = [noReduced, reduced]
 
     return mf
 }
 // MS
 function GetMS(fullName, ncs) {
-    var noReduced = fullName.length + ncs[0]
-    var reduced = SingleDigit(noReduced)
-    var ms = [noReduced, reduced]
+    let noReduced = fullName.length + ncs[0]
+    let reduced = SingleDigit(noReduced)
+    let ms = [noReduced, reduced]
 
     return ms
 }
 // MFE
 function GetMFE(mf, ms) {
-    var noReduced = mf[0] + ms[0]
-    var reduced = SingleDigit(noReduced)
-    var mfe = [noReduced, reduced]
+    let noReduced = mf[0] + ms[0]
+    let reduced = SingleDigit(noReduced)
+    let mfe = [noReduced, reduced]
 
     return mfe
 }
 // CosmicMission
 function CosmicMission(wayOfLife, destinationNumber) {
-    var noReduced = wayOfLife[0] + destinationNumber[0]
-    var reduced = SingleDigit(noReduced)
-    var cosmicMission = [noReduced, reduced]
+    let noReduced = wayOfLife[0] + destinationNumber[0]
+    let reduced = SingleDigit(noReduced)
+    let cosmicMission = [noReduced, reduced]
 
     return cosmicMission
 }
 // Family Heritage Table
 function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
-    var html = '<table class="table-fill">'
+    let html = '<table class="table-fill">'
     
     html += '<tr>'
     html += '<th></th>'
@@ -851,13 +853,13 @@ function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
 }
 // Cycles Life Table
 function CyclesLifeTable(year, inclution, wayOfLife) {
-    var wayOfLifeNumber = wayOfLife[1]
+    let wayOfLifeNumber = wayOfLife[1]
     
     // Population
-    var html = '<table class="table-fill">'
+    let html = '<table class="table-fill">'
     html += '<tr>'
     html += '<td class="hab-ciclos">Habitantes</td>'
-    for (var i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         if(i == 9) {
             html += '<td class="td-w">' + inclution[0] + '</td>'
         } else {
@@ -869,22 +871,22 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
     // Cycles
     html += '<tr>'
     html += '<td class="hab-ciclos">Ciclos</td>'
-    for (var i = 0; i < 10; i++) {
-        var cycle = i+1
+    for (let i = 0; i < 10; i++) {
+        let cycle = i+1
         html += '<td class="td-w">' + cycle + '</td>'
     }
     html += '</tr>'
     html += '</table>'
 
     // Years
-    var html2 = '<table class="table-fill">'
+    let html2 = '<table class="table-fill">'
     html2 += '<tr>'
     html2 += '<td>Hab</td>'
     html2 += '<td>AP</td>'
     html2 += '</tr>'
 
-    var newInclution = []
-    var cycles = []
+    let newInclution = []
+    let cycles = []
 
     if(wayOfLifeNumber == 1){
         newInclution = inclution
@@ -915,15 +917,15 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
         cycles = [9, 1, 2, 3, 4, 5, 6, 7, 8]
     }
     
-    var currentYear = year
-    var countYear = 0
-    var newCountYear = 0
-    for (var i = 0; i < 9; i++) {
+    let currentYear = year
+    let countYear = 0
+    let newCountYear = 0
+    for (let i = 0; i < 9; i++) {
         html2 += '<tr>'
         html2 += '<td>' + newInclution[i] + '</td>'
         html2 += '<td>' + cycles[i] + '</td>'
 
-        for (var j = 0; j < 10; j++) {
+        for (let j = 0; j < 10; j++) {
             html2 += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
             year += 9
             newCountYear += 9
@@ -944,14 +946,14 @@ function CyclesLifeTable(year, inclution, wayOfLife) {
 // UTILS //
 // Calculate Date Values - Day, Month, Year
 function CalculateDateValues (day, month, year) {
-    var dayScore = 0
-    var monthScore = 0
-    var yearScore = 0
+    let dayScore = 0
+    let monthScore = 0
+    let yearScore = 0
     
     if(day >= 10){
-        for( var i = 0; i < day.length; i++ )
+        for( let i = 0; i < day.length; i++ )
         {
-            var curValue = day.toString().charAt(i)
+            let curValue = day.toString().charAt(i)
             dayScore = dayScore + parseInt(curValue)
         }
     } else {
@@ -959,22 +961,22 @@ function CalculateDateValues (day, month, year) {
     }    
 
     if(month >= 10){
-        for( var i = 0; i < month.length; i++ )
+        for( let i = 0; i < month.length; i++ )
         {
-            var curValue = month.toString().charAt(i)
+            let curValue = month.toString().charAt(i)
             monthScore = monthScore + parseInt(curValue)
         }
     } else {
         monthScore = parseInt(month)
     }
 
-    for( var i = 0; i < year.length; i++ )
+    for( let i = 0; i < year.length; i++ )
     {
-        var curValue = year.toString().charAt(i)
+        let curValue = year.toString().charAt(i)
         yearScore = yearScore + parseInt(curValue)
     }
 
-    var dateValues = [dayScore, monthScore, yearScore]
+    let dateValues = [dayScore, monthScore, yearScore]
 
     return dateValues
 }
@@ -982,10 +984,10 @@ function CalculateDateValues (day, month, year) {
 function SingleDigit(singleDigitValue) {
     while( singleDigitValue >= 10 )
     {
-        var total = 0
-        var str = '' + singleDigitValue
+        let total = 0
+        let str = '' + singleDigitValue
         
-        for( var i = 0; i < str.length; i++ )
+        for( let i = 0; i < str.length; i++ )
         {
             total = total + parseInt(str.charAt(i))
         }
