@@ -27,7 +27,7 @@ function CalculateNum(){
 
     // Birthdate
     let lifeTrajectory = LifeTrajectory(day, month, year)
-    let homeTrail = LifeTrajectory(day, month, year)
+    let homeTrail = HomeTrail(day, month, year)
     let wayOfLife = WayOfLife(day, month, year)
     let deepSoulLonging = DeepSoulLonging(day, month, year)
     
@@ -101,6 +101,19 @@ function LifeTrajectory(day, month, year){
 
     return lifeTrajectory
 }
+// LifeTrajectory
+function HomeTrail(day, month, year){
+    let dateValues = CalculateDateValues(day, month, year)
+    let dayScore = parseInt(day)
+    let monthScore = parseInt(month)
+    let yearScore = dateValues[2]
+
+    let noReduced = dayScore + monthScore + yearScore
+    let reduced = SingleDigit(noReduced)
+    let homeTrail = [noReduced, reduced]
+
+    return homeTrail
+}
 // WayOfLife
 function WayOfLife(day, month, year){
     let noReduced = parseInt(day) + parseInt(month) + parseInt(year)
@@ -112,8 +125,8 @@ function WayOfLife(day, month, year){
 // DeepSoulLonging
 function DeepSoulLonging(day, month, year){
     let dateValues = CalculateDateValues(day, month, year)
-    let dayScore = dateValues[0]
-    let monthScore = dateValues[1]
+    let dayScore = parseInt(day)
+    let monthScore = parseInt(month)
     let yearScore = dateValues[2]
 
     let noReduced = (dayScore + monthScore) + (monthScore + yearScore)
