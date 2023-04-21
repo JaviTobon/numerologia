@@ -79,10 +79,30 @@ function CalculateNum(){
     CyclesLifeTable(parseInt(year), inclution, wayOfLife)
 
     // Date Numbers
-    document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[0] + "/" + lifeTrajectory[1]
-    document.getElementById("homeTrail").innerHTML=homeTrail[0] + "/" + homeTrail[1]
-    document.getElementById("wayOfLife").innerHTML=wayOfLife[0] + "/" + wayOfLife[1]
-    document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[0] + "/" + deepSoulLonging[1]
+    if(lifeTrajectory[1] == lifeTrajectory[2]) {
+        document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[0] + "/" + lifeTrajectory[1]
+    } else {
+        document.getElementById("lifeTrajectory").innerHTML=lifeTrajectory[0] + "/" + lifeTrajectory[1] + "/" + lifeTrajectory[2]
+    }
+    
+    if(homeTrail[1] == homeTrail[2]) {
+        document.getElementById("homeTrail").innerHTML=homeTrail[0] + "/" + homeTrail[1]
+    } else {
+        document.getElementById("homeTrail").innerHTML=homeTrail[0] + "/" + homeTrail[1] + "/" + homeTrail[2]
+    }
+    
+    if(wayOfLife[1] == wayOfLife[2]) {
+        document.getElementById("wayOfLife").innerHTML=wayOfLife[0] + "/" + wayOfLife[1]
+    } else {
+        document.getElementById("wayOfLife").innerHTML=wayOfLife[0] + "/" + wayOfLife[1] + "/" + wayOfLife[2]
+    }
+    document.getElementById("wayOfLife").innerHTML=wayOfLife[0] + "/" + wayOfLife[1] + "/" + wayOfLife[2]
+    
+    if(deepSoulLonging[1] == deepSoulLonging[2]) {
+        document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[0] + "/" + deepSoulLonging[1]
+    } else {
+        document.getElementById("deepSoulLonging").innerHTML=deepSoulLonging[0] + "/" + deepSoulLonging[1] + "/" + deepSoulLonging[2]
+    }
 
     // Cosmic Mission
     document.getElementById("cosmicMission").innerHTML=cosmicMission[1]
@@ -96,8 +116,8 @@ function LifeTrajectory(day, month, year){
     let yearScore = dateValues[2]
 
     let noReduced = dayScore + monthScore + yearScore
-    let reduced = SingleDigit(noReduced)
-    let lifeTrajectory = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let lifeTrajectory = [noReduced, reducedValues[0], reducedValues[1]]
 
     return lifeTrajectory
 }
@@ -109,16 +129,16 @@ function HomeTrail(day, month, year){
     let yearScore = dateValues[2]
 
     let noReduced = dayScore + monthScore + yearScore
-    let reduced = SingleDigit(noReduced)
-    let homeTrail = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let homeTrail = [noReduced, reducedValues[0], reducedValues[1]]
 
     return homeTrail
 }
 // WayOfLife
 function WayOfLife(day, month, year){
     let noReduced = parseInt(day) + parseInt(month) + parseInt(year)
-    let reduced = SingleDigit(noReduced)
-    let wayOfLife = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let wayOfLife = [noReduced, reducedValues[0], reducedValues[1]]
 
     return wayOfLife
 }
@@ -130,8 +150,8 @@ function DeepSoulLonging(day, month, year){
     let yearScore = dateValues[2]
 
     let noReduced = (dayScore + monthScore) + (monthScore + yearScore)
-    let reduced = SingleDigit(noReduced)
-    let deepSoulLonging = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let deepSoulLonging = [noReduced, reducedValues[0], reducedValues[1]]
 
     return deepSoulLonging
 }
@@ -186,7 +206,11 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
     for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + vowelNumbers[i] + '</td>'
     }
-    html += '<td>' + soulNumber[0] + "/" + soulNumber[1] + '</td>'
+    if(soulNumber[1] == soulNumber[2]) {
+        html += '<td>' + soulNumber[0] + "/" + soulNumber[2] + '</td>'
+    } else {
+        html += '<td>' + soulNumber[0] + "/" + soulNumber[1] + "/" + soulNumber[2] + '</td>'
+    }
     html += '<td>Número del alma</td>'
     html += '</tr>'
 
@@ -194,7 +218,11 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
     for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
     }
-    html += '<td>' + destinationNumber[0] + "/" + destinationNumber[1] + '</td>'
+    if(destinationNumber[1] == destinationNumber[2]) {
+        html += '<td>' + destinationNumber[0] + "/" + destinationNumber[2] + '</td>'
+    } else {
+        html += '<td>' + destinationNumber[0] + "/" + destinationNumber[1] + "/" + destinationNumber[2] + '</td>'
+    }
     html += '<td>Vía del destino</td>'
     html += '</tr>'
 
@@ -202,7 +230,11 @@ function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinat
     for( let i = 0; i < fullName.length; i++ ) {
         html += '<td>' + consonantNumbers[i] + '</td>'
     }
-    html += '<td>' + personalityNumber[0] + "/" + personalityNumber[1] + '</td>'
+    if(personalityNumber[1] == personalityNumber[2]) {
+        html += '<td>' + personalityNumber[0] + "/" + personalityNumber[2] + '</td>'
+    } else {
+        html += '<td>' + personalityNumber[0] + "/" + personalityNumber[1] + "/" + personalityNumber[2] + '</td>'
+    }
     html += '<td>Número de la personalidad externa</td>'
     html += '</tr>'
     html += '</table>'
@@ -238,8 +270,8 @@ function SoulNumber(fullName, vowels) {
     }
 
     let noReduced = nameScore
-    let reduced = SingleDigit(noReduced)
-    let soulNumber = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let soulNumber = [noReduced, reducedValues[0], reducedValues[1]]
 
     return soulNumber
 }
@@ -258,8 +290,8 @@ function DestinationNumber(fullName, alphabet){
     }
 
     let noReduced = nameScore
-    let reduced = SingleDigit(noReduced)
-    let destinationNumber = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let destinationNumber = [noReduced, reducedValues[0], reducedValues[1]]
 
     return destinationNumber
 }
@@ -288,8 +320,8 @@ function PersonalityNumber(fullName, consonants) {
         }
     }
     let noReduced = nameScore
-    let reduced = SingleDigit(noReduced)
-    let personalityNumber = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let personalityNumber = [noReduced, reducedValues[0], reducedValues[1]]
 
     return personalityNumber
 }
@@ -652,10 +684,10 @@ function Pinacles(day, month, year) {
     let monthScore = SingleDigit(dateValues[1])
     let yearScore = SingleDigit(dateValues[2])
 
-    let cycle1 = SingleDigit(dayScore + monthScore)
-    let cycle2 = SingleDigit(dayScore + yearScore)
-    let cycle3 = SingleDigit(cycle1 + cycle2)
-    let cycle4 = SingleDigit(monthScore + yearScore)
+    let cycle1 = SingleDigit(dayScore[1] + monthScore[1])[1]
+    let cycle2 = SingleDigit(dayScore[1] + yearScore[1])[1]
+    let cycle3 = SingleDigit(cycle1 + cycle2)[1]
+    let cycle4 = SingleDigit(monthScore[1] + yearScore[1])[1]
 
     let pinacles = [cycle1, cycle2, cycle3, cycle4]
 
@@ -667,22 +699,22 @@ function Pitfalls(day, month, year) {
     let monthScore = SingleDigit(dateValues[1])
     let yearScore = SingleDigit(dateValues[2])
 
-    let cycle1 = SingleDigit(dayScore - monthScore)
+    let cycle1 = SingleDigit(dayScore[1] - monthScore[1])[1]
     if(cycle1 < 0){
         cycle1 = (cycle1 * -1)
     }
 
-    let cycle2 = SingleDigit(dayScore - yearScore)
+    let cycle2 = SingleDigit(dayScore[1] - yearScore[1])[1]
     if(cycle2 < 0){
         cycle2 = (cycle2 * -1)
     }
 
-    let cycle3 = SingleDigit(cycle1 - cycle2)
+    let cycle3 = SingleDigit(cycle1 - cycle2)[1]
     if(cycle3 < 0){
         cycle3 = (cycle3 * -1)
     }
 
-    let cycle4 = SingleDigit(monthScore - yearScore)
+    let cycle4 = SingleDigit(monthScore[1] - yearScore[1])[1]
     if(cycle4 < 0){
         cycle4 = (cycle4 * -1)
     }
@@ -741,8 +773,8 @@ function GetHPP(inclution) {
         noReduced = noReduced + inclution[i]
     }
 
-    let reduced = SingleDigit(noReduced)
-    let hpp = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let hpp = [noReduced, reducedValues[1]]
 
     return hpp
 }
@@ -755,16 +787,16 @@ function GetNCS(inclution) {
         noReduced = noReduced + inclution[i]
     }
 
-    let reduced = SingleDigit(noReduced)
-    let ncs = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let ncs = [noReduced, reducedValues[1]]
 
     return ncs
 }
 // DM
 function GetDM(hpp, ncs) {
     let noReduced = hpp[0] + ncs[0]
-    let reduced = SingleDigit(noReduced)
-    let dm = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let dm = [noReduced, reducedValues[1]]
 
     return dm
 }
@@ -772,40 +804,40 @@ function GetDM(hpp, ncs) {
 function GetEJE(inclution) {
     let noReduced = inclution[4]
 
-    let reduced = SingleDigit(noReduced)
-    let eje = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let eje = [noReduced, reducedValues[1]]
 
     return eje
 }
 // MF
 function GetMF(fullName, hpp) {
     let noReduced = fullName.length + hpp[0]
-    let reduced = SingleDigit(noReduced)
-    let mf = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let mf = [noReduced, reducedValues[1]]
 
     return mf
 }
 // MS
 function GetMS(fullName, ncs) {
     let noReduced = fullName.length + ncs[0]
-    let reduced = SingleDigit(noReduced)
-    let ms = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let ms = [noReduced, reducedValues[1]]
 
     return ms
 }
 // MFE
 function GetMFE(mf, ms) {
     let noReduced = mf[0] + ms[0]
-    let reduced = SingleDigit(noReduced)
-    let mfe = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let mfe = [noReduced, reducedValues[1]]
 
     return mfe
 }
 // CosmicMission
 function CosmicMission(wayOfLife, destinationNumber) {
     let noReduced = wayOfLife[0] + destinationNumber[0]
-    let reduced = SingleDigit(noReduced)
-    let cosmicMission = [noReduced, reduced]
+    let reducedValues = SingleDigit(noReduced)
+    let cosmicMission = [noReduced, reducedValues[1]]
 
     return cosmicMission
 }
@@ -866,7 +898,7 @@ function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
 }
 // Cycles Life Table
 function CyclesLifeTable(year, inclution, wayOfLife) {
-    let wayOfLifeNumber = wayOfLife[1]
+    let wayOfLifeNumber = wayOfLife[2]
     
     // Population
     let html = '<table class="table-fill">'
@@ -995,6 +1027,8 @@ function CalculateDateValues (day, month, year) {
 }
 // Single Digit
 function SingleDigit(singleDigitValue) {
+    let count = 0
+    let firstValue = 0
     while( singleDigitValue >= 10 )
     {
         let total = 0
@@ -1004,8 +1038,16 @@ function SingleDigit(singleDigitValue) {
         {
             total = total + parseInt(str.charAt(i))
         }
+        
+        if(count == 0) {
+            firstValue = total
+            count ++
+        }
+
         singleDigitValue = total
     }
 
-    return singleDigitValue
+    let reducedValues = [firstValue, singleDigitValue]
+
+    return reducedValues
 }
