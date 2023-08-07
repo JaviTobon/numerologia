@@ -1,0 +1,2082 @@
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/starter-template/">
+<!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<style>
+    .headerTitle {
+        width: 100%;
+    }
+    .headerLogo {
+        float: right;
+        width: 80px;
+    }
+
+    .errorMessage {
+        color: #E3061E;
+        font-family: Calibri;
+    }
+    .inputError {
+        border-color: #E3061E !important;
+        font-weight: bold;
+    }
+    .formInput {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: none;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .formSelect {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+        -moz-padding-start: calc(0.75rem - 3px);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        border: 1px solid #ced4da;
+        border-radius: none;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .birthDate {
+        color: #EE7212;
+    }
+    .letterTitle {
+        font-family: Calibri;
+        font-weight: bold;
+        color: #000000;
+        vertical-align: middle;
+    }
+    .letterSubTitle {
+        font-family: Calibri;
+        font-weight: bold;
+        color: #000000;
+    }
+    .tableTextRegular {
+        font-family: Helvetica;
+        color: #000000;
+        font-weight: 400;
+    }
+    .tableTextBold {
+        font-family: Helvetica;
+        color: #000000;
+        font-weight: bold;
+    }
+    .tableTitles {
+        text-align: left;
+        vertical-align: middle;
+    }
+    .blackTextR {
+        color: #000000;
+        font-weight: 400;
+    }
+    .greenTextR {
+        color: #006C66;
+        font-weight: 400;
+    }
+    .greenText {
+        color: #006C66;
+        font-weight: bold;
+    }
+    .orangeText {
+        color: #EE7212;
+        font-weight: bold;
+    }
+
+    .soulText {
+        vertical-align: bottom;
+    }
+    .personalityText {
+        vertical-align: top;
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    thead {background-color: #DADADA;}
+    .thPpal, .trPpal {
+        background-color: #F6F6F6 !important;
+    }
+
+    .table>:not(caption)>*>* {
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        box-shadow: none !important;
+    }
+
+    th {text-align: center;}
+    td {text-align: center;}
+    .zeroValue {
+        color: #E3061E !important;
+        font-weight: bold;
+    }
+    td.currentYear {
+        color: #EE7212 !important;
+        font-weight: bold;
+    }
+    span.sameDigit {
+        color:  #006C66 !important;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .td-w {text-align: center;}
+    .td-b {text-align: center;color: #435ba6;}
+
+    div#cyclesLife-table table td {color: #435ba6;font-weight: 500;}
+    #currentAge {
+        position: relative;
+        top: -14px;
+        left: -10px;
+        font-size: 0.6em;
+        color: #9D9D9C;
+    }
+
+    .spaceTitle {
+        margin-top: 30px;
+    }
+    .spaceLogo {
+        margin-top: 10px;
+    }
+
+    .spaceTop {
+        margin-top: 50px;
+    }
+
+    .spaceBot {
+        margin-bottom: 20px;        
+    }
+
+    .buttonContent {
+        text-align: center;
+    }
+    button#calculate {
+        background: #89633B;
+        color: #ffffff;
+        display: inline-block;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        border-radius: none;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .tableTextAlignB {
+        vertical-align: bottom
+    }
+    .tableTextAlignT {
+        vertical-align: top
+    }
+
+    #resultados_ocultos {display: none;font-weight: 500;}
+
+    .footerT {
+        color: #DADADA !important;
+    }
+    .footerT a{
+        color: #DADADA !important;
+        text-decoration: none !important;
+    }
+</style>
+
+<body>
+
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+        <main>
+            <form id="myForm" class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="inputFirstName" name="inputFirstName"
+                            placeholder="Primer Nombre*" required >
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="inputMidName" name="inputMidName"
+                            placeholder="Segundo Nombre (Si hay)" >
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="fLastName" name="fLastName"
+                            placeholder="Primer Apellido Padre*" required >
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="mLastName" name="mLastName"
+                            placeholder="Primer Apellido Madre*" required >
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="fSurName" name="fSurName"
+                            placeholder="Segundo Apellido Padre">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="formInput" id="mSurName" name="mSurName"
+                            placeholder="Segundo Apellido Madre">
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="formInput" id="activeName" name="activeName"
+                            placeholder="Nombre Activo*" required >
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
+                                    id="day" name="day" required>
+                                    <option selected>Día*</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
+                                    id="month" name="month" required>
+                                    <option selected>Mes*</option>
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Deciembre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="formInput inputYear" id="year" name="year" maxlength="4" min="0"
+                                    max="9999" step="1" placeholder="Año*" pattern="[0-9]{4}" required >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 buttonContent">
+                    <button type='button' id='calculate' class="w-100 fw-bold" onclick="CalculateNum()" >Calcular</button>
+                    <span id="formError" class="errorMessage" hidden >Por favor ingresa los campos en rojo</span>
+                </div>
+            </form>
+            <div class="container-fluid">
+                <div id="resultados_ocultos">
+                    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+                        <h2 class="headerTitle letterTitle spaceTitle">Carta&ensp;Numerológica</h2>
+                        <a href="/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
+                            <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
+                        </a>
+                    </header>
+                    <h3 class="letterSubTitle spaceBot">Cálculo&ensp;trayectoria&ensp;de&ensp;vida: <label id="birthDate" class="birthDate"></label></h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="tableTitles">Numerología Pitagórica</th>
+                                <th class="tableTitles">Numerología Híbrida</th>
+                                <th class="tableTitles">Numerología Cabalística</th>
+                                <th class="tableTitles">Numerología Cuántica</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tableTitles"><span class="orangeText" id="lifeTrajectory"></span> Trayectoria de vida</td>
+                                <td class="tableTitles"><span class="orangeText" id="homeTrail"></span> Sendero Natal</td>
+                                <td class="tableTitles"><span class="greenText" id="wayOfLife"></span> Camino de vida</td>
+                                <td class="tableTitles"><span class="greenText" id="deepSoulLonging"></span> Anhelo profundo del alma</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="table-title spaceTop spaceBot">
+                        <h4 class="letterSubTitle">Cálculo&ensp;de&ensp;nombre&ensp;completo</h4>
+                    </div>
+                    <div class="table table-striped spaceBot">
+                        <div id="name-number-table"></div>
+                    </div>
+
+                    <div id="house-table"></div>
+
+                    <div class="table-title spaceTop spaceBot">
+                        <h4 class="letterSubTitle">Cálculo&ensp;del&ensp;nombre&ensp;activo</h4>
+                        <div id="active-name-number-table"></div>
+                    </div>
+
+                    <div id="active-house-table" class="spaceBot"></div>
+
+                    <div class="table-title spaceBot">
+                        <div id="pinnacles-pitfalls-table"></div>
+                    </div>
+
+                    <div class="table-title">
+                        <div id="family-heritage-table"></div>
+                    </div>
+
+                    <div class="table-title spaceTop spaceBot">
+                        <h4 class="letterSubTitle">Misión&ensp;cósmica: <span id="cosmicMission"></span></h4>
+                    </div>
+
+                    <div id="cycles-tables">
+                        <div id="cyclesLife-table"></div>
+                    </div>
+
+                    <footer class="pt-5 my-5 text-muted border-top footerT">
+                        Carta numerológica | Genesys | <a href="https://www.lauradanaebarra.com/" target="_blank">lauradanaebarra.com</a>
+                    </footer>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    let isValid = false
+    var form = document.getElementById('myForm');
+    let formError = document.getElementById("formError")
+
+    let firstName = document.getElementById("inputFirstName")
+    let midName = document.getElementById("inputMidName")
+    let fLastName = document.getElementById("fLastName")
+    let fSurName = document.getElementById("fSurName")
+    let mLastName = document.getElementById("mLastName")
+    let mSurName = document.getElementById("mSurName")
+    let activeName = document.getElementById("activeName")
+
+    let day = document.getElementById("day")
+    let month = document.getElementById("month")
+    let year = document.getElementById("year")
+
+    firstName.onchange = function(){
+        InputValidaton(firstName)
+    }
+    fLastName.onchange = function(){
+        InputValidaton(fLastName)
+    }
+    mLastName.onchange = function(){
+        InputValidaton(mLastName)
+    }
+    activeName.onchange = function(){
+        InputValidaton(activeName)
+    }
+    day.onchange = function(){
+        InputValidaton(day)
+    }
+    month.onchange = function(){
+        InputValidaton(month)
+    }
+    year.onchange = function(){
+        InputValidaton(year)
+    }
+
+    function InputValidaton(input) {
+        if(input.value == "" || input.value == "Día*" || input.value == "Mes*" || (input.name == "year" && input.value.length < 4)){
+            input.classList.add("inputError")
+            formError.removeAttribute("hidden")
+        } else {
+            input.classList.remove("inputError")
+            formError.setAttribute("hidden", "hidden")
+        }
+    }
+
+    (function() {
+        // Obtener el formulario y los campos requeridos
+        var form = document.getElementById('myForm');
+        var requiredFields = Array.from(form.querySelectorAll('[required]'));
+
+        // Verificar los campos requeridos en cada cambio
+        requiredFields.forEach(function(field) {
+            field.addEventListener('input', validateForm);
+        });
+
+        // Validar el formulario
+        function validateForm() {
+            isValid = requiredFields.every(function(field) {
+            return field.checkValidity();
+        });
+        }
+    })();
+
+    var dataToSave = []
+    // Numerology
+    function CalculateNum() {
+        InputValidaton(firstName)
+        InputValidaton(fLastName)
+        InputValidaton(mLastName)
+        InputValidaton(activeName)
+        InputValidaton(day)
+        InputValidaton(month)
+        InputValidaton(year)
+
+        const divOculto = document.querySelector('#resultados_ocultos');
+
+        if(!isValid){
+            formError.removeAttribute("hidden")
+            divOculto.style.display = 'none';
+            return
+        }        
+        
+        divOculto.style.display = 'block';
+
+        const alphabet = {
+            A: 1, Á: 1, J: 1, S: 1, B: 2, K: 2, T: 2, C: 3, L: 3, U: 3, Ú: 3, Ü: 3, D: 4,
+            M: 4, V: 4, E: 5, É: 5, N: 5, Ñ: 5, W: 5, F: 6, O: 6, Ó: 6, X: 6, G: 7, P: 7, Y: 7, H: 8,
+            Q: 8, Z: 8, I: 9, Í: 9, R: 9
+        }
+
+        const consonants = {
+            J: 1, S: 1, B: 2, K: 2, T: 2, C: 3, L: 3, D: 4,
+            M: 4, V: 4, N: 5, Ñ: 5, W: 5, F: 6, X: 6, G: 7, P: 7, Y: 7, H: 8,
+            Q: 8, Z: 8, R: 9
+        }
+
+        const vowels = { A: 1, Á: 1, U: 3, Ú: 3, Ü: 3, E: 5, É: 5, O: 6, Ó: 6, Y: 7, I: 9, Í: 9 }
+
+        const fullName = firstName.value + midName.value + fLastName.value + mLastName.value
+        let fullNameNumber = ''
+        if(midName == '') {
+            fullNameNumber = firstName.value + " " + fLastName.value + " " + mLastName.value
+        } else {
+            fullNameNumber = firstName.value + " " + midName.value + " " + fLastName.value + " " + mLastName.value
+        }
+
+        // Birthdate
+        let lifeTrajectory = LifeTrajectory(day.value, month.value, year.value)
+        let homeTrail = LifeTrajectory(day.value, month.value, year.value)
+        let wayOfLife = WayOfLife(day.value, month.value, year.value)
+        let deepSoulLonging = DeepSoulLonging(day.value, month.value, year.value)
+
+        // Name Numbers
+        let soulNumber = SoulNumber(fullName, vowels)
+        let destinationNumber = DestinationNumber(fullName, alphabet)
+        let personalityNumber = PersonalityNumber(fullName, consonants)
+        NameNumber(consonants, vowels, fullNameNumber, 1, soulNumber, destinationNumber, personalityNumber)
+
+        // House Table
+        let inclution = Inclution(fullName, alphabet)
+        let induction = Induction(inclution)
+        let bridges = Bridges(inclution)
+        let evolution = Evolution(inclution)
+        let unconscious = Unconscious(inclution, alphabet, fullName)
+        let induction2 = Induction(unconscious)
+        HouseTable(inclution, induction, bridges, evolution, unconscious, induction2)
+
+        // Name Number
+        let activeSoulNumber = SoulNumber(activeName.value, vowels)
+        let activeDestinationNumber = DestinationNumber(activeName.value, alphabet)
+        let activePersonalityNumber = PersonalityNumber(activeName.value, consonants)
+        NameNumber(consonants, vowels, activeName.value, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)
+
+        // Active House Table
+        let activeInclution = Inclution(activeName.value, alphabet)
+        let activeInduction = Induction(activeInclution)
+        ActiveHouseTable(activeInclution, activeInduction)
+
+        // Pinnacles Pitfalls Table
+        let cycleYear = CicleYears(lifeTrajectory)
+        let pinacles = Pinacles(day.value, month.value, year.value)
+        let pitfalls = Pitfalls(day.value, month.value, year.value)
+        PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls)
+
+        // Family Heritage Table
+        let familyName = firstName.value + midName.value + fLastName.value + fSurName.value + mLastName.value + mSurName.value
+        let hpp = GetHPP(inclution)
+        let ncs = GetNCS(inclution)
+        let dm = GetDM(hpp, ncs)
+        let eje = GetEJE(inclution)
+        let mf = GetMF(familyName, hpp)
+        let ms = GetMS(familyName, ncs)
+        let mfe = GetMFE(mf, ms)
+        let cosmicMission = CosmicMission(wayOfLife, destinationNumber)
+        FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe)
+
+        // Cycles Life Table
+        CyclesLifeTable(parseInt(year.value), inclution, wayOfLife)
+
+        // Date Numbers
+        let monthText = ""
+        if(month.value == 1) {
+            monthText = "Enero"
+        } else if(month.value == 2) {
+            monthText = "Febrero"
+        } else if(month.value == 3) {
+            monthText = "Marzo"
+        } else if(month.value == 4) {
+            monthText = "Abril"
+        } else if(month.value == 5) {
+            monthText = "Mayo"
+        } else if(month.value == 6) {
+            monthText = "Junio"
+        } else if(month.value == 7) {
+            monthText = "Julio"
+        } else if(month.value == 8) {
+            monthText = "Agosto"
+        } else if(month.value == 9) {
+            monthText = "Septiembre"
+        } else if(month.value == 10) {
+            monthText = "Octubre"
+        } else if(month.value == 11) {
+            monthText = "Noviembre"
+        } else if(month.value == 12) {
+            monthText = "Diciembre"
+        }
+        document.getElementById("birthDate").innerHTML = monthText + " " + day.value + " de " + year.value
+        document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
+        document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
+        document.getElementById("wayOfLife").innerHTML = wayOfLife[0] + "/" + wayOfLife[1]
+        document.getElementById("deepSoulLonging").innerHTML = deepSoulLonging[0] + "/" + deepSoulLonging[1]
+
+        // Cosmic Mission
+        document.getElementById("cosmicMission").innerHTML = cosmicMission[1]
+
+        dataToSave = [firstName.value, midName.value, fLastName.value, fSurName.value, mLastName.value, mSurName.value, activeName.value, day.value, month.value, year.value]
+    }
+
+    // PDF
+    window.jsPDF = window.jspdf.jsPDF
+    window.onmessage = (event) => {
+        if (event.data.click === true) {
+            ConvertHTMLFileToPDF()
+            window.parent.postMessage(dataToSave, "https://www.lauradanaebarra.com/")
+        }
+    }
+
+    // GENERATE PDF
+    function ConvertHTMLFileToPDF() {
+        const { jsPDF } = window.jspdf;
+        var doc = new jsPDF('p', 'px', [1100, 2500])
+        var pdfjs = document.querySelector('#resultados_ocultos');
+
+        // Convert HTML to PDF in JavaScript
+        doc.html(pdfjs, {
+            callback: function (doc) {
+                doc.save("Carta.pdf");
+            },
+            margin: [10, 10, 10, 40]
+        });
+    }
+
+    // LifeTrajectory
+    function LifeTrajectory(day, month, year) {
+        let dateValues = CalculateDateValues(day, month, year)
+        let dayScore = dateValues[0]
+        let monthScore = dateValues[1]
+        let yearScore = dateValues[2]
+
+        let noReduced = dayScore + monthScore + yearScore
+        let reduced = SingleDigit(noReduced)
+        let lifeTrajectory = [noReduced, reduced]
+
+        return lifeTrajectory
+    }
+    // WayOfLife
+    function WayOfLife(day, month, year) {
+        let noReduced = parseInt(day) + parseInt(month) + parseInt(year)
+        let reduced = SingleDigit(noReduced)
+        let wayOfLife = [noReduced, reduced]
+
+        return wayOfLife
+    }
+    // DeepSoulLonging
+    function DeepSoulLonging(day, month, year) {
+        let dateValues = CalculateDateValues(day, month, year)
+        let dayScore = dateValues[0]
+        let monthScore = dateValues[1]
+        let yearScore = dateValues[2]
+
+        let noReduced = (dayScore + monthScore) + (monthScore + yearScore)
+        let reduced = SingleDigit(noReduced)
+        let deepSoulLonging = [noReduced, reduced]
+
+        return deepSoulLonging
+    }
+
+    // Name Number
+    function NameNumber(consonants, vowels, fullName, nameType, soulNumber, destinationNumber, personalityNumber) {
+        let vowelNumbers = []
+        let consonantNumbers = []
+        let isConsonant = false
+
+        for (let i = 0; i < fullName.length; i++) {
+            let curChar = fullName.charAt(i).toUpperCase()
+
+            if (curChar == "y" || curChar == "Y") {
+                isConsonant = ValidateYLetter(fullName, curChar, i)
+
+                if (isConsonant == true) {
+                    if (consonants[curChar] != undefined) {
+                        let consValue = consonants[curChar]
+                        consonantNumbers.push(consValue)
+                        vowelNumbers.push(" ")
+                    }
+                } else {
+                    if (vowels[curChar] != undefined) {
+                        let vowelValue = vowels[curChar]
+                        consonantNumbers.push(" ")
+                        vowelNumbers.push(vowelValue)
+                    }
+                }
+            } else {
+                if (consonants[curChar] != undefined) {
+                    let consValue = consonants[curChar]
+                    consonantNumbers.push(consValue)
+                    vowelNumbers.push(" ")
+                }
+                if (vowels[curChar] != undefined) {
+                    let vowelValue = vowels[curChar]
+                    consonantNumbers.push(" ")
+                    vowelNumbers.push(vowelValue)
+                }
+            }
+
+            if (fullName.charAt(i).toUpperCase() == " ") {
+                consonantNumbers.push(" ")
+                vowelNumbers.push(" ")
+            }
+        }
+
+        let html = '<table class="table table-bordered">'
+        html += '<tbody>'
+        html += '<tr class="tableTextRegular soulText">'
+        for (let i = 0; i < fullName.length; i++) {
+            html += '<td>' + vowelNumbers[i] + '</td>'
+        }
+        if(soulNumber.length > 2){
+            html += '<td class="greenText soulText">' + 
+                (ValidateMasterNumber(soulNumber[0]) ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
+                : soulNumber[0]) + 
+                "/" + (ValidateMasterNumber(soulNumber[1]) ? ('<span class="sameDigit">' + soulNumber[1] + '</span>') 
+                : soulNumber[1]) +
+                "/" + (soulNumber[2] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') 
+                : soulNumber[2]) + 
+            '</td>'
+        } else if(soulNumber.length == 2) {
+            html += '<td class="greenText soulText">' + 
+                (ValidateMasterNumber(soulNumber[0]) ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
+                : soulNumber[0]) + 
+                "/" + (soulNumber[1] == 0 ? ('<span class="sameDigit">' + soulNumber[1] + '</span>') 
+                : soulNumber[1]) +
+            '</td>'
+        } else {
+            html += '<td class="greenText soulText">' + 
+                (soulNumber[0] == 0 ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
+                : soulNumber[0]) +
+            '</td>'
+        }
+        html += '<td class="tableTitles tableTextBold">Número del alma</td>'
+        html += '</tr>'
+
+        html += '<tr class="tableTextBold tableTitles">'
+        for (let i = 0; i < fullName.length; i++) {
+            html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
+        }
+        if(destinationNumber.length > 2){
+            html += '<td class="orangeText">' + 
+                (ValidateMasterNumber(destinationNumber[0]) ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
+                : destinationNumber[0]) + 
+                "/" + (ValidateMasterNumber(destinationNumber[1]) ? ('<span class="sameDigit">' + destinationNumber[1] + '</span>') 
+                : destinationNumber[1]) +
+                "/" + (destinationNumber[2] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') 
+                : destinationNumber[2]) + 
+            '</td>'
+        } else if(destinationNumber.length == 2) {
+            html += '<td class="orangeText">' + 
+                (ValidateMasterNumber(destinationNumber[0]) ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
+                : destinationNumber[0]) + 
+                "/" + (destinationNumber[1] == 0 ? ('<span class="sameDigit">' + destinationNumber[1] + '</span>') 
+                : destinationNumber[1]) +
+            '</td>'
+        } else {
+            html += '<td class="greenText soulText">' + 
+                (destinationNumber[0] == 0 ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
+                : destinationNumber[0]) +
+            '</td>'
+        }
+        html += '<td class="tableTitles">Vía del destino</td>'
+        html += '</tr>'
+
+        html += '<tr class="tableTextRegular">'
+        for (let i = 0; i < fullName.length; i++) {
+            html += '<td>' + consonantNumbers[i] + '</td>'
+        }
+        if(personalityNumber.length > 2){
+            html += '<td class="greenText personalityText">' + 
+                (ValidateMasterNumber(personalityNumber[0]) ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
+                : personalityNumber[0]) + 
+                "/" + (ValidateMasterNumber(personalityNumber[1]) ? ('<span class="sameDigit">' + personalityNumber[1] + '</span>') 
+                : personalityNumber[1]) +
+                "/" + (personalityNumber[2] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') 
+                : personalityNumber[2]) + 
+            '</td>'
+        } else if (personalityNumber.length == 2) {
+            html += '<td class="greenText personalityText">' + 
+                (ValidateMasterNumber(personalityNumber[0]) ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
+                : personalityNumber[0]) + 
+                "/" + (personalityNumber[1] == 0 ? ('<span class="sameDigit">' + personalityNumber[1] + '</span>') 
+                : personalityNumber[1]) +
+            '</td>'
+        } else {
+            html += '<td class="greenText soulText">' + 
+                (personalityNumber[0] == 0 ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
+                : personalityNumber[0]) +
+            '</td>'
+        }
+        html += '<td class="tableTitles tableTextBold">Número personalidad externa</td>'
+        html += '</tr>'
+
+        html += '</tbody>'
+        html += '</table>'
+
+        if (nameType == 1) {
+            document.getElementById("name-number-table").innerHTML = html
+        } else {
+            document.getElementById("active-name-number-table").innerHTML = html
+        }
+    }
+    // SoulNumber
+    function SoulNumber(fullName, vowels) {
+        let nameScore = 0
+        let isConsonant = false
+
+        for (let i = 0; i < fullName.length; i++) {
+            let curChar = fullName.charAt(i).toUpperCase()
+
+            if (curChar == "y" || curChar == "Y") {
+                isConsonant = ValidateYLetter(fullName, curChar, i)
+            } else {
+                isConsonant = false
+            }
+
+            if (isConsonant == false) {
+                let curValue = vowels[curChar]
+
+                if (curValue != undefined) {
+                    nameScore = nameScore + curValue
+                }
+            }
+        }
+
+        let noReduced = nameScore
+        let reduced = NameSingleDigit(noReduced)
+        let soulNumber = []
+        if(reduced.length != 0) {
+            if(reduced.length > 1) {
+                soulNumber = [noReduced, reduced[0], reduced[1]]
+            } else {
+                soulNumber = [noReduced, reduced[0]]
+            }
+        } else {
+            soulNumber = [noReduced]
+        }
+
+        return soulNumber
+    }
+    // DestinationNumber
+    function DestinationNumber(fullName, alphabet) {
+        let nameScore = 0
+
+        for (let i = 0; i < fullName.length; i++) {
+            let curChar = fullName.charAt(i).toUpperCase()
+            let curValue = alphabet[curChar]
+
+            if (curValue != undefined) {
+                nameScore = nameScore + curValue
+            }
+        }
+
+        let noReduced = nameScore
+        let reduced = NameSingleDigit(noReduced)
+        let destinationNumber = []
+        if(reduced.length != 0) {
+            if(reduced.length > 1) {
+                destinationNumber = [noReduced, reduced[0], reduced[1]]
+            } else {
+                destinationNumber = [noReduced, reduced[0]]
+            }
+        } else {
+            destinationNumber = [noReduced]
+        }
+
+        return destinationNumber
+    }
+    // PersonalityNumber
+    function PersonalityNumber(fullName, consonants) {
+        let nameScore = 0
+        let isConsonant = true
+
+        for (let i = 0; i < fullName.length; i++) {
+            let curChar = fullName.charAt(i).toUpperCase()
+            let curValue = consonants[curChar]
+
+            if (curChar == "y" || curChar == "Y") {
+                isConsonant = ValidateYLetter(fullName, curChar, i)
+            } else {
+                isConsonant = true
+            }
+
+            if (isConsonant == true) {
+                let curValue = consonants[curChar]
+
+                if (curValue != undefined) {
+                    nameScore = nameScore + curValue
+                }
+            }
+        }
+        let noReduced = nameScore
+        let reduced = NameSingleDigit(noReduced)
+        let personalityNumber = []
+        if(reduced.length != 0) {
+            if(reduced.length > 1) {
+                personalityNumber = [noReduced, reduced[0], reduced[1]]
+            } else {
+                personalityNumber = [noReduced, reduced[0]]
+            }
+        } else {
+            personalityNumber = [noReduced]
+        }
+
+        return personalityNumber
+    }
+    function ValidateYLetter(fullName, curChar, index) {
+        const nextLetter = fullName.charAt(index + 1);
+        let isConsonant = false
+
+        if (curChar === 'y' && fullName.charAt(index - 1) == undefined) { //First letter
+            isConsonant = true
+        } else if (nextLetter != undefined && (fullName.charAt(index + 1) === 'a'
+            || fullName.charAt(index + 1) === 'e' || fullName.charAt(index + 1) === 'i')
+            || fullName.charAt(index + 1) === 'o' || fullName.charAt(index + 1) === 'u') { // has a vowel after the 'y'
+            isConsonant = true
+        } else {
+            isConsonant = false
+        }
+        return isConsonant
+    }
+
+    // Inclution
+    function Inclution(fullName, alphabet) {
+        let house1 = 0
+        let house2 = 0
+        let house3 = 0
+        let house4 = 0
+        let house5 = 0
+        let house6 = 0
+        let house7 = 0
+        let house8 = 0
+        let house9 = 0
+
+        //firstName
+        for (let i = 0; i < fullName.length; i++) {
+            let curChar = fullName.charAt(i).toUpperCase()
+            let curValue = alphabet[curChar]
+
+            if (curValue == 1) {
+                house1++
+            } else if (curValue == 2) {
+                house2++
+            } else if (curValue == 3) {
+                house3++
+            } else if (curValue == 4) {
+                house4++
+            } else if (curValue == 5) {
+                house5++
+            } else if (curValue == 6) {
+                house6++
+            } else if (curValue == 7) {
+                house7++
+            } else if (curValue == 8) {
+                house8++
+            } else if (curValue == 9) {
+                house9++
+            }
+        }
+
+        let inclution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+        return inclution
+    }
+
+    // Induction
+    function Induction(inclution) {
+        let house1 = Array.prototype.join.call(CalculateInduction(inclution, 0), "<br>")
+        let house2 = Array.prototype.join.call(CalculateInduction(inclution, 1), "<br>")
+        let house3 = Array.prototype.join.call(CalculateInduction(inclution, 2), "<br>")
+        let house4 = Array.prototype.join.call(CalculateInduction(inclution, 3), "<br>")
+        let house5 = Array.prototype.join.call(CalculateInduction(inclution, 4), "<br>")
+        let house6 = Array.prototype.join.call(CalculateInduction(inclution, 5), "<br>")
+        let house7 = Array.prototype.join.call(CalculateInduction(inclution, 6), "<br>")
+        let house8 = Array.prototype.join.call(CalculateInduction(inclution, 7), "<br>")
+        let house9 = Array.prototype.join.call(CalculateInduction(inclution, 8), "<br>")
+
+        let induction = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+        return induction
+    }
+    function CalculateInduction(inclution, index) {
+        let house = []
+
+        let val1 = 0
+        let val2 = 0
+        let val3 = 0
+
+        if (inclution[index] > 0) {
+            val1 = inclution[inclution[index] - 1]
+
+            if (val1 > 0) {
+                val2 = inclution[val1 - 1]
+
+                if (val2 > 0) {
+                    val3 = inclution[val2 - 1]
+                }
+            }
+        }
+        house.push(val1, val2, val3)
+
+        return house
+    }
+
+    // Bridges
+    function Bridges(inclution) {
+        let house1 = CalculateBridges(inclution, 0)
+        let house2 = CalculateBridges(inclution, 1)
+        let house3 = CalculateBridges(inclution, 2)
+        let house4 = CalculateBridges(inclution, 3)
+        let house5 = CalculateBridges(inclution, 4)
+        let house6 = CalculateBridges(inclution, 5)
+        let house7 = CalculateBridges(inclution, 6)
+        let house8 = CalculateBridges(inclution, 7)
+        let house9 = CalculateBridges(inclution, 8)
+
+        let bridges = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+        return bridges
+    }
+    function CalculateBridges(inclution, index) {
+        let bridgeHouse = inclution[index] - (index + 1)
+
+        if (bridgeHouse < 0) {
+            bridgeHouse = (bridgeHouse * -1)
+        }
+
+        return bridgeHouse
+    }
+
+    // Evolution
+    function Evolution(inclution) {
+        let house1 = CalculateEvolution(inclution, 0)
+        let house2 = CalculateEvolution(inclution, 1)
+        let house3 = CalculateEvolution(inclution, 2)
+        let house4 = CalculateEvolution(inclution, 3)
+        let house5 = CalculateEvolution(inclution, 4)
+        let house6 = CalculateEvolution(inclution, 5)
+        let house7 = CalculateEvolution(inclution, 6)
+        let house8 = CalculateEvolution(inclution, 7)
+        let house9 = CalculateEvolution(inclution, 8)
+
+        let evolution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+        return evolution
+    }
+    function CalculateEvolution(inclution, index) {
+        let count = 0
+
+        inclution.forEach(element => {
+            if (element == (index + 1)) {
+                count++
+            }
+        });
+
+        let evoHouse = inclution[index] + count
+
+        return evoHouse
+    }
+
+    // Unconscius
+    function Unconscious(inclution, alphabet, fullName) {
+        let house1 = CalculateUnconscious(inclution, alphabet, fullName, 0)
+        let house2 = CalculateUnconscious(inclution, alphabet, fullName, 1)
+        let house3 = CalculateUnconscious(inclution, alphabet, fullName, 2)
+        let house4 = CalculateUnconscious(inclution, alphabet, fullName, 3)
+        let house5 = CalculateUnconscious(inclution, alphabet, fullName, 4)
+        let house6 = CalculateUnconscious(inclution, alphabet, fullName, 5)
+        let house7 = CalculateUnconscious(inclution, alphabet, fullName, 6)
+        let house8 = CalculateUnconscious(inclution, alphabet, fullName, 7)
+        let house9 = CalculateUnconscious(inclution, alphabet, fullName, 8)
+
+        let unconscious = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
+
+        return unconscious
+    }
+    function CalculateUnconscious(inclution, alphabet, fullName, index) {
+        let curChar = ""
+        let curValue = 0
+
+        if (inclution[index] > 0) {
+            curChar = fullName.charAt(inclution[index] - 1).toUpperCase()
+            curValue = alphabet[curChar]
+        } else if (inclution[index] <= 0) {
+            curChar = fullName.charAt(index).toUpperCase()
+
+            if (curChar == undefined || curChar == "") {
+                curValue = 0
+            } else {
+                curValue = alphabet[curChar]
+            }
+        }
+
+        return curValue
+    }
+
+    // HouseTable
+    function HouseTable(inclution, induction, bridges, evolution, unconscious, induction2) {
+        let html = '<table class="table table-striped">'
+        html += '<thead>'
+        html += '<tr>'
+        html += '<th class="tableTitles">Casas</th>'
+        html += '<th>1</th>'
+        html += '<th>2</th>'
+        html += '<th>3</th>'
+        html += '<th>4</th>'
+        html += '<th>5</th>'
+        html += '<th>6</th>'
+        html += '<th>7</th>'
+        html += '<th>8</th>'
+        html += '<th>9</th>'
+        html += '</tr>'
+        html += '</thead>'
+
+        html += '<tbody>'
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Inclusión</th>'
+        if(inclution[0] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[0] + '</td>'
+        }
+        if(inclution[1] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[1] + '</td>'
+        }
+        if(inclution[2] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[2] + '</td>'
+        }
+        if(inclution[3] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[3] + '</td>'
+        }
+        if(inclution[4] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[4] + '</td>'
+        }
+        if(inclution[5] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[5] + '</td>'
+        }
+        if(inclution[6] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[6] + '</td>'
+        }
+        if(inclution[7] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[7] + '</td>'
+        }
+        if(inclution[8] == 0) {
+            html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignB">' + inclution[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        if(induction[0] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[0] + '</td>'
+        }
+        if(induction[1] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[1] + '</td>'
+        }
+        if(induction[2] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[2] + '</td>'
+        }
+        if(induction[3] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[3] + '</td>'
+        }
+        if(induction[4] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[4] + '</td>'
+        }
+        if(induction[5] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[5] + '</td>'
+        }
+        if(induction[6] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[6] + '</td>'
+        }
+        if(induction[7] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[7] + '</td>'
+        }
+        if(induction[8] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Puentes</th>'
+        if(bridges[0] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[0] + '</td>'
+        }
+        if(bridges[1] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[1] + '</td>'
+        }
+        if(bridges[2] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[2] + '</td>'
+        }
+        if(bridges[3] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[3] + '</td>'
+        }
+        if(bridges[4] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[4] + '</td>'
+        }
+        if(bridges[5] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[5] + '</td>'
+        }
+        if(bridges[6] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[6] + '</td>'
+        }
+        if(bridges[7] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[7] + '</td>'
+        }
+        if(bridges[8] == 0) {
+            html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
+        } else {
+            html += '<td class="tableTextAlignT">' + bridges[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="thPpal tableTitles" scope="row">Evolución</th>'
+        if(evolution[0] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[0] + '</td>'
+        }
+        if(evolution[1] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[1] + '</td>'
+        }
+        if(evolution[2] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[2] + '</td>'
+        }
+        if(evolution[3] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[3] + '</td>'
+        }
+        if(evolution[4] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[4] + '</td>'
+        }
+        if(evolution[5] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[5] + '</td>'
+        }
+        if(evolution[6] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[6] + '</td>'
+        }
+        if(evolution[7] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[7] + '</td>'
+        }
+        if(evolution[8] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + evolution[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Inconsciente</th>'
+        if(unconscious[0] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[0] + '</td>'
+        }
+        if(unconscious[1] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[1] + '</td>'
+        }
+        if(unconscious[2] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[2] + '</td>'
+        }
+        if(unconscious[3] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[3] + '</td>'
+        }
+        if(unconscious[4] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[4] + '</td>'
+        }
+        if(unconscious[5] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[5] + '</td>'
+        }
+        if(unconscious[6] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[6] + '</td>'
+        }
+        if(unconscious[7] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[7] + '</td>'
+        }
+        if(unconscious[8] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + unconscious[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        if(induction2[0] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[0] + '</td>'
+        }
+        if(induction2[1] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[1] + '</td>'
+        }
+        if(induction2[2] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[2] + '</td>'
+        }
+        if(induction2[3] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[3] + '</td>'
+        }
+        if(induction2[4] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[4] + '</td>'
+        }
+        if(induction2[5] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[5] + '</td>'
+        }
+        if(induction2[6] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[6] + '</td>'
+        }
+        if(induction2[7] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[7] + '</td>'
+        }
+        if(induction2[8] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + induction2[8] + '</td>'
+        }
+        html += '</tr>'
+        html += '</tbody>'
+        html += '</table>'
+        document.getElementById("house-table").innerHTML = html
+    }
+    // Active House Table
+    function ActiveHouseTable(activeInclution, activeInduction) {
+        let html = '<table class="table table-striped">'
+        html += '<thead>'
+
+        html += '<tr>'
+        html += '<th class="tableTitles">Casas</th>'
+        html += '<th>1</th>'
+        html += '<th>2</th>'
+        html += '<th>3</th>'
+        html += '<th>4</th>'
+        html += '<th>5</th>'
+        html += '<th>6</th>'
+        html += '<th>7</th>'
+        html += '<th>8</th>'
+        html += '<th>9</th>'
+        html += '</tr>'
+        html += '</thead>'
+
+        html += '<tbody>'
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Inclusión</th>'
+        if(activeInclution[0] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[0] + '</td>'
+        }
+        if(activeInclution[1] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[1] + '</td>'
+        }
+        if(activeInclution[2] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[2] + '</td>'
+        }
+        if(activeInclution[3] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[3] + '</td>'
+        }
+        if(activeInclution[4] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[4] + '</td>'
+        }
+        if(activeInclution[5] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[5] + '</td>'
+        }
+        if(activeInclution[6] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[6] + '</td>'
+        }
+        if(activeInclution[7] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[7] + '</td>'
+        }
+        if(activeInclution[8] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInclution[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        if(activeInduction[0] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[0] + '</td>'
+        }
+        if(activeInduction[1] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[1] + '</td>'
+        }
+        if(activeInduction[2] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[2] + '</td>'
+        }
+        if(activeInduction[3] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[3] + '</td>'
+        }
+        if(activeInduction[4] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[4] + '</td>'
+        }
+        if(activeInduction[5] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[5] + '</td>'
+        }
+        if(activeInduction[6] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[6] + '</td>'
+        }
+        if(activeInduction[7] =="0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[7] + '</td>'
+        }
+        if(activeInduction[8] == "0<br>0<br>0") {
+            html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
+        } else {
+            html += '<td>' + activeInduction[8] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '</tbody>'
+        html += '</table>'
+        document.getElementById("active-house-table").innerHTML = html
+    }
+
+    // Pinnacles and Pitfalls
+    function CicleYears(lifeTrajectory) {
+        let initialYear = 36 - lifeTrajectory[1]
+        let cycle1 = 0
+        let cycle2 = initialYear + 1
+        let cycle3 = cycle2 + 9
+        let cycle4 = cycle3 + 9
+
+        let cycleEnd1 = initialYear
+        let cycleEnd2 = cycleEnd1 + 9
+        let cycleEnd3 = cycleEnd2 + 9
+        let cycleEnd4 = cycleEnd3 + 9
+
+        let cycleYears = [cycle1, cycle2, cycle3, cycle4, cycleEnd1, cycleEnd2, cycleEnd3, cycleEnd4]
+
+        return cycleYears
+    }
+    function Pinacles(day, month, year) {
+        let dateValues = CalculateDateValues(day, month, year)
+        let dayScore = SingleDigit(dateValues[0])
+        let monthScore = SingleDigit(dateValues[1])
+        let yearScore = SingleDigit(dateValues[2])
+
+        let cycle1 = SingleDigit(dayScore + monthScore)
+        let cycle2 = SingleDigit(dayScore + yearScore)
+        let cycle3 = SingleDigit(cycle1 + cycle2)
+        let cycle4 = SingleDigit(monthScore + yearScore)
+
+        let pinacles = [cycle1, cycle2, cycle3, cycle4]
+
+        return pinacles
+    }
+    function Pitfalls(day, month, year) {
+        let dateValues = CalculateDateValues(day, month, year)
+        let dayScore = SingleDigit(dateValues[0])
+        let monthScore = SingleDigit(dateValues[1])
+        let yearScore = SingleDigit(dateValues[2])
+
+        let cycle1 = SingleDigit(dayScore - monthScore)
+        if (cycle1 < 0) {
+            cycle1 = (cycle1 * -1)
+        }
+
+        let cycle2 = SingleDigit(dayScore - yearScore)
+        if (cycle2 < 0) {
+            cycle2 = (cycle2 * -1)
+        }
+
+        let cycle3 = SingleDigit(cycle1 - cycle2)
+        if (cycle3 < 0) {
+            cycle3 = (cycle3 * -1)
+        }
+
+        let cycle4 = SingleDigit(monthScore - yearScore)
+        if (cycle4 < 0) {
+            cycle4 = (cycle4 * -1)
+        }
+
+        let pitfalls = [cycle1, cycle2, cycle3, cycle4]
+
+        return pitfalls
+    }
+    //Pinnacles and Pitfalls Table
+    function PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls) {
+        let html = '<table class="table table-striped">'
+        html += '<thead>'
+        html += '<tr>'
+        html += '<th></th>'
+        html += '<th>Primer ciclo</th>'
+        html += '<th>Segundo ciclo</th>'
+        html += '<th>Tercer ciclo</th>'
+        html += '<th>Cuarto ciclo</th>'
+        html += '</tr>'
+        html += '</thead>'
+
+        html += '<tbody>'
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Años</th>'
+        html += '<td>' + cycleYear[0] + '-' + (ValidateMasterNumber(cycleYear[4]) 
+            ? ('<span class="sameDigit">' + cycleYear[4] + '</span>') 
+            : cycleYear[4]) + '</td>'
+        html += '<td>' + (ValidateMasterNumber(cycleYear[1]) 
+            ? ('<span class="sameDigit">' + cycleYear[1] + '</span>') 
+            : cycleYear[1]) + '-' + (ValidateMasterNumber(cycleYear[5]) 
+            ? ('<span class="sameDigit">' + cycleYear[5] + '</span>') 
+            : cycleYear[5]) + '</td>'
+        html += '<td>' + (ValidateMasterNumber(cycleYear[2]) 
+            ? ('<span class="sameDigit">' + cycleYear[2] + '</span>') 
+            : cycleYear[2]) + '-' + (ValidateMasterNumber(cycleYear[6]) 
+            ? ('<span class="sameDigit">' + cycleYear[6] + '</span>') 
+            : cycleYear[6]) + '</td>'
+        html += '<td>' + (ValidateMasterNumber(cycleYear[3]) 
+            ? ('<span class="sameDigit">' + cycleYear[3] + '</span>') 
+            : cycleYear[3]) + '-' + 
+            (ValidateMasterNumber(cycleYear[7]) 
+            ? ('<span class="sameDigit">' + cycleYear[7] + '</span>') 
+            : cycleYear[7]) + '</td>'
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="thPpal tableTitles" scope="row">Pináculos</th>'
+        if(pinacles[0] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pinacles[0] + '</td>'
+        }
+        if(pinacles[1] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pinacles[1] + '</td>'
+        }
+        if(pinacles[2] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pinacles[2] + '</td>'
+        }
+        if(pinacles[3] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pinacles[3] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="thPpal tableTitles" scope="row">Escollos</th>'
+        if(pitfalls[0] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pitfalls[0] + '</td>'
+        }
+        if(pitfalls[1] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pitfalls[1] + '</td>'
+        }
+        if(pitfalls[2] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pitfalls[2] + '</td>'
+        }
+        if(pitfalls[3] == 0) {
+            html += '<td class="zeroValue">' + "0*" + '</td>'
+        } else {
+            html += '<td>' + pitfalls[3] + '</td>'
+        }
+        html += '</tr>'
+
+        html += '</tbody>'
+        html += '</table>'
+        document.getElementById("pinnacles-pitfalls-table").innerHTML = html
+    }
+
+    // Family Heritage //
+    // HPP
+    function GetHPP(inclution) {
+        let noReduced = 0
+
+        for (let i = 0; i < 4; i++) {
+            noReduced = noReduced + inclution[i]
+        }
+
+        let reduced = SingleDigit(noReduced)
+        let hpp = [noReduced, reduced]
+
+        return hpp
+    }
+    // NCS
+    function GetNCS(inclution) {
+        let noReduced = 0
+
+        for (let i = 5; i < 9; i++) {
+            noReduced = noReduced + inclution[i]
+        }
+
+        let reduced = SingleDigit(noReduced)
+        let ncs = [noReduced, reduced]
+
+        return ncs
+    }
+    // DM
+    function GetDM(hpp, ncs) {
+        let noReduced = hpp[0] + ncs[0]
+        let reduced = SingleDigit(noReduced)
+        let dm = [noReduced, reduced]
+
+        return dm
+    }
+    // EJE
+    function GetEJE(inclution) {
+        let noReduced = inclution[4]
+
+        let reduced = SingleDigit(noReduced)
+        let eje = [noReduced, reduced]
+
+        return eje
+    }
+    // MF
+    function GetMF(fullName, hpp) {
+        let noReduced = fullName.length + hpp[0]
+        let reduced = SingleDigit(noReduced)
+        let mf = [noReduced, reduced]
+
+        return mf
+    }
+    // MS
+    function GetMS(fullName, ncs) {
+        let noReduced = fullName.length + ncs[0]
+        let reduced = SingleDigit(noReduced)
+        let ms = [noReduced, reduced]
+
+        return ms
+    }
+    // MFE
+    function GetMFE(mf, ms) {
+        let noReduced = mf[0] + ms[0]
+        let reduced = SingleDigit(noReduced)
+        let mfe = [noReduced, reduced]
+
+        return mfe
+    }
+    // CosmicMission
+    function CosmicMission(wayOfLife, destinationNumber) {
+        let noReduced = wayOfLife[0] + destinationNumber[0]
+        let reduced = SingleDigit(noReduced)
+        let cosmicMission = [noReduced, reduced]
+
+        return cosmicMission
+    }
+    // Family Heritage Table
+    function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
+        let html = '<table class="table table-striped">'
+        html += '<thead>'
+        html += '<tr>'
+        html += '<th class="tableTitles">Herencias familiares</th>'
+        html += '<th>No reducido</th>'
+        html += '<th>Reducido</th>'
+        html += '</tr>'
+        html += '</thead>'
+
+        html += '<tbody>'
+        html += '<tr>'
+        html += '<th class="tableTitles thPpal" scope="row">HPP</th>'
+        if(ValidateMasterNumber(hpp[0])) {
+            html += '<td>' + '<span class="sameDigit">' + hpp[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (hpp[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : hpp[0]) + '</td>'
+        }        
+        if(ValidateMasterNumber(hpp[1])) {
+            html += '<td>' + '<span class="sameDigit">' + hpp[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (hpp[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : hpp[1]) + '</td>'
+        }  
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="tableTitles thPpal" scope="row">NCS</th>'
+        if(ValidateMasterNumber(ncs[0])) {
+            html += '<td>' + '<span class="sameDigit">' + ncs[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (ncs[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : ncs[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(ncs[1])) {
+            html += '<td>' + '<span class="sameDigit">' + ncs[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (ncs[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : ncs[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="tableTitles thPpal" scope="row">DM</th>'
+        if(ValidateMasterNumber(dm[0])) {
+            html += '<td>' + '<span class="sameDigit">' + dm[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (dm[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : dm[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(dm[1])) {
+            html += '<td>' + '<span class="sameDigit">' + dm[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (dm[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : dm[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="tableTitles thPpal" scope="row">EJE</th>'
+        if(ValidateMasterNumber(eje[0])) {
+            html += '<td>' + '<span class="sameDigit">' + eje[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (eje[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : eje[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(eje[1])) {
+            html += '<td>' + '<span class="sameDigit">' + eje[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (eje[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : eje[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="tableTitles thPpal" scope="row">MF</th>'
+        if(ValidateMasterNumber(mf[0])) {
+            html += '<td>' + '<span class="sameDigit">' + mf[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (mf[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : mf[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(mf[1])) {
+            html += '<td>' + '<span class="sameDigit">' + mf[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (mf[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : mf[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr class="trPpal">'
+        html += '<th class="tableTitles thPpal" scope="row">MS</th>'
+        if(ValidateMasterNumber(ms[0])) {
+            html += '<td>' + '<span class="sameDigit">' + ms[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (ms[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : ms[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(ms[1])) {
+            html += '<td>' + '<span class="sameDigit">' + ms[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (ms[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : ms[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '<tr>'
+        html += '<th class="tableTitles thPpal" scope="row">MFE</th>'
+        if(ValidateMasterNumber(mfe[0])) {
+            html += '<td>' + '<span class="sameDigit">' + mfe[0] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (mfe[0] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : mfe[0]) + '</td>'
+        }
+        if(ValidateMasterNumber(mfe[1])) {
+            html += '<td>' + '<span class="sameDigit">' + mfe[1] + '</span>' + '</td>'
+        } else {
+            html += '<td>' + (mfe[1] == 0 ? ('<span class="zeroValue">' + "0*" + '</span>') : mfe[1]) + '</td>'
+        }
+        html += '</tr>'
+
+        html += '</tbody>'
+        html += '</table>'
+        document.getElementById("family-heritage-table").innerHTML = html
+    }
+    // Cycles Life Table
+    function CyclesLifeTable(year, inclution, wayOfLife) {
+        let wayOfLifeNumber = wayOfLife[1]
+
+        // Population
+        let html = '<table class="table table-striped">'
+        html += '<tr>'
+        html += '<th colspan="2" class="tableTitles">Habitantes</th>'
+        for (let i = 0; i < 10; i++) {
+            if (i == 9) {
+                (inclution[0] == 0 ? (html += '<th class="zeroValue">' + "0*" + '</th>') 
+                : (html += '<th class="greenTextR">' + inclution[0] + '</th>'))
+            } else {
+                (inclution[i] == 0 ? (html += '<th class="zeroValue">' + "0*" + '</th>') 
+                : (html += '<th class="greenTextR">' + inclution[i] + '</th>'))
+            }
+        }
+        html += '</tr>'
+        // Cycles
+        html += '<tr>'
+        html += '<th colspan="2" class="tableTitles">Ciclos</th>'
+        for (let i = 0; i < 10; i++) {
+            let cycle = i + 1
+            html += '<th class="td-w blackTextR">' + cycle + '</th>'
+        }
+        html += '</tr>'
+
+        // Years
+        html += '<tbody>'
+        html += '<tr class="trPpal">'
+        html += '<th scope="row">Hab.</th>'
+        html += '<th scope="row">AP.</th>'
+        html += '</tr>'
+
+        let newInclution = []
+        let cycles = []
+        let yearNumberValidation = 0
+
+        if (wayOfLifeNumber == 1) {
+            newInclution = inclution
+            cycles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            yearNumberValidation = 0
+        } else if (wayOfLifeNumber == 2) {
+            newInclution = [inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0]]
+            cycles = [2, 3, 4, 5, 6, 7, 8, 9, 1]
+            yearNumberValidation = 8
+        } else if (wayOfLifeNumber == 3) {
+            newInclution = [inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1]]
+            cycles = [3, 4, 5, 6, 7, 8, 9, 1, 2]
+            yearNumberValidation = 7
+        } else if (wayOfLifeNumber == 4) {
+            newInclution = [inclution[3], inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2]]
+            cycles = [4, 5, 6, 7, 8, 9, 1, 2, 3]
+            yearNumberValidation = 6
+        } else if (wayOfLifeNumber == 5) {
+            newInclution = [inclution[4], inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3]]
+            cycles = [5, 6, 7, 8, 9, 1, 2, 3, 4]
+            yearNumberValidation = 5
+        } else if (wayOfLifeNumber == 6) {
+            newInclution = [inclution[5], inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4]]
+            cycles = [6, 7, 8, 9, 1, 2, 3, 4, 5]
+            yearNumberValidation = 4
+        } else if (wayOfLifeNumber == 7) {
+            newInclution = [inclution[6], inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5]]
+            cycles = [7, 8, 9, 1, 2, 3, 4, 5, 6]
+            yearNumberValidation = 3
+        } else if (wayOfLifeNumber == 8) {
+            newInclution = [inclution[7], inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6]]
+            cycles = [8, 9, 1, 2, 3, 4, 5, 6, 7]
+            yearNumberValidation = 2
+        } else if (wayOfLifeNumber == 9) {
+            newInclution = [inclution[8], inclution[0], inclution[1], inclution[2], inclution[3], inclution[4], inclution[5], inclution[6], inclution[7]]
+            cycles = [9, 1, 2, 3, 4, 5, 6, 7, 8]
+            yearNumberValidation = 1
+        }
+
+        let date = new Date().getFullYear();
+        let currentYear = year
+        let countYear = 0
+        let newCountYear = 0
+        for (let i = 0; i < 9; i++) {
+            html += '<tr>'
+
+            if(newInclution[i] == 0) {
+                html += '<th class="zeroValue" scope="row">' + "0*" + '</th>'
+            } else {
+                html += '<th class="greenText" scope="row">' + newInclution[i] + '</th>'
+            }
+
+            if(cycles[i] == 0) {
+                html += '<th class="zeroValue" scope="row">' + "0*" + '</th>'
+            } else {
+                html += '<th class="greenText" scope="row">' + cycles[i] + '</th>'
+            }            
+
+            for (let j = 0; j < 10; j++) {
+                if (year === date) {
+                    html += '<td class="currentYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                } else {
+                    html += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                }
+                // if (year == date && newCountYear == yearNumberValidation) {
+                //     yearNumberValidation = yearNumberValidation + 10
+                //     html += '<td class="currentYear bgYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                // } else if (year == date && newCountYear != yearNumberValidation) {
+                //     html += '<td class="currentYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                // } else if (year != date && newCountYear == yearNumberValidation) {
+                //     yearNumberValidation = yearNumberValidation + 10
+                //     html += '<td class="bgYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                // } else if (year != date && newCountYear != yearNumberValidation) {
+                //     html += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
+                // }
+                year += 9
+                newCountYear += 9
+            }
+            currentYear++
+            year = currentYear
+
+            countYear++
+            newCountYear = countYear
+        }
+        html += '</tr>'
+        html += '</tbody>'
+        html += '</table>'
+
+        document.getElementById("cyclesLife-table").innerHTML = html
+    }
+
+    // UTILS //
+    // Calculate Date Values - Day, Month, Year
+    function CalculateDateValues(day, month, year) {
+        let dayScore = 0
+        let monthScore = 0
+        let yearScore = 0
+
+        if (day >= 10) {
+            for (let i = 0; i < day.length; i++) {
+                let curValue = day.toString().charAt(i)
+                dayScore = dayScore + parseInt(curValue)
+            }
+        } else {
+            dayScore = parseInt(day)
+        }
+
+        if (month >= 10) {
+            for (let i = 0; i < month.length; i++) {
+                let curValue = month.toString().charAt(i)
+                monthScore = monthScore + parseInt(curValue)
+            }
+        } else {
+            monthScore = parseInt(month)
+        }
+
+        for (let i = 0; i < year.length; i++) {
+            let curValue = year.toString().charAt(i)
+            yearScore = yearScore + parseInt(curValue)
+        }
+
+        let dateValues = [dayScore, monthScore, yearScore]
+
+        return dateValues
+    }
+    // Single Digit
+    function SingleDigit(singleDigitValue) {
+        while (singleDigitValue >= 10) {
+            let total = 0
+            let str = '' + singleDigitValue
+
+            for (let i = 0; i < str.length; i++) {
+                total = total + parseInt(str.charAt(i))
+            }
+            singleDigitValue = total
+        }
+
+        return singleDigitValue
+    }
+    // Name Single Digit
+    function NameSingleDigit(singleDigitValue) {
+        let reducedValues = []
+        while (singleDigitValue >= 10) {
+            let total = 0
+            let str = '' + singleDigitValue
+
+            for (let i = 0; i < str.length; i++) {
+                total = total + parseInt(str.charAt(i))
+            }
+            singleDigitValue = total
+            reducedValues.push(total)
+            // console.log('total', singleDigitValue)
+        }
+
+        return reducedValues
+    }
+
+    function ValidateMasterNumber(num) {
+        if(num.toString().length == 2) {
+            if(num == 11 || num == 22 || num == 33 || num == 44 || num == 55 || 
+            num == 66 || num == 77 || num == 88 || num == 99 ) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+</script>
