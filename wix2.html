@@ -132,7 +132,7 @@
         margin-top: 10px;
     }
     .spaceTop {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     .spaceBot {
@@ -173,6 +173,7 @@
     .footerT a{
         color: #DADADA !important;
         text-decoration: none !important;
+        letter-spacing: -0.3px !important;
     }
 
     .bgYear {
@@ -225,12 +226,12 @@
             <div class="container-fluid">
                 <div id="resultados_ocultos">
                     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-                        <h2 class="headerTitle letterTitle spaceTitle">Carta&ensp;Numerológica</h2>
+                        <h2 class="headerTitle letterTitle spaceTitle">Carta&nbsp;&nbsp;Numerológica</h2>
                         <a href="/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
                             <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
                         </a>
                     </header>
-                    <h3 class="letterSubTitle spaceBot">Cálculo&ensp;trayectoria&ensp;de&ensp;vida: <label id="birthDate" class="birthDate"></label></h3>
+                    <h3 class="letterSubTitle spaceBot">Cálculo&nbsp;&nbsp;trayectoria&nbsp;de&nbsp;vida: <label id="birthDate" class="birthDate"></label></h3>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -252,7 +253,7 @@
 
 
                     <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Cálculo&ensp;de&ensp;nombre&ensp;completo</h4>
+                        <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
                     </div>
                     <div class="table table-striped spaceBot">
                         <div id="name-number-table"></div>
@@ -261,7 +262,7 @@
                     <div id="house-table"></div>
 
                     <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Cálculo&ensp;del&ensp;nombre&ensp;activo</h4>
+                        <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
                         <div id="active-name-number-table"></div>
                     </div>
 
@@ -276,7 +277,7 @@
                     </div>
 
                     <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Misión&ensp;cósmica: <span id="cosmicMission"></span></h4>
+                        <h4 class="letterSubTitle">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
                     </div>
 
                     <div id="cycles-tables">
@@ -284,7 +285,7 @@
                     </div>
 
                     <footer class="pt-5 my-5 text-muted border-top footerT">
-                        Carta numerológica | Genesys | <a href="https://www.lauradanaebarra.com/" target="_blank">lauradanaebarra.com</a>
+                        Carta numerológica | Genesys | <a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
                     </footer>
                 </div>
             </div>
@@ -315,11 +316,11 @@
                 let month = document.getElementById("month").innerHTML  = receivedData.month
                 let year = document.getElementById("year").innerHTML  = receivedData.year
 
+                document.getElementById("urlRef").innerHTML = "lauradanaebarra.com"
+
                 CalculateNum(firstName, midName, fLastName, fLastName, fSurName, mLastName, mSurName, activeName, day, month, year)
             }
 
-            PDF
-            window.jsPDF = window.jspdf.jsPDF
             if (event.data.click === true) {
                 ConvertHTMLFileToPDF()
             }
@@ -1813,17 +1814,6 @@
                 } else {
                     html += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
                 }
-                // if (year == date && newCountYear == yearNumberValidation) {
-                //     yearNumberValidation = yearNumberValidation + 10
-                //     html += '<td class="currentYear bgYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
-                // } else if (year == date && newCountYear != yearNumberValidation) {
-                //     html += '<td class="currentYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
-                // } else if (year != date && newCountYear == yearNumberValidation) {
-                //     yearNumberValidation = yearNumberValidation + 10
-                //     html += '<td class="bgYear"><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
-                // } else if (year != date && newCountYear != yearNumberValidation) {
-                //     html += '<td><span id="currentAge">' + newCountYear + '</span>' + year + '</td>'
-                // }
                 year += 9
                 newCountYear += 9
             }
