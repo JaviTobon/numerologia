@@ -603,7 +603,7 @@
     // PDF
     window.jsPDF = window.jspdf.jsPDF
     window.onmessage = (event) => {
-        if (event.data.click === true) {
+        if (event.data.click === true && dataToSave.length > 0) {
             ConvertHTMLFileToPDF()
             window.parent.postMessage(dataToSave, "https://www.lauradanaebarra.com/")
         }
@@ -966,15 +966,15 @@
 
     // Induction
     function Induction(inclution) {
-        let house1 = Array.prototype.join.call(CalculateInduction(inclution, 0), "<br>")
-        let house2 = Array.prototype.join.call(CalculateInduction(inclution, 1), "<br>")
-        let house3 = Array.prototype.join.call(CalculateInduction(inclution, 2), "<br>")
-        let house4 = Array.prototype.join.call(CalculateInduction(inclution, 3), "<br>")
-        let house5 = Array.prototype.join.call(CalculateInduction(inclution, 4), "<br>")
-        let house6 = Array.prototype.join.call(CalculateInduction(inclution, 5), "<br>")
-        let house7 = Array.prototype.join.call(CalculateInduction(inclution, 6), "<br>")
-        let house8 = Array.prototype.join.call(CalculateInduction(inclution, 7), "<br>")
-        let house9 = Array.prototype.join.call(CalculateInduction(inclution, 8), "<br>")
+        let house1 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 0)), "<br>")
+        let house2 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 1)), "<br>")
+        let house3 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 2)), "<br>")
+        let house4 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 3)), "<br>")
+        let house5 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 4)), "<br>")
+        let house6 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 5)), "<br>")
+        let house7 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 6)), "<br>")
+        let house8 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 7)), "<br>")
+        let house9 = Array.prototype.join.call(SingleDigit(CalculateInduction(inclution, 8)), "<br>")
 
         let induction = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
@@ -1005,15 +1005,15 @@
 
     // Bridges
     function Bridges(inclution) {
-        let house1 = CalculateBridges(inclution, 0)
-        let house2 = CalculateBridges(inclution, 1)
-        let house3 = CalculateBridges(inclution, 2)
-        let house4 = CalculateBridges(inclution, 3)
-        let house5 = CalculateBridges(inclution, 4)
-        let house6 = CalculateBridges(inclution, 5)
-        let house7 = CalculateBridges(inclution, 6)
-        let house8 = CalculateBridges(inclution, 7)
-        let house9 = CalculateBridges(inclution, 8)
+        let house1 = SingleDigit(CalculateBridges(inclution, 0))
+        let house2 = SingleDigit(CalculateBridges(inclution, 1))
+        let house3 = SingleDigit(CalculateBridges(inclution, 2))
+        let house4 = SingleDigit(CalculateBridges(inclution, 3))
+        let house5 = SingleDigit(CalculateBridges(inclution, 4))
+        let house6 = SingleDigit(CalculateBridges(inclution, 5))
+        let house7 = SingleDigit(CalculateBridges(inclution, 6))
+        let house8 = SingleDigit(CalculateBridges(inclution, 7))
+        let house9 = SingleDigit(CalculateBridges(inclution, 8))
 
         let bridges = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
@@ -1031,15 +1031,15 @@
 
     // Evolution
     function Evolution(inclution) {
-        let house1 = CalculateEvolution(inclution, 0)
-        let house2 = CalculateEvolution(inclution, 1)
-        let house3 = CalculateEvolution(inclution, 2)
-        let house4 = CalculateEvolution(inclution, 3)
-        let house5 = CalculateEvolution(inclution, 4)
-        let house6 = CalculateEvolution(inclution, 5)
-        let house7 = CalculateEvolution(inclution, 6)
-        let house8 = CalculateEvolution(inclution, 7)
-        let house9 = CalculateEvolution(inclution, 8)
+        let house1 = SingleDigit(CalculateEvolution(inclution, 0))
+        let house2 = SingleDigit(CalculateEvolution(inclution, 1))
+        let house3 = SingleDigit(CalculateEvolution(inclution, 2))
+        let house4 = SingleDigit(CalculateEvolution(inclution, 3))
+        let house5 = SingleDigit(CalculateEvolution(inclution, 4))
+        let house6 = SingleDigit(CalculateEvolution(inclution, 5))
+        let house7 = SingleDigit(CalculateEvolution(inclution, 6))
+        let house8 = SingleDigit(CalculateEvolution(inclution, 7))
+        let house9 = SingleDigit(CalculateEvolution(inclution, 8))
 
         let evolution = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
@@ -1061,15 +1061,15 @@
 
     // Unconscius
     function Unconscious(inclution, alphabet, fullName) {
-        let house1 = CalculateUnconscious(inclution, alphabet, fullName, 0)
-        let house2 = CalculateUnconscious(inclution, alphabet, fullName, 1)
-        let house3 = CalculateUnconscious(inclution, alphabet, fullName, 2)
-        let house4 = CalculateUnconscious(inclution, alphabet, fullName, 3)
-        let house5 = CalculateUnconscious(inclution, alphabet, fullName, 4)
-        let house6 = CalculateUnconscious(inclution, alphabet, fullName, 5)
-        let house7 = CalculateUnconscious(inclution, alphabet, fullName, 6)
-        let house8 = CalculateUnconscious(inclution, alphabet, fullName, 7)
-        let house9 = CalculateUnconscious(inclution, alphabet, fullName, 8)
+        let house1 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 0))
+        let house2 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 1))
+        let house3 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 2))
+        let house4 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 3))
+        let house5 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 4))
+        let house6 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 5))
+        let house7 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 6))
+        let house8 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 7))
+        let house9 = SingleDigit(CalculateUnconscious(inclution, alphabet, fullName, 8))
 
         let unconscious = [house1, house2, house3, house4, house5, house6, house7, house8, house9]
 
