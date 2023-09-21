@@ -9,12 +9,15 @@
 
 
 <style>
-    .headerTitle {
+    .headerTitleDiv {
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .headerLogo {
         float: right;
-        width: 80px;
+        width: 100px;
     }
     #formValues {
         margin-left: 15px;
@@ -26,7 +29,7 @@
     .letterTitle {
         font-family: Calibri;
         font-weight: bold;
-        color: #000000;
+        color: #006C66;
         vertical-align: middle;
     }
     .letterSubTitle {
@@ -86,8 +89,12 @@
         }
     }
 
+    .tableName {
+        border-color: transparent !important;
+    }
+
     thead {background-color: #DADADA;}
-    .thPpal, .trPpal {
+    .thPpal {
         background-color: #F6F6F6 !important;
     }
 
@@ -125,12 +132,10 @@
         color: #9D9D9C;
     }
 
-    .spaceTitle {
-        margin-top: 30px;
+    .spaceTitle, spaceLogo {
+        margin: auto;
     }
-    .spaceLogo {
-        margin-top: 10px;
-    }
+    
     .spaceTop {
         margin-top: 30px;
     }
@@ -226,12 +231,18 @@
             <div class="container-fluid">
                 <div id="resultados_ocultos">
                     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-                        <h2 class="headerTitle letterTitle spaceTitle">Carta&nbsp;&nbsp;Numerológica</h2>
+                        <div class="headerTitleDiv">
+                            <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal: Plan de Alma</h2>
+                        </div>
                         <a href="/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
                             <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
                         </a>
                     </header>
-                    <h3 class="letterSubTitle spaceBot">Cálculo&nbsp;&nbsp;trayectoria&nbsp;de&nbsp;vida: <label id="birthDate" class="birthDate"></label></h3>
+
+                    <div class="headerTitleDiv">
+                        <h3 class="letterSubTitle spaceBot">Fecha&nbsp;&nbsp;de nacimiento: <label id="birthDate" class="birthDate"></label></h3>
+                    </div>
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -439,10 +450,19 @@
         } else if(month == 12) {
             monthText = "Diciembre"
         }
-        document.getElementById("birthDate").innerHTML = monthText + " " + day + " de " + year
+        document.getElementById("birthDate").innerHTML = day.value + " de " + monthText + " de " + year.value
         document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
         document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
-        document.getElementById("wayOfLife").innerHTML = wayOfLife[0] + "/" + wayOfLife[1]
+        
+        let divWayOfLife = document.getElementById("wayOfLife")
+        if(wayOfLife.length > 2){
+            divWayOfLife.innerHTML = wayOfLife[0] + "/" + wayOfLife[1] + "/" + wayOfLife[2]
+        } else if(destinationNumber.length == 2) {
+            divWayOfLife.innerHTML = wayOfLife[0] + "/" + wayOfLife[1]
+        } else {
+            divWayOfLife.innerHTML = wayOfLife[0]
+        }
+
         document.getElementById("deepSoulLonging").innerHTML = deepSoulLonging[0] + "/" + deepSoulLonging[1]
 
         // Cosmic Mission
@@ -480,17 +500,36 @@
     // WayOfLife
     function WayOfLife(day, month, year) {
         let noReduced = parseInt(day) + parseInt(month) + parseInt(year)
-        let reduced = SingleDigit(noReduced)
-        let wayOfLife = [noReduced, reduced]
+        let reduced = NameSingleDigit(noReduced)
+        let wayOfLife = []
+        if(reduced.length != 0) {
+            if(reduced.length > 1) {
+                wayOfLife = [noReduced, reduced[0], reduced[1]]
+            } else {
+                wayOfLife = [noReduced, reduced[0]]
+            }
+        } else {
+            wayOfLife = [noReduced]
+        }
 
         return wayOfLife
     }
     // DeepSoulLonging
     function DeepSoulLonging(day, month, year) {
         let dateValues = CalculateDateValues(day, month, year)
-        let dayScore = dateValues[0]
+        let dayScore = parseInt(day)
         let monthScore = dateValues[1]
         let yearScore = dateValues[2]
+
+        if(yearScore >= 10){
+            let tempScore = 0
+            for (let i = 0; i < year.length; i++) {
+                let curValue = year.toString().charAt(i)
+                console.log(curValue)
+                tempScore = tempScore + parseInt(curValue)
+            }
+            yearScore = tempScore
+        }
 
         let noReduced = (dayScore + monthScore) + (monthScore + yearScore)
         let reduced = SingleDigit(noReduced)
@@ -543,7 +582,7 @@
             }
         }
 
-        let html = '<table class="table table-bordered">'
+        let html = '<table class="table table-bordered tableName">'
         html += '<tbody>'
         html += '<tr class="tableTextRegular soulText">'
         for (let i = 0; i < fullName.length; i++) {
