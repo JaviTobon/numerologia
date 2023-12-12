@@ -232,7 +232,7 @@
                 <div id="resultados_ocultos">
                     <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
                         <div class="headerTitleDiv">
-                            <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal: Plan de Alma</h2>
+                            <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal&nbsp;: Plan de Alma</h2>
                         </div>
                         <a href="/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
                             <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
@@ -263,8 +263,10 @@
                     </table>
 
 
-                    <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
+                    <div class="spaceTop spaceBot">
+                        <div class="headerTitleDiv">
+                            <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
+                        </div>
                     </div>
                     <div class="table table-striped spaceBot">
                         <div id="name-number-table"></div>
@@ -272,16 +274,16 @@
 
                     <div id="house-table"></div>
 
-                    <br>
-
-                    <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
+                    <div class="spaceTop spaceBot">
+                        <div class="headerTitleDiv">
+                            <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
+                        </div>
                         <div id="active-name-number-table"></div>
                     </div>
 
                     <div id="active-house-table" class="spaceBot"></div>
 
-                    <div class="table-title spaceBot">
+                    <div class="spaceBot">
                         <div id="pinnacles-pitfalls-table"></div>
                     </div>
 
@@ -291,8 +293,10 @@
 
                     <br>
 
-                    <div class="table-title spaceTop spaceBot">
-                        <h4 class="letterSubTitle">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
+                    <div class="spaceTop spaceBot">
+                        <div class="headerTitleDiv">
+                            <h4 class="letterSubTitle">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
+                        </div>
                     </div>
 
                     <div id="cycles-tables">
@@ -300,7 +304,9 @@
                     </div>
 
                     <footer class="pt-5 my-5 text-muted border-top footerT">
-                        Carta numerológica | Generado con el programa de numerología Genesys | <a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
+                        <div class="headerTitleDiv">
+                            Carta numerológica | Generado con el programa de numerología Genesys | <a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
+                        </div>
                     </footer>
                 </div>
             </div>
@@ -450,7 +456,7 @@
         } else if(month == 12) {
             monthText = "Diciembre"
         }
-        document.getElementById("birthDate").innerHTML = day.value + " de " + monthText + " de " + year.value
+        document.getElementById("birthDate").innerHTML = day + " de " + monthText + "  de " + year
         document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
         document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
         
@@ -472,7 +478,7 @@
     // GENERATE PDF
     function ConvertHTMLFileToPDF() {
         const { jsPDF } = window.jspdf;
-        var doc = new jsPDF('l', 'px', [1400, 890])
+        var doc = new jsPDF('l', 'px', [1000, 960])
         var pdfjs = document.querySelector('#resultados_ocultos');
 
         // Convert HTML to PDF in JavaScript
@@ -480,7 +486,7 @@
             callback: function (doc) {
                 doc.save("Carta numerológica.pdf");
             },
-            margin: [10, 10, 10, 40]
+            margin: [32, 30, 30, 30]
         });
     }
 
@@ -1757,7 +1763,13 @@
     }
     // Cycles Life Table
     function CyclesLifeTable(year, inclution, wayOfLife) {
-        let wayOfLifeNumber = wayOfLife[1]
+        let wayOfLifeNumber = 0
+
+        if (wayOfLife.length > 2) {
+            wayOfLifeNumber = wayOfLife[2]
+        } else {
+            wayOfLifeNumber = wayOfLife[1]
+        }
 
         // Population
         let html = '<table class="table table-striped">'
