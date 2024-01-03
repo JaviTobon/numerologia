@@ -27,25 +27,39 @@
         color: #EE7212;
     }
     .letterTitle {
-        font-family: Calibri;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18pt;
         font-weight: bold;
         color: #006C66;
         vertical-align: middle;
     }
     .letterSubTitle {
-        font-family: Calibri;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14pt;
+        font-weight: 400;
+        color: #000000;
+    }
+    .letterSubTitle2 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 16pt;
         font-weight: bold;
         color: #000000;
     }
     .tableTextRegular {
         font-family: Helvetica;
+        font-size: 9pt;
         color: #000000;
         font-weight: 400;
     }
     .tableTextBold {
         font-family: Helvetica;
+        font-size: 9pt;
         color: #000000;
         font-weight: bold;
+    }
+    .tableTextSize {
+        font-family: Helvetica;
+        font-size: 11pt;
     }
     .tableTitles {
         text-align: left;
@@ -91,6 +105,10 @@
 
     .tableName {
         border-color: transparent !important;
+    }
+
+    #name-number-table, #active-name-number-table {
+        border: 1px solid black;
     }
 
     thead {background-color: #DADADA;}
@@ -173,10 +191,10 @@
     #resultados_ocultos {display: none;font-weight: 500;}
 
     .footerT {
-        color: #DADADA !important;
+        color: #000 !important;
     }
     .footerT a{
-        color: #DADADA !important;
+        color: #000 !important;
         text-decoration: none !important;
         letter-spacing: -0.3px !important;
     }
@@ -234,7 +252,7 @@
                         <div class="headerTitleDiv">
                             <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal&nbsp;: Plan de Alma</h2>
                         </div>
-                        <a href="/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
+                        <a href="https://www.lauradanaebarra.com/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
                             <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
                         </a>
                     </header>
@@ -243,7 +261,7 @@
                         <h3 class="letterSubTitle spaceBot">Fecha&nbsp;&nbsp;de nacimiento: <label id="birthDate" class="birthDate"></label></h3>
                     </div>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped tableTextSize">
                         <thead>
                             <tr>
                                 <th class="tableTitles">Numerología Pitagórica</th>
@@ -265,27 +283,40 @@
 
                     <div class="spaceTop spaceBot">
                         <div class="headerTitleDiv">
-                            <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
+                            <h4 class="letterSubTitle2">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
                         </div>
                     </div>
                     <div class="table table-striped spaceBot">
                         <div id="name-number-table"></div>
                     </div>
 
+                    <br>
+
                     <div id="house-table"></div>
+
+                    <br><br>
 
                     <div class="spaceTop spaceBot">
                         <div class="headerTitleDiv">
-                            <h4 class="letterSubTitle">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
+                            <h4 class="letterSubTitle2">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
                         </div>
+
+                        <br>
+
                         <div id="active-name-number-table"></div>
                     </div>
 
+                    <br>
+
                     <div id="active-house-table" class="spaceBot"></div>
+
+                    <br>
 
                     <div class="spaceBot">
                         <div id="pinnacles-pitfalls-table"></div>
                     </div>
+
+                    <br>
 
                     <div class="table-title">
                         <div id="family-heritage-table"></div>
@@ -295,7 +326,7 @@
 
                     <div class="spaceTop spaceBot">
                         <div class="headerTitleDiv">
-                            <h4 class="letterSubTitle">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
+                            <h4 class="letterSubTitle2">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
                         </div>
                     </div>
 
@@ -303,9 +334,11 @@
                         <div id="cyclesLife-table"></div>
                     </div>
 
+                    <br><br>
+
                     <footer class="pt-5 my-5 text-muted border-top footerT">
                         <div class="headerTitleDiv">
-                            Carta numerológica | Generado con el programa de numerología Genesys | <a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
+                            Carta numerológica | Generado con el programa de numerología Genesys |&nbsp;<a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
                         </div>
                     </footer>
                 </div>
@@ -314,9 +347,6 @@
     </div>
 
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script type="text/javascript">
     window.onmessage = (event) => {
@@ -478,7 +508,7 @@
     // GENERATE PDF
     function ConvertHTMLFileToPDF() {
         const { jsPDF } = window.jspdf;
-        var doc = new jsPDF('l', 'px', [1000, 960])
+        var doc = new jsPDF('landscape', 'px', [1200, 960])
         var pdfjs = document.querySelector('#resultados_ocultos');
 
         // Convert HTML to PDF in JavaScript
@@ -486,7 +516,7 @@
             callback: function (doc) {
                 doc.save("Carta numerológica.pdf");
             },
-            margin: [32, 30, 30, 30]
+            margin: [32, 0, 30, 30]
         });
     }
 
@@ -982,7 +1012,7 @@
 
     // HouseTable
     function HouseTable(inclution, induction, bridges, evolution, unconscious, induction2) {
-        let html = '<table class="table table-striped">'
+        let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
         html += '<th class="tableTitles">Casas</th>'
@@ -1298,7 +1328,7 @@
     }
     // Active House Table
     function ActiveHouseTable(activeInclution, activeInduction) {
-        let html = '<table class="table table-striped">'
+        let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
 
         html += '<tr>'
@@ -1483,7 +1513,7 @@
     }
     //Pinnacles and Pitfalls Table
     function PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls) {
-        let html = '<table class="table table-striped">'
+        let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
         html += '<th></th>'
@@ -1649,7 +1679,7 @@
     }
     // Family Heritage Table
     function FamilyHeritageTable(hpp, ncs, dm, eje, mf, ms, mfe) {
-        let html = '<table class="table table-striped">'
+        let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
         html += '<th class="tableTitles">Herencias familiares</th>'
@@ -1772,7 +1802,7 @@
         }
 
         // Population
-        let html = '<table class="table table-striped">'
+        let html = '<table class="table table-striped tableTextSize">'
         html += '<tr>'
         html += '<th colspan="2" class="tableTitles">Habitantes</th>'
         for (let i = 0; i < 10; i++) {
