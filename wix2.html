@@ -296,7 +296,7 @@
 
                     <br><br>
 
-                    <div class="spaceTop spaceBot">
+                    <div id="activeNameContainer" class="spaceTop spaceBot">
                         <div class="headerTitleDiv">
                             <h4 class="letterSubTitle2">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
                         </div>
@@ -427,16 +427,21 @@
         let induction2 = Induction(unconscious)
         HouseTable(inclution, induction, bridges, evolution, unconscious, induction2)
 
-        // Name Number
+        // Active Name Number
         let activeSoulNumber = SoulNumber(activeName, vowels)
         let activeDestinationNumber = DestinationNumber(activeName, alphabet)
         let activePersonalityNumber = PersonalityNumber(activeName, consonants)
-        NameNumber(consonants, vowels, activeName, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)
-
         // Active House Table
         let activeInclution = Inclution(activeName, alphabet)
         let activeInduction = Induction(activeInclution)
-        ActiveHouseTable(activeInclution, activeInduction)
+
+        if(activeName != "") {
+            NameNumber(consonants, vowels, activeName, 2, activeSoulNumber, activeDestinationNumber, activePersonalityNumber)   
+            ActiveHouseTable(activeInclution, activeInduction)
+        } else {
+            const activeNameContainer = document.getElementById("activeNameContainer")
+            activeNameContainer.style.display = "none";
+        }
 
         // Pinnacles Pitfalls Table
         let cycleYear = CicleYears(lifeTrajectory)
