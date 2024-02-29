@@ -518,6 +518,7 @@
 
     // GENERATE PDF
     async function ConvertHTMLFileToPDF() {
+        const { jsPDF } = window.jspdf;
         // Crear una instancia de jsPDF en orientación landscape y tamaño carta
         const doc = new jsPDF({
             orientation: 'landscape',
