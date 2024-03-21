@@ -202,8 +202,10 @@
         color: #9D9D9C;
     }
 
-    .spaceTitle, .spaceLogo {
+    .spaceTitle {
         margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px; 
     }
 
     .spaceTop {
@@ -212,6 +214,10 @@
 
     .spaceBot {
         margin-bottom: 20px;        
+    }
+
+    .spaceBot2 {
+        margin-bottom: 10px;        
     }
 
     .buttonContent {
@@ -260,38 +266,38 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="inputFirstName" name="inputFirstName"
-                            placeholder="Primer Nombre*" maxlength="15" required >
+                            placeholder="Primer Nombre *" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="inputMidName" name="inputMidName"
-                            placeholder="Segundo Nombre (Si hay)" maxlength="15" >
+                            placeholder="Segundo Nombre (si hay)" >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="fLastName" name="fLastName"
-                            placeholder="Primer Apellido Padre*" maxlength="15" required >
+                            placeholder="Primer Apellido Padre *" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="mLastName" name="mLastName"
-                            placeholder="Primer Apellido Madre*" maxlength="15" required >
+                            placeholder="Primer Apellido Madre *" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="fSurName" name="fSurName"
-                            placeholder="Segundo Apellido Padre" maxlength="15">
+                            placeholder="Segundo Apellido Padre">
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="mSurName" name="mSurName"
-                            placeholder="Segundo Apellido Madre" maxlength="15">
+                            placeholder="Segundo Apellido Madre">
                     </div>
                     <div class="col-md-12">
                         <input type="text" class="formInput" id="activeName" name="activeName"
-                            placeholder="Nombre Activo" maxlength="15">
+                            placeholder="Nombre Activo *" required >
                     </div>
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">
                                 <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
                                     id="day" name="day" required>
-                                    <option selected>Día*</option>
+                                    <option selected>Día *</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -328,7 +334,7 @@
                             <div class="col-md-4">
                                 <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
                                     id="month" name="month" required>
-                                    <option selected>Mes*</option>
+                                    <option selected>Mes *</option>
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -345,7 +351,7 @@
                             </div>
                             <div class="col-md-4">
                                 <input type="text" class="formInput inputYear" id="year" name="year" maxlength="4" min="0"
-                                    max="9999" step="1" placeholder="Año*" pattern="[0-9]{4}" required >
+                                    max="9999" step="1" placeholder="Año *" pattern="[0-9]{4}" required >
                             </div>
                         </div>
                     </div>
@@ -354,6 +360,7 @@
                     <button type='button' id='calculate' class="w-100 fw-bold" onclick="CalculateNum()" >Calcular</button>
                     <span id="formError" class="errorMessage" hidden >Por favor ingresa los campos obligatorios</span>
                 </div>
+                <button type='button' id='calculate' class="w-100 fw-bold" onclick="ConvertHTMLFileToPDF()" >Descargar</button>
             </form>
             <div class="container-fluid">
                 <div id="resultados_ocultos">
@@ -362,9 +369,7 @@
                             <div class="headerTitleDiv">
                                 <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal&nbsp;: Plan de Alma</h2>
                             </div>
-                            <a href="https://www.lauradanaebarra.com/" class="d-flex align-items-center text-dark text-decoration-none spaceLogo">
-                                <img class="headerLogo" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
-                            </a>
+                            
                         </header>
                         <div class="headerTitleDiv">
                             <h3 class="letterSubTitle spaceBot">Fecha&nbsp;&nbsp;de nacimiento: <label id="birthDate" class="birthDate"></label></h3>
@@ -415,11 +420,11 @@
     
                         <br>
     
-                        <div id="active-house-table" class="spaceBot"></div>
+                        <div id="active-house-table" class="spaceBot2"></div>
                         
                         <br>
     
-                        <div class="spaceBot">
+                        <div class="spaceBot2">
                             <div id="pinnacles-pitfalls-table"></div>
                         </div>
     
@@ -443,6 +448,10 @@
 
                         <br><br>
     
+                        <a class="d-flex align-items-center text-dark text-decoration-none">
+                            <img class="headerLogo spaceTitle" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
+                        </a>
+
                         <footer class="pt-5 my-5 text-muted border-top footerT">
                             <div class="headerTitleDiv">
                                 Carta numerológica | Generado con el programa de numerología Genesys |&nbsp;<a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
@@ -474,7 +483,7 @@
     let month = document.getElementById("month")
     let year = document.getElementById("year")
 
-    document.getElementById("urlRef").innerHTML = "lauradanaebarra.com"
+    document.getElementById("urlRef").innerHTML = "www.lauradanaebarra.com"
 
     firstName.onchange = function(){
         InputValidaton(firstName)
@@ -485,9 +494,9 @@
     mLastName.onchange = function(){
         InputValidaton(mLastName)
     }
-    // activeName.onchange = function(){
-    //     InputValidaton(activeName)
-    // }
+    activeName.onchange = function(){
+         InputValidaton(activeName)
+    }
     day.onchange = function(){
         InputValidaton(day)
     }
@@ -685,25 +694,22 @@
 
     // GENERATE PDF
     async function ConvertHTMLFileToPDF() {
-        // Crear una instancia de jsPDF en orientación landscape y tamaño carta
         const doc = new jsPDF({
             orientation: 'landscape',
             unit: 'pt',
             format: 'letter'
         });
 
-        // Función para agregar una página al PDF con el contenido de un div específico
         async function addDivToPDF(divId, addNewPage) {
             const margin = 20;
 
-            // Capturar el contenido del div
-            const canvas = await html2canvas(document.querySelector(`#${divId}`));
+            const canvas = await html2canvas(document.querySelector(`#${divId}`), {
+                useCORS: true
+            });
 
-            // Calcular la escala para ajustar el contenido al ancho de la página
             const imgWidth = doc.internal.pageSize.getWidth() - 2 * margin;
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-            // Convertir el canvas a una imagen y añadirla al PDF
             const imgData = canvas.toDataURL('image/png');
             if (addNewPage) {
                 doc.addPage();
@@ -711,14 +717,13 @@
             doc.addImage(imgData, 'PNG', margin, margin, imgWidth, imgHeight);
         }
 
-        // Agregar contenido a cada página
-        await addDivToPDF('page1', false); // No añadir página nueva para la primera página
-        await addDivToPDF('page2', true); // Añadir página nueva para la segunda
-        await addDivToPDF('page3', true); // Añadir página nueva para la tercera
+        await addDivToPDF('page1', false);
+        await addDivToPDF('page2', true);
+        await addDivToPDF('page3', true);
 
-        // Cuando se haya completado todo el proceso, guardar el PDF
         doc.save('Carta numerológica.pdf');
     }
+
 
     // LifeTrajectory
     function LifeTrajectory(day, month, year) {
@@ -761,7 +766,6 @@
             let tempScore = 0
             for (let i = 0; i < year.length; i++) {
                 let curValue = year.toString().charAt(i)
-                console.log(curValue)
                 tempScore = tempScore + parseInt(curValue)
             }
             yearScore = tempScore
@@ -2174,7 +2178,6 @@
             }
             singleDigitValue = total
             reducedValues.push(total)
-            // console.log('total', singleDigitValue)
         }
 
         return reducedValues
