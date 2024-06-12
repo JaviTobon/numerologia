@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-
+<!-- ESTILOS - CLASES GENERADAS ASÍ COMO LAS USADAS DE BOOTSRAP -->
 <style>
     .numerologyContent {
         width: 100%;
@@ -19,6 +19,15 @@
         align-items: center;
         justify-content: center;
     }
+
+    .headerTitleDiv2 {
+        font-family: 'Courier New', monospace, sans-serif;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .headerLogo {
         float: right;
         width: 100px;
@@ -26,7 +35,7 @@
 
     .errorMessage {
         color: #E3061E;
-        font-family: Calibri;
+        font-family: 'Courier New', monospace, sans-serif;
     }
     .inputError {
         border-color: #E3061E !important;
@@ -72,66 +81,64 @@
     }
 
     .birthDate {
-        color: #EE7212;
+        color: #A18737;
+        font-weight: bold;
     }
     .letterTitle {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 18pt;
+        font-family: 'Courier New', monospace, sans-serif;
+        font-size: 16pt;
         font-weight: bold;
-        color: #006C66;
+        color: #A18737;
+        text-align: center;
         vertical-align: middle;
     }
     .letterSubTitle {
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Courier New', monospace, sans-serif;
         font-size: 14pt;
-        font-weight: 400;
-        color: #000000;
-    }
-    .letterSubTitle2 {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 16pt;
         font-weight: bold;
         color: #000000;
     }
     .tableTextRegular {
-        font-family: Helvetica;
-        font-size: 9pt;
-        color: #000000;
-        font-weight: 400;
+        font-family: 'Courier New', monospace, sans-serif;
+        font-size: 10pt;
+        color: blue;
+        font-weight: bold;
     }
     .tableTextBold {
-        font-family: Helvetica;
-        font-size: 9pt;
+        font-family: 'Courier New', monospace, sans-serif;
+        font-size: 10pt;
         color: #000000;
         font-weight: bold;
     }
+
     .tableTextSize {
-        font-family: Helvetica;
+        font-family: 'Courier New', monospace, sans-serif;
         font-size: 11pt;
     }
     .tableTitles {
+        font-weight: bold;
+        text-align: middle;
+        vertical-align: middle;
+    }
+    .tableTitles2 {
         text-align: left;
         vertical-align: middle;
     }
     .blackTextR {
         color: #000000;
-        font-weight: 400;
-    }
-    .greenTextR {
-        color: #006C66;
-        font-weight: 400;
-    }
-    .greenText {
-        color: #006C66;
         font-weight: bold;
     }
-    .orangeText {
-        color: #EE7212;
+    .blackText {
+        color: #000000;
+        font-weight: bold;
+    }
+    .goldText {
+        color: #A18737;
         font-weight: bold;
     }
 
     .soulText {
-        vertical-align: bottom;
+        vertical-align: bottom !important;
     }
     .personalityText {
         vertical-align: top;
@@ -155,8 +162,14 @@
         border-color: transparent !important;
     }
 
+    .tableName td{
+        padding: .1rem .3rem .1rem 0 !important;
+    }
+
     #name-number-table, #active-name-number-table {
-        border: 1px solid black;
+        border-top: 1px solid #DADADA;
+        border-bottom: 1px solid #DADADA;
+        padding-top: 15px;
         display: block;
         width: 100%;
         overflow-x: auto;
@@ -182,42 +195,112 @@
         font-weight: bold;
     }
     td.currentYear {
-        color: #EE7212 !important;
+        color: #A18737 !important;
         font-weight: bold;
     }
     span.sameDigit {
-        color:  #006C66 !important;
+        color:  #8FB624 !important;
         font-weight: bold;
-        text-decoration: underline;
+        /*text-decoration: underline;*/
     }
     .td-w {text-align: center;}
-    .td-b {text-align: center;color: #435ba6;}
+    /*.td-b {text-align: center;color: #435ba6;}*/
 
-    div#cyclesLife-table table td {color: #435ba6;font-weight: 500;}
+   div#cyclesLife-table table tr {
+        height: 53px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    div#cyclesLife-table table td {
+        color:blue; 
+        font-weight:bold;
+    }
+    
+    div#house-table table td {
+        color:blue; 
+        font-weight:bold;
+    }
+
+    div#active-house-table table td {
+        color:blue; 
+        font-weight:bold;
+    }
+
+    div#pinnacles-pitfalls-table table td {
+        color:blue; 
+        font-weight:bold;
+    }
+
+    div#family-heritage-table table td {
+        color:blue; 
+        font-weight:bold;
+    }
+
     #currentAge {
         position: relative;
-        top: -14px;
-        left: -10px;
-        font-size: 0.6em;
+        top: -15px;
+        left: -15px;
+        font-size: 0.8em;
         color: #9D9D9C;
     }
 
     .spaceTitle {
         margin: auto;
-        margin-top: 30px;
-        margin-bottom: 30px; 
+        margin-top: 5px;
+        margin-bottom: 5px; 
     }
 
     .spaceTop {
         margin-top: 30px;
     }
 
-    .spaceBot {
+    .spaceBotFecha {
         margin-bottom: 20px;        
     }
 
-    .spaceBot2 {
+    .spaceTopCosmicMission {
+        margin-top: 10px;
+    }
+
+    .spaceBotCosmicMission {
+        margin-bottom: 5px;        
+    }
+
+    .spaceTopNombreCompleto {
+        margin-top: 10px;
+    }
+
+    .spaceBotNombreCompleto {
         margin-bottom: 10px;        
+    }
+
+    .spaceBotTablaNombreCompleto {
+        margin-bottom: 20px;        
+    }
+
+    .spaceBotNombreActivo {
+        margin-bottom: 10px;        
+    }
+
+    .spaceBotTablaNombreActivo {
+        margin-bottom: 30px;        
+    }
+
+    .spaceTopPinaculos {
+        margin-top: 40px; 
+    }
+
+    .spaceBotPinaculos {
+        margin-bottom: 10px;        
+    }
+
+    .spaceBot2 {
+        margin-bottom: -6px;        
+    }
+
+    .spaceBot3 {
+        margin-bottom: 20px;        
     }
 
     .buttonContent {
@@ -256,17 +339,20 @@
         text-decoration: none !important;
         letter-spacing: -0.3px !important;
     }
+
 </style>
 
+<!-- HTML DEL FORMULARIO Y BASE DE LAS TABLAS O CONTENEDORES DONDE ESTÁS SE CREARÁN -->
 <body>
 
     <div class="numerologyContent mx-auto p-3 py-md-5">
         <main>
+            <!-- FORMULARIO -->
             <form id="myForm" class="needs-validation" novalidate>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="inputFirstName" name="inputFirstName"
-                            placeholder="Primer Nombre *" required >
+                            placeholder="Primer Nombre*" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="inputMidName" name="inputMidName"
@@ -274,11 +360,11 @@
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="fLastName" name="fLastName"
-                            placeholder="Primer Apellido Padre *" required >
+                            placeholder="Primer Apellido Padre*" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="mLastName" name="mLastName"
-                            placeholder="Primer Apellido Madre *" required >
+                            placeholder="Primer Apellido Madre*" required >
                     </div>
                     <div class="col-md-6">
                         <input type="text" class="formInput" id="fSurName" name="fSurName"
@@ -290,14 +376,14 @@
                     </div>
                     <div class="col-md-12">
                         <input type="text" class="formInput" id="activeName" name="activeName"
-                            placeholder="Nombre Activo *" required >
+                            placeholder="Nombre Activo*" required >
                     </div>
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">
                                 <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
                                     id="day" name="day" required>
-                                    <option selected>Día *</option>
+                                    <option selected>Día*</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -334,7 +420,7 @@
                             <div class="col-md-4">
                                 <select class="formSelect form-select-lg mb-3" aria-label=".form-select-lg example"
                                     id="month" name="month" required>
-                                    <option selected>Mes *</option>
+                                    <option selected>Mes*</option>
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -346,12 +432,12 @@
                                     <option value="9">Septiembre</option>
                                     <option value="10">Octubre</option>
                                     <option value="11">Noviembre</option>
-                                    <option value="12">Deciembre</option>
+                                    <option value="12">Diciembre</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <input type="text" class="formInput inputYear" id="year" name="year" maxlength="4" min="0"
-                                    max="9999" step="1" placeholder="Año *" pattern="[0-9]{4}" required >
+                                    max="9999" step="1" placeholder="Año*" pattern="[0-9]{4}" required >
                             </div>
                         </div>
                     </div>
@@ -361,17 +447,22 @@
                     <span id="formError" class="errorMessage" hidden >Por favor ingresa los campos obligatorios</span>
                 </div>
             </form>
+            <!-- TABLAS CALCULADAS -->
             <div class="container-fluid">
                 <div id="resultados_ocultos">
                     <div id="page1">
                         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
                             <div class="headerTitleDiv">
-                                <h2 class="letterTitle spaceTitle">Numerología&nbsp;&nbsp;Personal&nbsp;: Plan de Alma</h2>
+                                <h2 class="letterTitle spaceTitle">Numerología Personal: Plan de Alma de <br> <span id="consultantName"></span></h2>
+                                <div>
+                                    <a class="d-flex align-items-right text-dark text-decoration-none spaceLogo">
+                                        <img class="headerLogo spaceTitle" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="LDB">
+                                    </a>
+                                </div>
                             </div>
-                            
                         </header>
                         <div class="headerTitleDiv">
-                            <h3 class="letterSubTitle spaceBot">Fecha&nbsp;&nbsp;de nacimiento: <label id="birthDate" class="birthDate"></label></h3>
+                            <h3 class="letterSubTitle spaceBotFecha">Fecha de Nacimiento: <label id="birthDate" class="birthDate"></label></h3>
                         </div>
                         <table class="table table-striped tableTextSize">
                             <thead>
@@ -384,80 +475,77 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="tableTitles"><span class="orangeText" id="lifeTrajectory"></span> Trayectoria de vida</td>
-                                    <td class="tableTitles"><span class="orangeText" id="homeTrail"></span> Sendero Natal</td>
-                                    <td class="tableTitles"><span class="greenText" id="wayOfLife"></span> Camino de vida</td>
-                                    <td class="tableTitles"><span class="greenText" id="deepSoulLonging"></span> Anhelo profundo del alma</td>
+                                    <td class="tableTitles"><span class="goldText" id="lifeTrajectory"></span> Trayectoria de Vida</td>
+                                    <td class="tableTitles"><span class="goldText" id="homeTrail"></span> Sendero Natal</td>
+                                    <td class="tableTitles"><span class="goldText" id="wayOfLife"></span> Camino de Vida</td>
+                                    <td class="tableTitles"><span class="goldText" id="deepSoulLonging"></span> Anhelo Profundo del Alma</td>
                                 </tr>
                             </tbody>
                         </table>    
     
-                        <div class="spaceTop spaceBot">
+                        <div class="spaceTopCosmicMission spaceBotCosmicMission">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle2">Cálculo&nbsp;&nbsp;de&nbsp;nombre&nbsp;completo</h4>
+                                <h4 class="letterSubTitle">Misión Cósmica: <span class="goldText" id="cosmicMission"></span></h4>
                             </div>
                         </div>
-                        <div class="table table-striped spaceBot">
+
+                        <div class="spaceTopNombreCompleto spaceBotNombreCompleto">
+                            <div class="headerTitleDiv">
+                                <h4 class="letterSubTitle">Cálculo de Nombre Completo</h4>
+                            </div>
+                        </div>
+
+                        <div class="table table-striped spaceBotTablaNombreCompleto">
                             <div id="name-number-table"></div>
                         </div>
     
-                        <br>
-    
                         <div id="house-table"></div>
+
                     </div>
 
                     <div id="page2">
-                        <div id="activeNameContainer" class="spaceTop spaceBot">
+
+                        <div id="activeNameContainer" class="spaceTop spaceBotNombreActivo">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle2">Cálculo&nbsp;&nbsp;del&nbsp;nombre&nbsp;activo</h4>
+                                <h4 class="letterSubTitle">Cálculo de Nombre Activo</h4>
                             </div>
-    
-                            <br>
-    
+                        </div>
+
+                        <div class="table table-striped spaceBotTablaNombreActivo">
                             <div id="active-name-number-table"></div>
                         </div>
-    
-                        <br>
-    
+
                         <div id="active-house-table" class="spaceBot2"></div>
-                        
-                        <br>
-    
+
+                        <div class="headerTitleDiv spaceTopPinaculos spaceBotPinaculos">
+                            <h4 class="letterSubTitle">Tabla de Pináculos y Escollos</h4>
+                        </div>
+                    
                         <div class="spaceBot2">
                             <div id="pinnacles-pitfalls-table"></div>
                         </div>
     
-                        <br>
-    
                         <div class="table-title">
                             <div id="family-heritage-table"></div>
                         </div>
+
                     </div>
 
                     <div id="page3">
-                        <div class="spaceTop spaceBot">
+                        <div class="spaceTop spaceBot3">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle2">Misión&nbsp;cósmica: <span id="cosmicMission"></span></h4>
+                                <h4 class="letterSubTitle">Ciclos de Vida</h4>
                             </div>
                         </div>
-    
                         <div id="cycles-tables">
                             <div id="cyclesLife-table"></div>
                         </div>
-
-                        <br><br>
-    
-                        <a class="d-flex align-items-center text-dark text-decoration-none">
-                            <img class="headerLogo spaceTitle" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="">
-                        </a>
-
                         <footer class="pt-5 my-5 text-muted border-top footerT">
-                            <div class="headerTitleDiv">
-                                Carta numerológica | Generado con el programa de numerología Genesys |&nbsp;<a id="urlRef" href="https://www.lauradanaebarra.com/" target="_blank"></a>
+                            <div class="headerTitleDiv2">
+                                Carta Numerológica | Generado con el Programa de Numerología Genesys | www.lauradanaebarra.com
                             </div>
                         </footer>
                     </div>
-
                 </div>
             </div>
         </main>
@@ -465,7 +553,9 @@
 
 </body>
 
+<!-- CÓDIGO JS PARA REALIZAS LOS CALCULOS ASÍ COMO LA GENERACIÓN DINÁMICA DE LAS TABLAS NECESARIAS -->
 <script type="text/javascript">
+    //OBTENCIÓN DE LA INFORMACIÓN SUMINISTRADA EN EL FORMULARIO ASÍ COMO LA VALIDACIÓN DE ESTA
     let isValid = false
     var form = document.getElementById('myForm');
     let formError = document.getElementById("formError")
@@ -482,7 +572,7 @@
     let month = document.getElementById("month")
     let year = document.getElementById("year")
 
-    document.getElementById("urlRef").innerHTML = "www.lauradanaebarra.com"
+    // document.getElementById("urlRef").innerHTML = "www.lauradanaebarra.com"
 
     firstName.onchange = function(){
         InputValidaton(firstName)
@@ -535,12 +625,13 @@
     })();
 
     var dataToSave = []
+    //INICIO DE LOS CALCULOS PERTINENTES PARA LA CREACIÓN DE LAS TABLAS Y MUESTRA DE LA INFORMACIÓN
     // Numerology
     function CalculateNum() {
         InputValidaton(firstName)
         InputValidaton(fLastName)
         InputValidaton(mLastName)
-        // InputValidaton(activeName)
+        InputValidaton(activeName)
         InputValidaton(day)
         InputValidaton(month)
         InputValidaton(year)
@@ -569,13 +660,16 @@
 
         const vowels = { A: 1, Á: 1, U: 3, Ú: 3, Ü: 3, E: 5, É: 5, O: 6, Ó: 6, Y: 7, I: 9, Í: 9 }
 
-        const fullName = firstName.value + midName.value + fLastName.value + mLastName.value
+        const fullName = firstName.value.trim() + midName.value.trim() + fLastName.value.trim() + mLastName.value.trim()
         let fullNameNumber = ''
         if(midName == '') {
-            fullNameNumber = firstName.value + " " + fLastName.value + " " + mLastName.value
+            fullNameNumber = firstName.value.trim() + "  " + fLastName.value.trim() + "  " + mLastName.value.trim()
         } else {
-            fullNameNumber = firstName.value + " " + midName.value + " " + fLastName.value + " " + mLastName.value
+            fullNameNumber = firstName.value.trim() + "  " + midName.value.trim() + "  " + fLastName.value.trim() + "  " + mLastName.value.trim()
         }
+
+        //ConsultantName
+        document.getElementById("consultantName").innerHTML = fullNameNumber
 
         // Birthdate
         let lifeTrajectory = LifeTrajectory(day.value, month.value, year.value)
@@ -621,7 +715,7 @@
         PinnaclesPitfallsTable(cycleYear, pinacles, pitfalls)
 
         // Family Heritage Table
-        let familyName = firstName.value + midName.value + fLastName.value + fSurName.value + mLastName.value + mSurName.value
+        let familyName = firstName.value.trim() + midName.value.trim() + fLastName.value.trim() + fSurName.value.trim() + mLastName.value.trim() + mSurName.value.trim()
         let hpp = GetHPP(inclution)
         let ncs = GetNCS(inclution)
         let dm = GetDM(hpp, ncs)
@@ -679,12 +773,14 @@
         // Cosmic Mission
         document.getElementById("cosmicMission").innerHTML = cosmicMission[1]
 
-        dataToSave = [firstName.value, midName.value, fLastName.value, fSurName.value, mLastName.value, mSurName.value, activeName.value, day.value, month.value, year.value]
+        dataToSave = [firstName.value.trim(), midName.value.trim(), fLastName.value.trim(), fSurName.value.trim(), mLastName.value.trim(), mSurName.value.trim(), activeName.value.trim(), day.value, month.value, year.value]
     }
 
     // PDF
     window.jsPDF = window.jspdf.jsPDF
     window.onmessage = (event) => {
+        //SE VALIDA SI HAY DATA PARA ENVIAR ASÍ COMO SI SE DIO CLIC EN EL BOTÓN DE GUARDAR Y DESCARGAR
+        //SI TODO FUE CORRECTO SE ENVÍA LA INFORMACIÓN POR MEDIO DE UN POSTMESSAGE PARA QUE PUEDA RECIBIRSE DESDE WIX Y GUARDARSE EN LA DB
         if (event.data.click === true && dataToSave.length > 0) {
             ConvertHTMLFileToPDF()
             window.parent.postMessage(dataToSave, "https://www.lauradanaebarra.com/")
@@ -720,7 +816,7 @@
         await addDivToPDF('page2', true);
         await addDivToPDF('page3', true);
 
-        doc.save('Carta numerológica.pdf');
+        doc.save('Carta Numerológica.pdf');
     }
 
 
@@ -828,7 +924,7 @@
             html += '<td>' + vowelNumbers[i] + '</td>'
         }
         if(soulNumber.length > 2){
-            html += '<td class="greenText soulText">' + 
+            html += '<td class="goldText soulText">' + 
                 (ValidateMasterNumber(soulNumber[0]) ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
                 : soulNumber[0]) + 
                 "/" + (ValidateMasterNumber(soulNumber[1]) ? ('<span class="sameDigit">' + soulNumber[1] + '</span>') 
@@ -837,27 +933,27 @@
                 : soulNumber[2]) + 
             '</td>'
         } else if(soulNumber.length == 2) {
-            html += '<td class="greenText soulText">' + 
+            html += '<td class="goldText soulText">' + 
                 (ValidateMasterNumber(soulNumber[0]) ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
                 : soulNumber[0]) + 
                 "/" + (soulNumber[1] == 0 ? ('<span class="sameDigit">' + soulNumber[1] + '</span>') 
                 : soulNumber[1]) +
             '</td>'
         } else {
-            html += '<td class="greenText soulText">' + 
+            html += '<td class="goldText soulText">' + 
                 (soulNumber[0] == 0 ? ('<span class="sameDigit">' + soulNumber[0] + '</span>') 
                 : soulNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles tableTextBold">Número del alma</td>'
+        html += '<td class="tableTitles2 tableTextBold">Número del Alma</td>'
         html += '</tr>'
 
-        html += '<tr class="tableTextBold tableTitles">'
+        html += '<tr class="tableTextBold tableTitles2">'
         for (let i = 0; i < fullName.length; i++) {
             html += '<td>' + fullName.charAt(i).toUpperCase() + '</td>'
         }
         if(destinationNumber.length > 2){
-            html += '<td class="orangeText">' + 
+            html += '<td class="goldText">' + 
                 (ValidateMasterNumber(destinationNumber[0]) ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
                 : destinationNumber[0]) + 
                 "/" + (ValidateMasterNumber(destinationNumber[1]) ? ('<span class="sameDigit">' + destinationNumber[1] + '</span>') 
@@ -866,19 +962,19 @@
                 : destinationNumber[2]) + 
             '</td>'
         } else if(destinationNumber.length == 2) {
-            html += '<td class="orangeText">' + 
+            html += '<td class="goldText">' + 
                 (ValidateMasterNumber(destinationNumber[0]) ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
                 : destinationNumber[0]) + 
                 "/" + (destinationNumber[1] == 0 ? ('<span class="sameDigit">' + destinationNumber[1] + '</span>') 
                 : destinationNumber[1]) +
             '</td>'
         } else {
-            html += '<td class="greenText soulText">' + 
+            html += '<td class="goldText soulText">' + 
                 (destinationNumber[0] == 0 ? ('<span class="sameDigit">' + destinationNumber[0] + '</span>') 
                 : destinationNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles">Vía del destino</td>'
+        html += '<td class="tableTitles2">Vía del Destino</td>'
         html += '</tr>'
 
         html += '<tr class="tableTextRegular">'
@@ -886,7 +982,7 @@
             html += '<td>' + consonantNumbers[i] + '</td>'
         }
         if(personalityNumber.length > 2){
-            html += '<td class="greenText personalityText">' + 
+            html += '<td class="goldText personalityText">' + 
                 (ValidateMasterNumber(personalityNumber[0]) ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
                 : personalityNumber[0]) + 
                 "/" + (ValidateMasterNumber(personalityNumber[1]) ? ('<span class="sameDigit">' + personalityNumber[1] + '</span>') 
@@ -895,19 +991,19 @@
                 : personalityNumber[2]) + 
             '</td>'
         } else if (personalityNumber.length == 2) {
-            html += '<td class="greenText personalityText">' + 
+            html += '<td class="goldText personalityText">' + 
                 (ValidateMasterNumber(personalityNumber[0]) ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
                 : personalityNumber[0]) + 
                 "/" + (personalityNumber[1] == 0 ? ('<span class="sameDigit">' + personalityNumber[1] + '</span>') 
                 : personalityNumber[1]) +
             '</td>'
         } else {
-            html += '<td class="greenText soulText">' + 
+            html += '<td class="goldText soulText">' + 
                 (personalityNumber[0] == 0 ? ('<span class="sameDigit">' + personalityNumber[0] + '</span>') 
                 : personalityNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles tableTextBold">Número personalidad externa</td>'
+        html += '<td class="tableTitles2 tableTextBold">Número Personalidad Externa</td>'
         html += '</tr>'
 
         html += '</tbody>'
@@ -1218,7 +1314,7 @@
         let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
-        html += '<th class="tableTitles">Casas</th>'
+        html += '<th class="tableTitles2">Casas</th>'
         html += '<th>1</th>'
         html += '<th>2</th>'
         html += '<th>3</th>'
@@ -1233,7 +1329,7 @@
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Inclusión</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inclusión</th>'
         if(inclution[0] == 0) {
             html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>'
         } else {
@@ -1282,7 +1378,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
         if(induction[0] == "0<br>0<br>0") {
             html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
         } else {
@@ -1331,7 +1427,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Puentes</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Puentes</th>'
         if(bridges[0] == 0) {
             html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>'
         } else {
@@ -1380,7 +1476,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles" scope="row">Evolución</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Evolución</th>'
         if(evolution[0] == 0) {
             html += '<td class="zeroValue">' + "0*" + '</td>'
         } else {
@@ -1429,7 +1525,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Inconsciente</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inconsciente</th>'
         if(unconscious[0] == 0) {
             html += '<td class="zeroValue">' + "0*" + '</td>'
         } else {
@@ -1478,7 +1574,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
         if(induction2[0] == "0<br>0<br>0") {
             html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
         } else {
@@ -1535,7 +1631,7 @@
         html += '<thead>'
 
         html += '<tr>'
-        html += '<th class="tableTitles">Casas</th>'
+        html += '<th class="tableTitles2">Casas</th>'
         html += '<th>1</th>'
         html += '<th>2</th>'
         html += '<th>3</th>'
@@ -1550,7 +1646,7 @@
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Inclusión</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inclusión</th>'
         if(activeInclution[0] == 0) {
             html += '<td class="zeroValue">' + "0*" + '</td>'
         } else {
@@ -1599,7 +1695,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles" scope="row">Inducción</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
         if(activeInduction[0] == "0<br>0<br>0") {
             html += '<td class="zeroValue">' + "0*" + "<br>" + "0*" + "<br>" + "0*" + '</td>'
         } else {
@@ -1720,16 +1816,16 @@
         html += '<thead>'
         html += '<tr>'
         html += '<th></th>'
-        html += '<th>Primer ciclo</th>'
-        html += '<th>Segundo ciclo</th>'
-        html += '<th>Tercer ciclo</th>'
-        html += '<th>Cuarto ciclo</th>'
+        html += '<th>Primer Ciclo</th>'
+        html += '<th>Segundo Ciclo</th>'
+        html += '<th>Tercer Ciclo</th>'
+        html += '<th>Cuarto Ciclo</th>'
         html += '</tr>'
         html += '</thead>'
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Años</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Años</th>'
         html += '<td>' + cycleYear[0] + '-' + (ValidateMasterNumber(cycleYear[4]) 
             ? ('<span class="sameDigit">' + cycleYear[4] + '</span>') 
             : cycleYear[4]) + '</td>'
@@ -1752,7 +1848,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles" scope="row">Pináculos</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Pináculos</th>'
         if(pinacles[0] == 0) {
             html += '<td class="zeroValue">' + "0*" + '</td>'
         } else {
@@ -1776,7 +1872,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles" scope="row">Escollos</th>'
+        html += '<th class="thPpal tableTitles2" scope="row">Escollos</th>'
         if(pitfalls[0] == 0) {
             html += '<td class="zeroValue">' + "0*" + '</td>'
         } else {
@@ -1885,15 +1981,15 @@
         let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
-        html += '<th class="tableTitles">Herencias familiares</th>'
-        html += '<th>No reducido</th>'
+        html += '<th class="tableTitles2">Herencias Familiares</th>'
+        html += '<th>No Reducido</th>'
         html += '<th>Reducido</th>'
         html += '</tr>'
         html += '</thead>'
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="tableTitles thPpal" scope="row">HPP</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">HPP</th>'
         if(ValidateMasterNumber(hpp[0])) {
             html += '<td>' + '<span class="sameDigit">' + hpp[0] + '</span>' + '</td>'
         } else {
@@ -1907,7 +2003,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles thPpal" scope="row">NCS</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">NCS</th>'
         if(ValidateMasterNumber(ncs[0])) {
             html += '<td>' + '<span class="sameDigit">' + ncs[0] + '</span>' + '</td>'
         } else {
@@ -1921,7 +2017,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles thPpal" scope="row">DM</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">DM</th>'
         if(ValidateMasterNumber(dm[0])) {
             html += '<td>' + '<span class="sameDigit">' + dm[0] + '</span>' + '</td>'
         } else {
@@ -1935,7 +2031,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles thPpal" scope="row">EJE</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">EJE</th>'
         if(ValidateMasterNumber(eje[0])) {
             html += '<td>' + '<span class="sameDigit">' + eje[0] + '</span>' + '</td>'
         } else {
@@ -1949,7 +2045,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles thPpal" scope="row">MF</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">MF</th>'
         if(ValidateMasterNumber(mf[0])) {
             html += '<td>' + '<span class="sameDigit">' + mf[0] + '</span>' + '</td>'
         } else {
@@ -1963,7 +2059,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles thPpal" scope="row">MS</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">MS</th>'
         if(ValidateMasterNumber(ms[0])) {
             html += '<td>' + '<span class="sameDigit">' + ms[0] + '</span>' + '</td>'
         } else {
@@ -1977,7 +2073,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles thPpal" scope="row">MFE</th>'
+        html += '<th class="tableTitles2 thPpal" scope="row">MFE</th>'
         if(ValidateMasterNumber(mfe[0])) {
             html += '<td>' + '<span class="sameDigit">' + mfe[0] + '</span>' + '</td>'
         } else {
@@ -2007,20 +2103,20 @@
         // Population
         let html = '<table class="table table-striped tableTextSize">'
         html += '<tr>'
-        html += '<th colspan="2" class="tableTitles">Habitantes</th>'
+        html += '<th colspan="2" class="tableTitles2">Habitantes</th>'
         for (let i = 0; i < 10; i++) {
             if (i == 9) {
                 (inclution[0] == 0 ? (html += '<th class="zeroValue">' + "0*" + '</th>') 
-                : (html += '<th class="greenTextR">' + inclution[0] + '</th>'))
+                : (html += '<th class="blackTextR">' + inclution[0] + '</th>'))
             } else {
                 (inclution[i] == 0 ? (html += '<th class="zeroValue">' + "0*" + '</th>') 
-                : (html += '<th class="greenTextR">' + inclution[i] + '</th>'))
+                : (html += '<th class="blackTextR">' + inclution[i] + '</th>'))
             }
         }
         html += '</tr>'
         // Cycles
         html += '<tr>'
-        html += '<th colspan="2" class="tableTitles">Ciclos</th>'
+        html += '<th colspan="2" class="tableTitles2">Ciclos</th>'
         for (let i = 0; i < 10; i++) {
             let cycle = i + 1
             html += '<th class="td-w blackTextR">' + cycle + '</th>'
@@ -2037,6 +2133,10 @@
         let newInclution = []
         let cycles = []
         let yearNumberValidation = 0
+
+        if(wayOfLifeNumber > 9){
+            wayOfLifeNumber = SingleDigit(wayOfLifeNumber)
+        }
 
         if (wayOfLifeNumber == 1) {
             newInclution = inclution
@@ -2086,13 +2186,13 @@
             if(newInclution[i] == 0) {
                 html += '<th class="zeroValue" scope="row">' + "0*" + '</th>'
             } else {
-                html += '<th class="greenText" scope="row">' + newInclution[i] + '</th>'
+                html += '<th class="blackText" scope="row">' + newInclution[i] + '</th>'
             }
 
             if(cycles[i] == 0) {
                 html += '<th class="zeroValue" scope="row">' + "0*" + '</th>'
             } else {
-                html += '<th class="greenText" scope="row">' + cycles[i] + '</th>'
+                html += '<th class="blackText" scope="row">' + cycles[i] + '</th>'
             }            
 
             for (let j = 0; j < 10; j++) {
@@ -2181,7 +2281,7 @@
 
         return reducedValues
     }
-
+// Validate master number
     function ValidateMasterNumber(num) {
         if(num.toString().length == 2) {
             if(num == 11 || num == 22 || num == 33 || num == 44 || num == 55 || 
