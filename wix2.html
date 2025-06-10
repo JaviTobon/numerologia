@@ -102,6 +102,10 @@
         color: #A18737;
         font-weight: bold;
     }
+    .redText {
+        color: #E3061E !important;
+        font-weight: bold;
+    }
 
     .soulText {
         vertical-align: bottom !important;
@@ -305,6 +309,32 @@
     .bgYear {
         background-color: #feeddf !important;
     }
+
+    
+    .fecha-calculo {
+        font-family: 'Courier New', monospace;
+        font-size: 12pt;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .tablas-contenedor {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        width: 100%;
+    }
+
+    .tablas-contenedor > div {
+        flex-grow: 1;
+        min-width: 300px;
+    }
+
+    .table {
+        width: 100%;
+    }
 </style>
 
 <body>
@@ -314,36 +344,36 @@
             <form id="formValues">
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Primer Nombre: </label> <span id="inputFirstName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelFirstName"> </label> <span id="inputFirstName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Segundo Nombre: </label> <span id="inputMidName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelMidName"> </label> <span id="inputMidName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Primer Apellido Padre: </label> <span id="fLastName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelFLastName"> </label> <span id="fLastName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Primer Apellido Madre: </label> <span id="mLastName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelMLastName"> </label> <span id="mLastName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Segundo Apellido Padre: </label> <span id="fSurName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelFSurName"> </label> <span id="fSurName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Segundo Apellido Madre: </label> <span id="mSurName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelMSurName"> </label> <span id="mSurName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
-                        <label class="tableTextBold2">Nombre Activo: </label> <span id="activeName" class="spanForm"></span>
+                        <label class="tableTextBold2" id="labelActiveName"> </label> <span id="activeName" class="spanForm"></span>
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="tableTextBold2">Día: </label> <span id="day" class="spanForm"></span>
+                                <label class="tableTextBold2" id="labelDay"> </label> <span id="day" class="spanForm"></span>
                             </div>
                             <div class="col-md-3">
-                                <label class="tableTextBold2">Mes: </label> <span id="month" class="spanForm"></span>
+                                <label class="tableTextBold2" id="labelMonth"> </label> <span id="month" class="spanForm"></span>
                             </div>
                             <div class="col-md-3">
-                                <label class="tableTextBold2">Año: </label> <span id="year" class="spanForm"></span>
+                                <label class="tableTextBold2" id="labelYear"> </label> <span id="year" class="spanForm"></span>
                             </div>
                         </div>
                     </div>
@@ -355,7 +385,7 @@
                     <div id="page1">
                         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
                             <div class="headerTitleDiv">
-                                <h2 class="letterTitle spaceTitle">Numerología Personal: Plan de Alma de <br> <span id="consultantName"></span> </h2> 
+                                <h2 class="letterTitle spaceTitle" id="personalNumerologyTitle"> <br> <span id="consultantName"></span> </h2> 
                                 <div>
                                     <a class="d-flex align-items-right text-dark text-decoration-none spaceLogo">
                                         <img class="headerLogo spaceTitle" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="LDB">
@@ -364,36 +394,47 @@
                             </div>
                         </header>
                         <div class="headerTitleDiv">
-                            <h3 class="letterSubTitle spaceBotFecha">Fecha de Nacimiento: <label id="birthDate" class="birthDate"></label></h3>
+                            <h3 class="letterSubTitle spaceBotFecha" id="birthDateLabel"> <label id="birthDate" class="birthDate"></label></h3>
                         </div>
                         <table class="table table-striped tableTextSize">
                             <thead>
                                 <tr>
-                                    <th class="tableTitles">Numerología Pitagórica</th>
-                                    <th class="tableTitles">Numerología Híbrida</th>
-                                    <th class="tableTitles">Numerología Cabalística</th>
-                                    <th class="tableTitles">Numerología Cuántica</th>
+                                    <th class="tableTitles" id="numerologyTypes1"></th>
+                                    <th class="tableTitles" id="numerologyTypes2"></th>
+                                    <th class="tableTitles" id="numerologyTypes3"></th>
+                                    <th class="tableTitles" id="numerologyTypes4"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="tableTitles"><span class="goldText" id="lifeTrajectory"></span> Trayectoria de Vida</td>
-                                    <td class="tableTitles"><span class="goldText" id="homeTrail"></span> Sendero Natal</td>
-                                    <td class="tableTitles"><span class="goldText" id="wayOfLife"></span> Camino de Vida</td>
-                                    <td class="tableTitles"><span class="goldText" id="deepSoulLonging"></span> Anhelo Profundo del Alma</td>
+                                    <td class="tableTitles">
+                                        <span class="goldText" id="lifeTrajectory"></span>
+                                        <span id="labelLifeTrajectory"></span></td>
+                                    <td class="tableTitles">
+                                        <span class="goldText" id="homeTrail"></span>
+                                        <span id="labelHomeTrail"></span>
+                                    </td>
+                                    <td class="tableTitles">
+                                        <span class="goldText" id="wayOfLife"></span>
+                                        <span id="labelWayOfLife"></span>
+                                    </td>
+                                    <td class="tableTitles">
+                                        <span class="goldText" id="deepSoulLonging"></span>
+                                        <span id="labelDeepSoulLonging"></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <div class="spaceTopCosmicMission spaceBotCosmicMission">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle">Misión Cósmica: <span class="goldText" id="cosmicMission"></span></h4>
+                                <h4 class="letterSubTitle" id="labelCosmicMission"> <span class="goldText" id="cosmicMission"></span></h4>
                             </div>
                         </div>
 
                         <div class="spaceTopNombreCompleto spaceBotNombreCompleto">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle">Cálculo de Nombre Completo</h4>
+                                <h4 class="letterSubTitle" id="fullNameCalcTitle"></h4>
                             </div>
                         </div>
                         
@@ -409,7 +450,7 @@
 
                         <div id="activeNameContainer" class="spaceTop spaceBotNombreActivo">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle">Cálculo de Nombre Activo</h4>
+                                <h4 class="letterSubTitle" id="activeNameCalcTitle"></h4>
                             </div>
                         </div>
 
@@ -420,7 +461,7 @@
                         <div id="active-house-table" class="spaceBot2"></div> 
 
                         <div class="headerTitleDiv spaceTopPinaculos spaceBotPinaculos">
-                            <h4 class="letterSubTitle">Tabla de Pináculos y Escollos</h4>
+                            <h4 class="letterSubTitle" id="pinnaclesTitle"></h4>
                         </div>
                     
                         <div class="spaceBot2">
@@ -436,17 +477,33 @@
                     <div id="page3">
                         <div class="spaceTop spaceBot3">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle">Ciclos de Vida</h4>
+                                <h4 class="letterSubTitle" id="lifeCyclesTitle"></h4>
+                            </div>
+                            <div class="headerTitleDiv">
+                                <p id="clientNameText" class="letterSubTitle"></p>
+                                <p id="birthDateText" class="letterSubTitle"></p>
                             </div>
                         </div>
                         <div id="cycles-tables">
                             <div id="cyclesLife-table"></div>
                         </div>
-                        <footer class="pt-5 my-5 text-muted border-top footerT">
-                            <div class="headerTitleDiv2">
-                                Carta Numerológica | Generado con el Programa de Numerología Genesys | www.lauradanaebarra.com
+                    </div>
+
+                    <div id="page4">
+                        <div class="spaceTop spaceBot3">
+                            <div class="headerTitleDiv">
+                                <h4 class="letterSubTitle" id="yearMonthTitle"></h4>
                             </div>
-                        </footer>
+                        </div>
+                    
+                        <div class="fecha-calculo">
+                            <strong id="calcDateLabel"></strong> <span id="calculoFecha"></span>
+                        </div>
+                    
+                        <div class="tablas-contenedor">
+                            <div id="birthdate-table"></div>
+                            <div id="personal-year-month-table"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -456,7 +513,210 @@
 </body>
 
 <script type="text/javascript">
+    const translations = {
+        es: {
+            placeholders: {
+                firstName: "Primer Nombre: ",
+                midName: "Segundo Nombre: ",
+                fLastName: "Primer Apellido Padre: ",
+                mLastName: "Primer Apellido Madre: ",
+                fSurName: "Segundo Apellido Padre: ",
+                mSurName: "Segundo Apellido Madre: ",
+                activeName: "Nombre Activo: ",
+                year: "Año: ",
+                of: "de"
+            },
+            selects: {
+                day: "Día: ",
+                month: "Mes: ",
+                months: [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                ]
+            },
+            form: {
+                calculate: "Calcular",
+                formError: "Por favor ingresa los campos obligatorios"
+            },
+            headers: {
+                personalNumerology: "Numerología Personal: Plan de Alma de",
+                birthDate: "Fecha de Nacimiento: ",
+                fullNameCalc: "Cálculo de Nombre Completo",
+                activeNameCalc: "Cálculo de Nombre Activo",
+                pinnacles: "Tabla de Pináculos y Escollos",
+                lifeCycles: "Ciclos de Vida",
+                personalYearMonth: "Año Personal y Mes Personal",
+                calculationDate: "Fecha cálculos:",
+                cosmicMission: "Misión Cósmica: "
+            },
+            tables: {
+                numerologyTypes: ["Numerología Pitagórica", "Numerología Híbrida", "Numerología Cabalística", "Numerología Cuántica"],
+                birthdate: {
+                    element: "Elemento",
+                    value: "Valor",
+                    day: "Día",
+                    month: "Mes",
+                    year: "Año",
+                    lifeTrajectory: " Trayectoria de Vida",
+                    homeTrail: " Sendero Natal",
+                    wayOfLife: " Camino de Vida",
+                    deepSoulLonging: " Anhelo Profundo del Alma"
+                },
+                yearMonth: {
+                    personalYear: "Año Personal",
+                    personalMonth: "Mes Personal"
+                },
+                nameNumber: {
+                    soulNumber: "Número del Alma",
+                    destiny: "Vía del Destino",
+                    personality: "Número Personalidad Externa"
+                },
+                houseTable: {
+                    houses: "Casas",
+                    inclusion: "Inclusión",
+                    induction: "Inducción",
+                    bridges: "Puentes",
+                    evolution: "Evolución",
+                    unconscious: "Inconsciente"
+                },
+                pinnaclesTable: {
+                    years: "Años",
+                    pinnacles: "Pináculos",
+                    pitfalls: "Escollos",
+                    firstCycle: "Primer Ciclo",
+                    secondCycle: "Segundo Ciclo",
+                    thirdCycle: "Tercer Ciclo",
+                    fourthCycle: "Cuarto Ciclo"
+                },
+                familyHeritage: {
+                    title: "Herencias Familiares",
+                    columns: ["No Reducido", "Reducido"],
+                    hpp: "HPP",
+                    ncs: "NCS",
+                    dm: "DM",
+                    eje: "EJE",
+                    mf: "MF",
+                    ms: "MS",
+                    mfe: "MFE"
+                },
+                cyclesLife: {
+                    habitants: "Habitantes",
+                    cycles: "Ciclos",
+                    hab: "Hab.",
+                    ap: "AP."
+                }
+            },
+            pdf: {
+                footer: "Generado con el programa de numerología Genesys"
+            }
+        },
+        en: {
+            placeholders: {
+                firstName: "First Name*",
+                midName: "Middle Name (if any)",
+                fLastName: "Father's First Surname*",
+                mLastName: "Mother's First Surname",
+                fSurName: "Father's Second Surname",
+                mSurName: "Mother's Second Surname",
+                activeName: "Active Name*",
+                year: "Year*",
+                of: "de"
+            },
+            selects: {
+                day: "Day*",
+                month: "Month*",
+                months: [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ]
+            },
+            form: {
+                calculate: "Calculate",
+                formError: "Please complete the required fields"
+            },
+            headers: {
+                personalNumerology: "Personal Numerology: Soul Plan of",
+                birthDate: "Birth Date: ",
+                fullNameCalc: "Full Name Calculation",
+                activeNameCalc: "Active Name Calculation",
+                pinnacles: "Pinnacles and Pitfalls Table",
+                lifeCycles: "Life Cycles",
+                personalYearMonth: "Personal Year and Personal Month",
+                calculationDate: "Calculation date:",
+                cosmicMission: "Cosmic Mission: "
+            },
+            tables: {
+                numerologyTypes: ["Pythagorean Numerology", "Hybrid Numerology", "Kabbalistic Numerology", "Quantum Numerology"],
+                birthdate: {
+                    element: "Element",
+                    value: "Value",
+                    day: "Day",
+                    month: "Month",
+                    year: "Year",
+                    lifeTrajectory: " Life Path",
+                    homeTrail: " Birth Path",
+                    wayOfLife: " Destiny Path",
+                    deepSoulLonging: " Deep Soul's Desire"
+                },
+                yearMonth: {
+                    personalYear: "Personal Year",
+                    personalMonth: "Personal Month"
+                },
+                nameNumber: {
+                    soulNumber: "Soul Number",
+                    destiny: "Destiny Path",
+                    personality: "External Personality Number"
+                },
+                houseTable: {
+                    houses: "Houses",
+                    inclusion: "Inclusion",
+                    induction: "Induction",
+                    bridges: "Bridges",
+                    evolution: "Evolution",
+                    unconscious: "Unconscious"
+                },
+                pinnaclesTable: {
+                    years: "Years",
+                    pinnacles: "Pinnacles",
+                    pitfalls: "Pitfalls",
+                    firstCycle: "First Cycle",
+                    secondCycle: "Second Cycle",
+                    thirdCycle: "Third Cycle",
+                    fourthCycle: "Fourth Cycle"
+                },
+                familyHeritage: {
+                    title: "Family Heritage",
+                    columns: ["Unreduced", "Reduced"],
+                    hpp: "HPP",
+                    ncs: "NCS",
+                    dm: "DM",
+                    eje: "AXIS",
+                    mf: "PF",
+                    ms: "MS",
+                    mfe: "PFE"
+                },
+                cyclesLife: {
+                    habitants: "Inhabitants",
+                    cycles: "Cycles",
+                    hab: "Inhab.",
+                    ap: "AP."
+                }
+            },
+            pdf: {
+                footer: "Generated with the Genesys numerology software"
+            }
+        }
+    };
+
+    let language = 'es';
+    let footerText = '';
+    let t = translations['es'];
+
     window.onmessage = (event) => {
+        if (event.data.language) {
+            language = event.data.language;
+            applyTranslations(language);
+        }
         //SE VALIDA LA DATA RECIBIDA DESDE EL SITIO DE WIX PARA LUEGO SETEAR LOS VALORES EN LOS CAMPOS A MOSTRAR
         //ASÍ MISMO SE USAN LOS VALORES SETEADOS PARA CALCULAR Y MOSTRAR TODAS LAS TABLAS NUEVAMENTE
         if (event.data) {
@@ -475,8 +735,6 @@
                 let month = document.getElementById("month").innerHTML  = receivedData.month
                 let year = document.getElementById("year").innerHTML  = receivedData.year
 
-                // document.getElementById("urlRef").innerHTML = "www.lauradanaebarra.com"
-
                 CalculateNum(firstName.trim(), midName.trim(), fLastName.trim(), fSurName.trim(), mLastName.trim(), mSurName.trim(), activeName, day, month, year)
             }
 
@@ -484,9 +742,64 @@
                 ConvertHTMLFileToPDF()
             }
         }
-
     }
-    
+
+    function applyTranslations(lang) {
+        t = translations[lang];        
+
+        // Placeholders de inputs
+        document.getElementById("labelFirstName").placeholder = t.placeholders.firstName;
+        document.getElementById("labelMidName").placeholder = t.placeholders.midName;
+        document.getElementById("labelFLastName").placeholder = t.placeholders.fLastName;
+        document.getElementById("labelFSurName").placeholder = t.placeholders.fSurName;
+        document.getElementById("labelMLastName").placeholder = t.placeholders.mLastName;
+        document.getElementById("labelMSurName").placeholder = t.placeholders.mSurName;
+        document.getElementById("labelActiveName").placeholder = t.placeholders.activeName;
+        document.getElementById("labelYear").placeholder = t.placeholders.year;
+
+        // Select Día
+        const daySelect = document.getElementById("labelDay");
+        if (daySelect.options.length > 0) {
+            daySelect.options[0].text = t.selects.day;
+        }
+
+        // Select Mes
+        const monthSelect = document.getElementById("labelMonth");
+        if (monthSelect.options.length > 0) {
+            monthSelect.options[0].text = t.selects.month;
+            for (let i = 1; i < monthSelect.options.length; i++) {
+            monthSelect.options[i].text = t.selects.months[i - 1];
+            }
+        }
+
+        // Cabeceras visibles (solo si están presentes)
+        const headerIds = {
+            "personalNumerologyTitle": t.headers.personalNumerology,
+            "birthDateLabel": t.headers.birthDate,
+            "labelLifeTrajectory": t.tables.birthdate.lifeTrajectory,
+            "labelHomeTrail": t.tables.birthdate.homeTrail,
+            "labelWayOfLife": t.tables.birthdate.wayOfLife,
+            "labelDeepSoulLonging": t.tables.birthdate.deepSoulLonging,
+            "fullNameCalcTitle": t.headers.fullNameCalc,
+            "activeNameCalcTitle": t.headers.activeNameCalc,
+            "pinnaclesTitle": t.headers.pinnacles,
+            "lifeCyclesTitle": t.headers.lifeCycles,
+            "yearMonthTitle": t.headers.personalYearMonth,
+            "calcDateLabel": t.headers.calculationDate,
+            "numerologyTypes1": t.tables.numerologyTypes[0],
+            "numerologyTypes2": t.tables.numerologyTypes[1],
+            "numerologyTypes3": t.tables.numerologyTypes[2],
+            "numerologyTypes4": t.tables.numerologyTypes[3],
+            "labelCosmicMission": t.headers.cosmicMission,
+        };
+        for (const [id, value] of Object.entries(headerIds)) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = value;
+        }
+
+        //PDF Footer
+        footerText = t.pdf.footer;
+    }    
 
     // Numerology
     function CalculateNum(firstName, midName, fLastName, fSurName, mLastName, mSurName, activeName, day, month, year) {
@@ -517,10 +830,12 @@
         
         //ConsultantName
         document.getElementById("consultantName").innerHTML = fullNameNumber
+        document.getElementById("clientNameText").innerText = fullNameNumber;
+        document.getElementById("birthDateText").innerText = `: ${day} de ${month} de ${year}`;
 
         // Birthdate
         let lifeTrajectory = LifeTrajectory(day, month, year)
-        let homeTrail = LifeTrajectory(day, month, year)
+        let homeTrail = HomeTrail(day, month, year)
         let wayOfLife = WayOfLife(day, month, year)
         let deepSoulLonging = DeepSoulLonging(day, month, year)
 
@@ -577,35 +892,43 @@
         // Cycles Life Table
         CyclesLifeTable(parseInt(year), inclution, wayOfLife)
 
+        // Cálculo del Año y Mes Personal
+        document.getElementById("calculoFecha").innerText = new Date().toLocaleDateString();
+        let personalYear = CalculatePersonalYear(parseInt(day), parseInt(month));
+        let personalMonth = CalculatePersonalMonth(personalYear);
+        // Generación de la Tabla de Año y Mes personal
+        GenerateBirthdateTable(day, month, year);
+        GeneratePersonalYearMonthTable(personalYear, personalMonth);
+
         // Date Numbers
         let monthText = ""
-        if(month == 1) {
-            monthText = "Enero"
-        } else if(month == 2) {
-            monthText = "Febrero"
-        } else if(month == 3) {
-            monthText = "Marzo"
-        } else if(month == 4) {
-            monthText = "Abril"
-        } else if(month == 5) {
-            monthText = "Mayo"
-        } else if(month == 6) {
-            monthText = "Junio"
-        } else if(month == 7) {
-            monthText = "Julio"
-        } else if(month == 8) {
-            monthText = "Agosto"
-        } else if(month == 9) {
-            monthText = "Septiembre"
-        } else if(month == 10) {
-            monthText = "Octubre"
-        } else if(month == 11) {
-            monthText = "Noviembre"
-        } else if(month == 12) {
-            monthText = "Diciembre"
+        if (month.value == 1) {
+            monthText = t.selects.months[0]
+        } else if (month.value == 2) {
+            monthText = t.selects.months[1]
+        } else if (month.value == 3) {
+            monthText = t.selects.months[2]
+        } else if (month.value == 4) {
+            monthText = t.selects.months[3]
+        } else if (month.value == 5) {
+            monthText = t.selects.months[4]
+        } else if (month.value == 6) {
+            monthText = t.selects.months[5]
+        } else if (month.value == 7) {
+            monthText = t.selects.months[6]
+        } else if (month.value == 8) {
+            monthText = t.selects.months[7]
+        } else if (month.value == 9) {
+            monthText = t.selects.months[8]
+        } else if (month.value == 10) {
+            monthText = t.selects.months[9]
+        } else if (month.value == 11) {
+            monthText = t.selects.months[10]
+        } else if (month.value == 12) {
+            monthText = t.selects.months[11]
         }
     
-        document.getElementById("birthDate").innerHTML = day + " de " + monthText + "  de " + year
+        document.getElementById("birthDate").innerHTML = day + ` ${t.placeholders.of} ` + monthText + ` ${t.placeholders.of} ` + year
         document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
         document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
         
@@ -647,14 +970,24 @@
             if (addNewPage) {
                 doc.addPage();
             }
+
             doc.addImage(imgData, 'PNG', margin, margin, imgWidth, imgHeight);
+
+            const pageHeight = doc.internal.pageSize.getHeight();
+            
+            doc.setFont("courier", "monospace", "sans-serif");
+            doc.setFontSize(10);
+            doc.setTextColor(128, 128, 128);
+            doc.text(footerText, margin, pageHeight - 20);
         }
 
         await addDivToPDF('page1', false);
         await addDivToPDF('page2', true);
         await addDivToPDF('page3', true);
+        await addDivToPDF('page4', true);
 
-        doc.save('Carta Numerológica.pdf');
+        const clientName = document.getElementById("consultantName").textContent.trim().replace(/\s{2,}/g, " ").replace(/\s+/g, "_");
+        doc.save(`${clientName}.pdf`);
     }
 
     // LifeTrajectory
@@ -662,6 +995,19 @@
         let dateValues = CalculateDateValues(day, month, year)
         let dayScore = dateValues[0]
         let monthScore = dateValues[1]
+        let yearScore = dateValues[2]
+
+        let noReduced = dayScore + monthScore + yearScore
+        let reduced = SingleDigit(noReduced)
+        let lifeTrajectory = [noReduced, reduced]
+
+        return lifeTrajectory
+    }
+    // HomeTrail
+    function HomeTrail(day, month, year) {
+        let dateValues = CalculateDateValues(day, month, year)
+        let dayScore = parseInt(day)
+        let monthScore = parseInt(month)
         let yearScore = dateValues[2]
 
         let noReduced = dayScore + monthScore + yearScore
@@ -783,7 +1129,7 @@
                 : soulNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles2 tableTextBold">Número del Alma</td>'
+        html += `<td class="tableTitles2 tableTextBold">${t.tables.nameNumber.soulNumber}</td>`
         html += '</tr>'
 
         html += '<tr class="tableTextBold tableTitles2">'
@@ -812,7 +1158,7 @@
                 : destinationNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles2">Vía del Destino</td>'
+        html += `<td class="tableTitles2">${t.tables.nameNumber.destiny}</td>`
         html += '</tr>'
 
         html += '<tr class="tableTextRegular">'
@@ -841,7 +1187,7 @@
                 : personalityNumber[0]) +
             '</td>'
         }
-        html += '<td class="tableTitles2 tableTextBold">Número Personalidad Externa</td>'
+        html += `<td class="tableTitles2 tableTextBold">${t.tables.nameNumber.personality}</td>`
         html += '</tr>'
 
         html += '</tbody>'
@@ -1152,7 +1498,7 @@
         let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
-        html += '<th class="tableTitles2">Casas</th>'
+        html += `<th class="tableTitles2">${t.tables.houseTable.houses}</th>`
         html += '<th>1</th>'
         html += '<th>2</th>'
         html += '<th>3</th>'
@@ -1167,296 +1513,68 @@
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Inclusión</th>'
-        if(inclution[0] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[0] + '</td>'
-        }
-        if(inclution[1] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[1] + '</td>'
-        }
-        if(inclution[2] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[2] + '</td>'
-        }
-        if(inclution[3] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[3] + '</td>'
-        }
-        if(inclution[4] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[4] + '</td>'
-        }
-        if(inclution[5] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[5] + '</td>'
-        }
-        if(inclution[6] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[6] + '</td>'
-        }
-        if(inclution[7] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[7] + '</td>'
-        }
-        if(inclution[8] == 0) {
-            html += '<td class="zeroValue tableTextAlignB">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignB">' + inclution[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.inclusion}</th>`
+        for (let i = 0; i < inclution.length; i++) {
+            if (inclution[i] == 0) {
+                html += '<td class="zeroValue tableTextAlignB">' + "0*" + '</td>';
+            } else {
+                html += `<td class="tableTextAlignB">${inclution[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
-        if(induction[0] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[0] + '</td>'
-        }
-        if(induction[1] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[1] + '</td>'
-        }
-        if(induction[2] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[2] + '</td>'
-        }
-        if(induction[3] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[3] + '</td>'
-        }
-        if(induction[4] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[4] + '</td>'
-        }
-        if(induction[5] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[5] + '</td>'
-        }
-        if(induction[6] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[6] + '</td>'
-        }
-        if(induction[7] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[7] + '</td>'
-        }
-        if(induction[8] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
+        for (let i = 0; i < induction.length; i++) {
+            if (induction[i] === "0<br>0<br>0") {
+                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
+            } else {
+                html += `<td>${induction[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Puentes</th>'
-        if(bridges[0] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[0] + '</td>'
-        }
-        if(bridges[1] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[1] + '</td>'
-        }
-        if(bridges[2] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[2] + '</td>'
-        }
-        if(bridges[3] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[3] + '</td>'
-        }
-        if(bridges[4] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[4] + '</td>'
-        }
-        if(bridges[5] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[5] + '</td>'
-        }
-        if(bridges[6] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[6] + '</td>'
-        }
-        if(bridges[7] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[7] + '</td>'
-        }
-        if(bridges[8] == 0) {
-            html += '<td class="zeroValue tableTextAlignT">' + "  0*" + '</td>'
-        } else {
-            html += '<td class="tableTextAlignT">' + bridges[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.bridges}</th>`
+        for (let i = 0; i < bridges.length; i++) {
+            if (bridges[i] == 0) {
+                html += '<td class="zeroValue tableTextAlignT">' + "0*" + '</td>';
+            } else {
+                html += `<td class="tableTextAlignT">${bridges[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles2" scope="row">Evolución</th>'
-        if(evolution[0] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[0] + '</td>'
-        }
-        if(evolution[1] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[1] + '</td>'
-        }
-        if(evolution[2] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[2] + '</td>'
-        }
-        if(evolution[3] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[3] + '</td>'
-        }
-        if(evolution[4] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[4] + '</td>'
-        }
-        if(evolution[5] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[5] + '</td>'
-        }
-        if(evolution[6] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[6] + '</td>'
-        }
-        if(evolution[7] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[7] + '</td>'
-        }
-        if(evolution[8] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + evolution[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.evolution}</th>`
+        for (let i = 0; i < evolution.length; i++) {
+            if (evolution[i] == 0) {
+                html += '<td class="zeroValue">' + "0*" + '</td>';
+            } else {
+                html += `<td>${evolution[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Inconsciente</th>'
-        if(unconscious[0] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[0] + '</td>'
-        }
-        if(unconscious[1] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[1] + '</td>'
-        }
-        if(unconscious[2] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[2] + '</td>'
-        }
-        if(unconscious[3] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[3] + '</td>'
-        }
-        if(unconscious[4] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[4] + '</td>'
-        }
-        if(unconscious[5] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[5] + '</td>'
-        }
-        if(unconscious[6] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[6] + '</td>'
-        }
-        if(unconscious[7] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[7] + '</td>'
-        }
-        if(unconscious[8] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + unconscious[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.unconscious}</th>`
+        for (let i = 0; i < unconscious.length; i++) {
+            if (unconscious[i] == 0) {
+                html += '<td class="zeroValue">' + "0*" + '</td>';
+            } else {
+                html += `<td>${unconscious[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
-        if(induction2[0] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[0] + '</td>'
-        }
-        if(induction2[1] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[1] + '</td>'
-        }
-        if(induction2[2] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[2] + '</td>'
-        }
-        if(induction2[3] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[3] + '</td>'
-        }
-        if(induction2[4] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[4] + '</td>'
-        }
-        if(induction2[5] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[5] + '</td>'
-        }
-        if(induction2[6] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[6] + '</td>'
-        }
-        if(induction2[7] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[7] + '</td>'
-        }
-        if(induction2[8] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + induction2[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
+        for (let i = 0; i < induction2.length; i++) {
+            if (induction2[i] === "0<br>0<br>0") {
+                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
+            } else {
+                html += `<td>${induction2[i]}</td>`;
+            }
         }
         html += '</tr>'
         html += '</tbody>'
@@ -1469,7 +1587,7 @@
         html += '<thead>'
 
         html += '<tr>'
-        html += '<th class="tableTitles2">Casas</th>'
+        html += `<th class="tableTitles2">${t.tables.houseTable.houses}</th>`
         html += '<th>1</th>'
         html += '<th>2</th>'
         html += '<th>3</th>'
@@ -1484,100 +1602,24 @@
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Inclusión</th>'
-        if(activeInclution[0] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[0] + '</td>'
-        }
-        if(activeInclution[1] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[1] + '</td>'
-        }
-        if(activeInclution[2] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[2] + '</td>'
-        }
-        if(activeInclution[3] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[3] + '</td>'
-        }
-        if(activeInclution[4] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[4] + '</td>'
-        }
-        if(activeInclution[5] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[5] + '</td>'
-        }
-        if(activeInclution[6] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[6] + '</td>'
-        }
-        if(activeInclution[7] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[7] + '</td>'
-        }
-        if(activeInclution[8] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInclution[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.inclusion}</th>`
+        for (let i = 0; i < activeInclution.length; i++) {
+            if (activeInclution[i] == 0) {
+                html += '<td class="zeroValue">' + "0*" + '</td>';
+            } else {
+                html += `<td>${activeInclution[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles2" scope="row">Inducción</th>'
-        if(activeInduction[0] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[0] + '</td>'
-        }
-        if(activeInduction[1] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[1] + '</td>'
-        }
-        if(activeInduction[2] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[2] + '</td>'
-        }
-        if(activeInduction[3] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[3] + '</td>'
-        }
-        if(activeInduction[4] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[4] + '</td>'
-        }
-        if(activeInduction[5] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[5] + '</td>'
-        }
-        if(activeInduction[6] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[6] + '</td>'
-        }
-        if(activeInduction[7] =="0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[7] + '</td>'
-        }
-        if(activeInduction[8] == "0<br>0<br>0") {
-            html += '<td class="zeroValue">' + "  0*" + "<br>" + "  0*" + "<br>" + "  0*" + '</td>'
-        } else {
-            html += '<td>' + activeInduction[8] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
+        for (let i = 0; i < activeInduction.length; i++) {
+            if (activeInduction[i] === "0<br>0<br>0") {
+                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
+            } else {
+                html += `<td>${activeInduction[i]}</td>`;
+            }
         }
         html += '</tr>'
 
@@ -1654,16 +1696,16 @@
         html += '<thead>'
         html += '<tr>'
         html += '<th></th>'
-        html += '<th>Primer Ciclo</th>'
-        html += '<th>Segundo Ciclo</th>'
-        html += '<th>Tercer Ciclo</th>'
-        html += '<th>Cuarto Ciclo</th>'
+        html += `<th>${t.tables.pinnaclesTable.firstCycle}</th>`
+        html += `<th>${t.tables.pinnaclesTable.secondCycle}</th>`
+        html += `<th>${t.tables.pinnaclesTable.thirdCycle}</th>`
+        html += `<th>${t.tables.pinnaclesTable.fourthCycle}</th>`
         html += '</tr>'
         html += '</thead>'
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Años</th>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.pinnaclesTable.years}</th>`
         html += '<td>' + cycleYear[0] + '-' + (ValidateMasterNumber(cycleYear[4]) 
             ? ('<span class="sameDigit">' + cycleYear[4] + '</span>') 
             : cycleYear[4]) + '</td>'
@@ -1686,50 +1728,24 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="thPpal tableTitles2" scope="row">Pináculos</th>'
-        if(pinacles[0] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pinacles[0] + '</td>'
-        }
-        if(pinacles[1] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pinacles[1] + '</td>'
-        }
-        if(pinacles[2] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pinacles[2] + '</td>'
-        }
-        if(pinacles[3] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pinacles[3] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.pinnaclesTable.pinnacles}</th>`
+        for (let i = 0; i < pinacles.length; i++) {
+            if (pinacles[i] == 0) {
+                html += '<td class="zeroValue">' + "0*" + '</td>';
+            } else {
+                html += `<td>${pinacles[i]}</td>`;
+            }
         }
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="thPpal tableTitles2" scope="row">Escollos</th>'
-        if(pitfalls[0] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pitfalls[0] + '</td>'
-        }
-        if(pitfalls[1] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pitfalls[1] + '</td>'
-        }
-        if(pitfalls[2] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pitfalls[2] + '</td>'
-        }
-        if(pitfalls[3] == 0) {
-            html += '<td class="zeroValue">' + "  0*" + '</td>'
-        } else {
-            html += '<td>' + pitfalls[3] + '</td>'
+        html += `<th class="thPpal tableTitles2" scope="row">${t.tables.pinnaclesTable.pitfalls}</th>`
+        for (let i = 0; i < pitfalls.length; i++) {
+            if (pitfalls[i] == 0) {
+                html += '<td class="zeroValue">' + "0*" + '</td>';
+            } else {
+                html += `<td class="redText">${pitfalls[i]}</td>`;
+            }
         }
         html += '</tr>'
 
@@ -1819,15 +1835,15 @@
         let html = '<table class="table table-striped tableTextSize">'
         html += '<thead>'
         html += '<tr>'
-        html += '<th class="tableTitles2">Herencias Familiares</th>'
-        html += '<th>No Reducido</th>'
-        html += '<th>Reducido</th>'
+        html += `<th class="tableTitles2">${t.tables.familyHeritage.title}</th>`
+        html += `<th>${t.tables.familyHeritage.columns[0]}</th>`
+        html += `<th>${t.tables.familyHeritage.columns[1]}</th>`
         html += '</tr>'
         html += '</thead>'
 
         html += '<tbody>'
         html += '<tr>'
-        html += '<th class="tableTitles2 thPpal" scope="row">HPP</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.hpp}</th>`
         if(ValidateMasterNumber(hpp[0])) {
             html += '<td>' + '<span class="sameDigit">' + hpp[0] + '</span>' + '</td>'
         } else {
@@ -1841,7 +1857,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles2 thPpal" scope="row">NCS</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.ncs}</th>`
         if(ValidateMasterNumber(ncs[0])) {
             html += '<td>' + '<span class="sameDigit">' + ncs[0] + '</span>' + '</td>'
         } else {
@@ -1855,7 +1871,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles2 thPpal" scope="row">DM</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.dm}</th>`
         if(ValidateMasterNumber(dm[0])) {
             html += '<td>' + '<span class="sameDigit">' + dm[0] + '</span>' + '</td>'
         } else {
@@ -1869,7 +1885,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles2 thPpal" scope="row">EJE</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.eje}</th>`
         if(ValidateMasterNumber(eje[0])) {
             html += '<td>' + '<span class="sameDigit">' + eje[0] + '</span>' + '</td>'
         } else {
@@ -1883,7 +1899,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles2 thPpal" scope="row">MF</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.mf}</th>`
         if(ValidateMasterNumber(mf[0])) {
             html += '<td>' + '<span class="sameDigit">' + mf[0] + '</span>' + '</td>'
         } else {
@@ -1897,7 +1913,7 @@
         html += '</tr>'
 
         html += '<tr class="trPpal">'
-        html += '<th class="tableTitles2 thPpal" scope="row">MS</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.ms}</th>`
         if(ValidateMasterNumber(ms[0])) {
             html += '<td>' + '<span class="sameDigit">' + ms[0] + '</span>' + '</td>'
         } else {
@@ -1911,7 +1927,7 @@
         html += '</tr>'
 
         html += '<tr>'
-        html += '<th class="tableTitles2 thPpal" scope="row">MFE</th>'
+        html += `<th class="tableTitles2 thPpal" scope="row">${t.tables.familyHeritage.mfe}</th>`
         if(ValidateMasterNumber(mfe[0])) {
             html += '<td>' + '<span class="sameDigit">' + mfe[0] + '</span>' + '</td>'
         } else {
@@ -1941,7 +1957,7 @@
         // Population
         let html = '<table class="table table-striped tableTextSize">'
         html += '<tr>'
-        html += '<th colspan="2" class="tableTitles2">Habitantes</th>'
+        html += `<th colspan="2" class="tableTitles2">${t.tables.cyclesLife.habitants}</th>`
         for (let i = 0; i < 10; i++) {
             if (i == 9) {
                 (inclution[0] == 0 ? (html += '<th class="zeroValue">' + "  0*" + '</th>') 
@@ -1954,7 +1970,7 @@
         html += '</tr>'
         // Cycles
         html += '<tr>'
-        html += '<th colspan="2" class="tableTitles2">Ciclos</th>'
+        html += `<th colspan="2" class="tableTitles2">${t.tables.cyclesLife.cycles}</th>`
         for (let i = 0; i < 10; i++) {
             let cycle = i + 1
             html += '<th class="td-w blackTextR">' + cycle + '</th>'
@@ -1964,8 +1980,8 @@
         // Years
         html += '<tbody>'
         html += '<tr class="trPpal">'
-        html += '<th scope="row">Hab.</th>'
-        html += '<th scope="row">AP.</th>'
+        html += `<th scope="row">${t.tables.cyclesLife.hab}</th>`
+        html += `<th scope="row">${t.tables.cyclesLife.ap}</th>`
         html += '</tr>'
 
         let newInclution = []
@@ -2057,6 +2073,63 @@
         document.getElementById("cyclesLife-table").innerHTML = html
     }
 
+    // Tabla de fecha de nacimiento
+    function GenerateBirthdateTable(day, month, year) {
+        let html = `
+            <table class="table table-bordered tableTextSize">
+                <thead>
+                    <tr>
+                        <th class="tableTitles2">${t.tables.birthdate.element}</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tableTitles2">{t.tables.birthdate.day}</td>
+                        <td>${day}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableTitles2">${t.tables.birthdate.month}</td>
+                        <td>${month}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableTitles2">${t.tables.birthdate.year}</td>
+                        <td>${year}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+        document.getElementById("birthdate-table").innerHTML = html;
+    }
+
+    // Tabla de Año y Mes Personal con corrección de número maestro
+    function GeneratePersonalYearMonthTable(personalYear, personalMonth) {
+        let personalYearStr = String(personalYear);
+        let personalMonthStr = String(personalMonth);
+
+        let html = `
+            <table class="table table-bordered tableTextSize">
+                <thead>
+                    <tr>
+                        <th class="tableTitles2">${t.tables.birthdate.element}</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tableTitles2">${t.tables.yearMonth.personalYear}</td>
+                        <td class="${personalYearStr.includes('/') ? 'greenText' : ''}">${personalYearStr}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableTitles2">${t.tables.yearMonth.personalMonth}</td>
+                        <td class="${personalMonthStr.includes('/') ? 'greenText' : ''}">${personalMonthStr}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+        document.getElementById("personal-year-month-table").innerHTML = html;
+    }
+
     // UTILS //
     // Calculate Date Values - Day, Month, Year
     function CalculateDateValues(day, month, year) {
@@ -2091,6 +2164,40 @@
 
         return dateValues
     }
+
+    // Calcular el Año Personal
+    function SingleDigitWithMaster(value) {
+        let masterNumber = null;
+        while (value >= 10) {
+            if (ValidateMasterNumber(value)) {
+                masterNumber = value;
+            }
+            let total = 0;
+            let str = '' + value;
+
+            for (let i = 0; i < str.length; i++) {
+                total += parseInt(str.charAt(i));
+            }
+            value = total;
+        }
+
+        return masterNumber ? `${masterNumber}/${value}` : value;
+    }
+
+    // Calcular el Año Personal
+    function CalculatePersonalYear(day, month) {
+        const currentYear = new Date().getFullYear();
+        const sum = day + month + currentYear;
+        return SingleDigitWithMaster(sum);
+    }
+
+    // Calcular el Mes Personal
+    function CalculatePersonalMonth(personalYear) {
+        const currentMonth = new Date().getMonth() + 1;
+        const sum = parseInt(personalYear) + currentMonth;
+        return SingleDigitWithMaster(sum);
+    }
+
     // Single Digit
     function SingleDigit(singleDigitValue) {
         while (singleDigitValue >= 10) {
@@ -2117,22 +2224,25 @@
             }
             singleDigitValue = total
             reducedValues.push(total)
-            // console.log('total', singleDigitValue)
         }
 
         return reducedValues
     }
-
+    // Validate master number
     function ValidateMasterNumber(num) {
-        if(num.toString().length == 2) {
-            if(num == 11 || num == 22 || num == 33 || num == 44 || num == 55 || 
-            num == 66 || num == 77 || num == 88 || num == 99 ) {
-                return true
-            } else {
-                return false
-            }
+        if (num.toString().length === 2) {
+            return [11, 22, 33, 44, 55, 66, 77, 88, 99].includes(num);
         } else {
-            return false
+            return false;
+        }
+    }
+
+    function FormatMasterNumber(number) {
+        if (ValidateMasterNumber(number)) {
+            let reduced = SingleDigit(number);
+            return `${number}/${reduced}`;
+        } else {
+            return SingleDigit(number);
         }
     }
 </script>
