@@ -385,7 +385,9 @@
                     <div id="page1">
                         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
                             <div class="headerTitleDiv">
-                                <h2 class="letterTitle spaceTitle" id="personalNumerologyTitle"> <br> <span id="consultantName"></span> </h2> 
+                                <h2 class="letterTitle spaceTitle"> 
+                                    <span id="personalNumerologyTitle"></span><br>
+                                    <span id="consultantName"></span> </h2> 
                                 <div>
                                     <a class="d-flex align-items-right text-dark text-decoration-none spaceLogo">
                                         <img class="headerLogo spaceTitle" src="https://static.wixstatic.com/media/3a2a90_ecee45f4cbb544f5981629eb08074bbe~mv2.png" alt="LDB">
@@ -394,7 +396,10 @@
                             </div>
                         </header>
                         <div class="headerTitleDiv">
-                            <h3 class="letterSubTitle spaceBotFecha" id="birthDateLabel"> <label id="birthDate" class="birthDate"></label></h3>
+                            <h3 class="letterSubTitle spaceBotFecha"> 
+                                <label id="birthDateLabel" class="letterSubTitle spaceBotFecha"></label>
+                                <label id="birthDate" class="birthDate"></label>
+                            </h3>
                         </div>
                         <table class="table table-striped tableTextSize">
                             <thead>
@@ -409,7 +414,8 @@
                                 <tr>
                                     <td class="tableTitles">
                                         <span class="goldText" id="lifeTrajectory"></span>
-                                        <span id="labelLifeTrajectory"></span></td>
+                                        <span id="labelLifeTrajectory"></span>
+                                    </td>
                                     <td class="tableTitles">
                                         <span class="goldText" id="homeTrail"></span>
                                         <span id="labelHomeTrail"></span>
@@ -428,7 +434,10 @@
 
                         <div class="spaceTopCosmicMission spaceBotCosmicMission">
                             <div class="headerTitleDiv">
-                                <h4 class="letterSubTitle" id="labelCosmicMission"> <span class="goldText" id="cosmicMission"></span></h4>
+                                <h4 class="letterSubTitle">
+                                    <span class="letterSubTitle" id="labelCosmicMission"></span>
+                                    <span class="goldText" id="cosmicMission"></span>
+                                </h4>
                             </div>
                         </div>
 
@@ -710,7 +719,7 @@
 
     let language = 'es';
     let footerText = '';
-    let t = translations['es'];
+    let t = translations[language];
 
     window.onmessage = (event) => {
         if (event.data.language) {
