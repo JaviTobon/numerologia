@@ -1075,8 +1075,8 @@
         for (let i = 0; i < fullName.length; i++) {
             let curChar = fullName.charAt(i).toUpperCase()
 
-            if (curChar == "y" || curChar == "Y") {
-                isConsonant = ValidateYLetter(fullName, curChar, i)
+            if (curChar.toLowerCase() === 'y') {
+                isConsonant = ValidateYLetter(fullName, i)
 
                 if (isConsonant == true) {
                     if (consonants[curChar] != undefined) {
@@ -1216,8 +1216,8 @@
         for (let i = 0; i < fullName.length; i++) {
             let curChar = fullName.charAt(i).toUpperCase()
 
-            if (curChar == "y" || curChar == "Y") {
-                isConsonant = ValidateYLetter(fullName, curChar, i)
+            if (curChar.toLowerCase() === 'y') {
+                isConsonant = ValidateYLetter(fullName, i)
             } else {
                 isConsonant = false
             }
@@ -1283,8 +1283,8 @@
             let curChar = fullName.charAt(i).toUpperCase()
             let curValue = consonants[curChar]
 
-            if (curChar == "y" || curChar == "Y") {
-                isConsonant = ValidateYLetter(fullName, curChar, i)
+            if (curChar.toLowerCase() === 'y') {
+                isConsonant = ValidateYLetter(fullName, i)
             } else {
                 isConsonant = true
             }
@@ -1312,20 +1312,16 @@
 
         return personalityNumber
     }
-    function ValidateYLetter(fullName, curChar, index) {
-        const nextLetter = fullName.charAt(index + 1);
-        let isConsonant = false
+    function ValidateYLetter(fullName, index) {
+        const prev = index > 0 ? fullName.charAt(index - 1) : null;
+        const next = index < fullName.length - 1
+            ? fullName.charAt(index + 1).toLowerCase()
+            : null;
 
-        if (curChar === 'y' && fullName.charAt(index - 1) == undefined) { //First letter
-            isConsonant = true
-        } else if (nextLetter != undefined && (fullName.charAt(index + 1) === 'a'
-            || fullName.charAt(index + 1) === 'e' || fullName.charAt(index + 1) === 'i')
-            || fullName.charAt(index + 1) === 'o' || fullName.charAt(index + 1) === 'u') { // has a vowel after the 'y'
-            isConsonant = true
-        } else {
-            isConsonant = false
-        }
-        return isConsonant
+        const isWordStart = index === 0 || prev === ' ';
+        const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+        return isWordStart || (next !== null && vowels.includes(next));
     }
 
     // Inclution
