@@ -1315,10 +1315,15 @@
     function ValidateYLetter(fullName, index) {
         const name = fullName.toLowerCase();
         const vowels = ['a','e','i','o','u','á','é','í','ó','ú','ü'];
+        
         const prev = index > 0 ? name.charAt(index - 1) : null;
         const next = index < name.length - 1 ? name.charAt(index + 1) : null;
-
-        if (next !== null && (vowels.includes(next) || next === 'y')) {
+        
+        if (prev && !vowels.includes(prev) && /[a-zñ]/.test(prev)) {
+            return false;
+        }
+        
+        if (next && (vowels.includes(next) || next === 'y')) {
             return true;
         }
         

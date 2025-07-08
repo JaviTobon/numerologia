@@ -1,0 +1,40 @@
+import wixUsers from 'wix-users';
+const wixData = require('wix-data');
+const user = wixUsers.currentUser;
+import wixWindow from 'wix-window';
+
+$w.onReady(() => {
+  const currentLang = wixWindow.multilingual.currentLanguage;
+  $w('#html1').postMessage({ language: currentLang });
+});
+
+async function showLetterInfo(createdDate){
+
+    await wixData.query("numerologiadatos")
+    .eq("_owner", user.id)
+    .eq("_createdDate", createdDate)
+    .find()
+    .then((result)=>{
+        if (result.items.length > 0) {
+            let letter = result.items[0];
+            $w('#html1').postMessage(letter)
+        }
+    })
+}
+
+export function repeater1_itemReady($item, itemData) {
+    const createdDate = itemData._createdDate;
+
+    $item("#button25").onClick(async() => {
+        await showLetterInfo(createdDate)
+        $w('#section2').expand();
+    })
+}
+
+$w('#button28').onClick( (event) => {
+    $w('#html1').postMessage({click:true})
+})
+
+export function button27_click(event) {
+	$w('#section2').collapse();
+}

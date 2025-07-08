@@ -1,0 +1,46 @@
+const wixData = require('wix-data');
+import wixWindow from 'wix-window';
+
+$w.onReady(() => {
+  const currentLang = wixWindow.multilingual.currentLanguage;
+  $w('#html1').postMessage({ language: currentLang });
+});
+
+$w('#button28').hide()
+
+export function button28_click(event) {
+    $w('#html1').postMessage({ click: true })
+
+    $w('#html1').onMessage((event) => {
+        $w('#button28').disable()
+        let receivedData = event.data
+        const wixData = require('wix-data');
+
+        const formData = {
+            "firstName": receivedData[0],
+            "midName": receivedData[1],
+            "fLastName": receivedData[2],
+            "fSurName": receivedData[3],
+            "mLastName": receivedData[4],
+            "mSurName": receivedData[5],
+            "activeName": receivedData[6],
+            "day": receivedData[7],
+            "month": receivedData[8],
+            "year": receivedData[9],
+        };
+
+        // //Guarda los datos en la base de datos
+        wixData.insert('numerologiadatos', formData)
+        .then((results) => {
+            const item = results;
+            $w('#button28').enable()
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    })
+}
+
+export function html1_mouseIn(event) {
+	$w('#button28').show()
+}
