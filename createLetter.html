@@ -766,7 +766,7 @@
                 mSurName: "Mother's Second Surname",
                 activeName: "Active Name*",
                 year: "Year*",
-                of: "de"
+                of: "of"
             },
             selects: {
                 day: "Day*",
@@ -833,19 +833,19 @@
                 familyHeritage: {
                     title: "Family Heritage",
                     columns: ["Unreduced", "Reduced"],
-                    hpp: "HPP",
-                    ncs: "NCS",
-                    dm: "DM",
-                    eje: "AXIS",
-                    mf: "PF",
-                    ms: "MS",
-                    mfe: "PFE"
+                    hpp: "MPH",   // Herencias Psicológicas Principales
+                    ncs: "CCB",   // Núcleo Central del Ser
+                    dm:  "MG",    // Dones Mayores
+                    eje: "AXIS",  // Correcto
+                    mf:  "FM",    // Misión Familiar
+                    ms:  "SM",    // Misión Social
+                    mfe: "FSM"    // Misión Fundamental Espiritual
                 },
                 cyclesLife: {
                     habitants: "Inhabitants",
                     cycles: "Cycles",
                     hab: "Inhab.",
-                    ap: "AP."
+                    ap: "PY."   // AP
                 }
             },
             pdf: {
@@ -965,8 +965,19 @@
         InputValidaton(year)
     }
 
+    function formatBirthDateLocalized(day, month, year) {
+        const mIdx = parseInt(month, 10) - 1;
+        const monthName = t.selects.months[mIdx];
+        if (language === 'en') {
+            return `${day} ${monthName}, ${year}`;
+        } else {
+            return `${day} ${t.placeholders.of} ${monthName} ${t.placeholders.of} ${year}`;
+        }
+    }
+
     function InputValidaton(input) {
-        if (input.value == "" || input.value == t.selects.day || input.value == t.selects.month || (input.name == t.placeholders.year && input.value.length < 4)) {
+        const isYear = (input.id === 'year' || input.name === 'year');
+        if (input.value == "" || input.value == t.selects.day || input.value == t.selects.month || (isYear && input.value.length < 4)) {
             input.classList.add("inputError")
             formError.removeAttribute("hidden")
         } else {
@@ -1038,9 +1049,11 @@
         }
         
         //ConsultantName
-        document.getElementById("consultantName").innerHTML = fullNameNumber
+        document.getElementById("consultantName").innerHTML = fullNameNumber;
         document.getElementById("clientNameText").innerText = fullNameNumber;
-        document.getElementById("birthDateText").innerText = `: ${day.value} ${t.placeholders.of} ${month.value} ${t.placeholders.of} ${year.value}`;
+        const birthDateLocalized = formatBirthDateLocalized(day.value, month.value, year.value);
+        document.getElementById("birthDateText").innerText = `: ${birthDateLocalized}`;
+        // document.getElementById("birthDateText").innerText = `: ${day.value} ${t.placeholders.of} ${month.value} ${t.placeholders.of} ${year.value}`;
 
         // Birthdate
         let lifeTrajectory = LifeTrajectory(day.value, month.value, year.value)
@@ -1109,33 +1122,7 @@
         GeneratePersonalYearMonthTable(personalYear, personalMonth);
 
         // Date Numbers
-        let monthText = ""
-        if (month.value == 1) {
-            monthText = t.selects.months[0]
-        } else if (month.value == 2) {
-            monthText = t.selects.months[1]
-        } else if (month.value == 3) {
-            monthText = t.selects.months[2]
-        } else if (month.value == 4) {
-            monthText = t.selects.months[3]
-        } else if (month.value == 5) {
-            monthText = t.selects.months[4]
-        } else if (month.value == 6) {
-            monthText = t.selects.months[5]
-        } else if (month.value == 7) {
-            monthText = t.selects.months[6]
-        } else if (month.value == 8) {
-            monthText = t.selects.months[7]
-        } else if (month.value == 9) {
-            monthText = t.selects.months[8]
-        } else if (month.value == 10) {
-            monthText = t.selects.months[9]
-        } else if (month.value == 11) {
-            monthText = t.selects.months[10]
-        } else if (month.value == 12) {
-            monthText = t.selects.months[11]
-        }
-        document.getElementById("birthDate").innerHTML = day.value + ` ${t.placeholders.of} ` + monthText + `  ${t.placeholders.of} ` + year.value
+        document.getElementById("birthDate").innerHTML = birthDateLocalized;
         document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
         document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
 
@@ -2309,7 +2296,7 @@
                 <thead>
                     <tr>
                         <th class="tableTitles2">${t.tables.birthdate.element}</th>
-                        <th>Valor</th>
+                        <th>${t.tables.birthdate.value}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -2341,7 +2328,7 @@
                 <thead>
                     <tr>
                         <th class="tableTitles2">${t.tables.birthdate.element}</th>
-                        <th>Valor</th>
+                        <th>${t.tables.birthdate.value}</th>
                     </tr>
                 </thead>
                 <tbody>
