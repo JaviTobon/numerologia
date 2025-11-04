@@ -753,7 +753,7 @@
                 }
             },
             pdf: {
-                footer: "Generado con el programa de numerología Genesys"
+                footer: "Generado con el programa de numerología Genesys en la web"
             }
         },
         en: {
@@ -849,7 +849,7 @@
                 }
             },
             pdf: {
-                footer: "Generated with the Genesys numerology software"
+                footer: "Generated with the Genesys numerology software on the web"
             }
         }
     };
@@ -940,8 +940,6 @@
     let day = document.getElementById("day")
     let month = document.getElementById("month")
     let year = document.getElementById("year")
-
-    // document.getElementById("urlRef").innerHTML = "www.lauradanaebarra.com"
 
     firstName.onchange = function () {
         InputValidaton(firstName)
@@ -1185,8 +1183,19 @@
 
             doc.setFont("courier", "monospace", "sans-serif");
             doc.setFontSize(10);
+            const y = pageHeight - 20;
             doc.setTextColor(128, 128, 128);
-            doc.text(footerText, margin, pageHeight - 20);
+            const left = margin;
+            doc.text(footerText + " ", left, y);
+
+            // Enlace clickeable (usa protocolo https)
+            const siteText = "www.lauradanaebarra.com";
+            const siteUrl  = "https://www.lauradanaebarra.com";
+
+            // posición x: justo después del texto del footer
+            const x = left + doc.getTextWidth(footerText + " ");
+            doc.setTextColor(0, 102, 204);
+            doc.textWithLink(siteText, x, y, { url: siteUrl });
         }
 
         await addDivToPDF('page1', false);
