@@ -1040,7 +1040,7 @@
 
         const fullName = firstName.value.trim() + midName.value.trim() + fLastName.value.trim() + mLastName.value.trim()
         let fullNameNumber = ''
-        if (midName == '') {
+        if (midName.value.trim() === '') {
             fullNameNumber = firstName.value.trim() + "  " + fLastName.value.trim() + "  " + mLastName.value.trim()
         } else {
             fullNameNumber = firstName.value.trim() + "  " + midName.value.trim() + "  " + fLastName.value.trim() + "  " + mLastName.value.trim()
@@ -1181,7 +1181,7 @@
 
             const pageHeight = doc.internal.pageSize.getHeight();
 
-            doc.setFont("courier", "monospace", "sans-serif");
+            doc.setFont("courier", "normal");
             doc.setFontSize(10);
             const y = pageHeight - 20;
             doc.setTextColor(128, 128, 128);
@@ -1196,6 +1196,7 @@
             const x = left + doc.getTextWidth(footerText + " ");
             doc.setTextColor(0, 102, 204);
             doc.textWithLink(siteText, x, y, { url: siteUrl });
+            doc.setTextColor(128,128,128);
         }
 
         await addDivToPDF('page1', false);
