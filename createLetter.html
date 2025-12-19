@@ -799,9 +799,9 @@
                     day: "Day",
                     month: "Month",
                     year: "Year",
-                    lifeTrajectory: " Life Path",
+                    lifeTrajectory: " Life Trajectory",
                     homeTrail: " Birth Path",
-                    wayOfLife: " Destiny Path",
+                    wayOfLife: " Life Path",
                     deepSoulLonging: " Deep Soul's Desire"
                 },
                 yearMonth: {
@@ -1124,14 +1124,16 @@
         document.getElementById("lifeTrajectory").innerHTML = lifeTrajectory[0] + "/" + lifeTrajectory[1]
         document.getElementById("homeTrail").innerHTML = homeTrail[0] + "/" + homeTrail[1]
 
-        let divWayOfLife = document.getElementById("wayOfLife")
-        if (wayOfLife.length > 2) {
-            divWayOfLife.innerHTML = wayOfLife[0] + "/" + wayOfLife[1] + "/" + wayOfLife[2]
-        } else if (destinationNumber.length == 2) {
-            divWayOfLife.innerHTML = wayOfLife[0] + "/" + wayOfLife[1]
+        let divWayOfLife = document.getElementById("wayOfLife");
+
+        if (wayOfLife.length === 3) {
+            divWayOfLife.innerHTML = `${wayOfLife[0]}/${wayOfLife[1]}/${wayOfLife[2]}`;
+        } else if (wayOfLife.length === 2) {
+            divWayOfLife.innerHTML = `${wayOfLife[0]}/${wayOfLife[1]}`;
         } else {
-            divWayOfLife.innerHTML = wayOfLife[0]
+            divWayOfLife.innerHTML = `${wayOfLife[0]}`;
         }
+
         document.getElementById("deepSoulLonging").innerHTML = deepSoulLonging[0] + "/" + deepSoulLonging[1]
 
         // Cosmic Mission
@@ -1746,11 +1748,7 @@
         html += '<tr class="trPpal">'
         html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
         for (let i = 0; i < induction.length; i++) {
-            if (induction[i] === "0<br>0<br>0") {
-                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
-            } else {
-                html += `<td>${induction[i]}</td>`;
-            }
+            html += `<td>${formatZerosInMultilineCell(induction[i])}</td>`;
         }
         html += '</tr>'
 
@@ -1790,11 +1788,7 @@
         html += '<tr class="trPpal">'
         html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
         for (let i = 0; i < induction2.length; i++) {
-            if (induction2[i] === "0<br>0<br>0") {
-                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
-            } else {
-                html += `<td>${induction2[i]}</td>`;
-            }
+            html += `<td>${formatZerosInMultilineCell(induction2[i])}</td>`;
         }
         html += '</tr>'
         html += '</tbody>'
@@ -1835,11 +1829,7 @@
         html += '<tr class="trPpal">'
         html += `<th class="thPpal tableTitles2" scope="row">${t.tables.houseTable.induction}</th>`
         for (let i = 0; i < activeInduction.length; i++) {
-            if (activeInduction[i] === "0<br>0<br>0") {
-                html += `<td class="zeroValue">0*<br>0*<br>0*</td>`;
-            } else {
-                html += `<td>${activeInduction[i]}</td>`;
-            }
+            html += `<td>${formatZerosInMultilineCell(activeInduction[i])}</td>`;
         }
         html += '</tr>'
 
@@ -2471,4 +2461,12 @@
             return SingleDigit(number);
         }
     }
+
+    function formatZerosInMultilineCell(cellHtml) {
+        return String(cellHtml)
+            .split("<br>")
+            .map(v => v.trim() === "0" ? `<span class="zeroValue">0*</span>` : v)
+            .join("<br>");
+    }
+
 </script>
